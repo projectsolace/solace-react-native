@@ -9,7 +9,7 @@ export default class Homepage extends Component {
     return (
       <Image source={ require('../../../images/sky.jpeg')} style={ styles.container } >
         <View style={styles.content}>
-          <Button>
+          <Button style={{alignSelf: 'center'}}>
             You've made it
           </Button>
         </View>
