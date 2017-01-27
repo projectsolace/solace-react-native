@@ -1,15 +1,23 @@
 import React from "react";
 import {Scene, Router} from "react-native-router-flux";
-import TopLevelComponent from './screens/TopLevelComponent.native';
+import Login from './screens/Login.native';
+import Signup from './screens/Signup.native';
+import Homepage from './screens/Homepage.native';
+import { Provider } from 'react-redux';
+import store from './store.native';
 
 export default class App extends React.Component {
-  render() {
+  render () {
     return (
-      <Router>
-        <Scene key="root">
-          <Scene key="entryPoint" component={TopLevelComponent} hideNavBar initial/>
-        </Scene>
-      </Router>
+      <Provider store={ store }>
+        <Router>
+          <Scene key="root">
+            <Scene key="entryPoint" component={Login} hideNavBar initial/>
+            <Scene key="signup" component={Signup} title="Signup"/>
+            <Scene key="homepage" component={Homepage} title="Homepage"/>
+          </Scene>
+        </Router>
+      </Provider>
     );
   }
 }

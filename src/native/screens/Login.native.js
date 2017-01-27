@@ -2,8 +2,18 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View, Dimensions, Image } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Content, InputGroup, Input, Icon, Button } from 'native-base';
+import { Actions } from 'react-native-router-flux';
 
-export default class Screen1 extends Component {
+export default class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.verifyLogin = this.verifyLogin.bind(this);
+  }
+
+  verifyLogin() {
+
+  }
+
   render() {
 
     return (
@@ -42,7 +52,7 @@ export default class Screen1 extends Component {
               <Row>
                 <Col style={{paddingTop: 15, paddingLeft: 20}}>
                   <Button transparent>
-                    <Text style={{fontWeight: 'bold', color: 'white', fontSize: 14}}>
+                    <Text style={{fontWeight: 'bold', color: 'white', fontSize: 14}} onPress={ Actions.signup} >
                       Create Account
                     </Text>
                   </Button>
