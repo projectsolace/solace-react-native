@@ -42,7 +42,7 @@ export default class Login extends Component {
               </InputGroup>
               <Row>
                 <Content>
-                  <Button rounded block info style={styles.login}>
+                  <Button rounded block info style={styles.login} onPress={Actions.homepage}>
                     <Text style={{fontWeight: 'bold', color: 'white', fontSize: 20}}>
                       Log In
                     </Text>
