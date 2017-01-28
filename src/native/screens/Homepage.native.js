@@ -4,6 +4,8 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Content, InputGroup, Input, Icon, Button, Container } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import {AudioRecorder, AudioUtils} from 'react-native-audio';
+import { RNS3 } from 'react-native-aws3';
+import axios from 'axios'
 
 
 let audioPath = AudioUtils.DocumentDirectoryPath + '/watson2.wav';
@@ -32,7 +34,31 @@ export default class Homepage extends Component {
     };
 
      const onStopRecord = () => {
-        AudioRecorder.startRecording();
+        AudioRecorder.stopRecording();
+        let file = {
+          // `uri` can also be a file system path (i.e. file://)
+          uri: audioPath,
+          name: "test.wav",
+          type: "audio/wav"
+        }
+        let options = {
+          keyPrefix: "/",
+          bucket: "watsonapi",
+          region: "us-east-1",
+          accessKey: "AKIAI3DBDWZAJFDBTTEA",
+          secretKey: "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",
+          successActionStatus: 201
+        }
+
+        RNS3.put(file, options).then(response => {
+            if (response.status !== 201) throw new Error("Failed to upload audio to S3");
+            console.log(response.body.postResponse.location);
+            axios.get('http://localhost:1337/api/watson/').then(function(resp){
+              console.log(resp.data)
+            })
+        });
+
+
     };
 
     return (
