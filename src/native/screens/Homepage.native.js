@@ -6,6 +6,7 @@ import { Actions } from 'react-native-router-flux';
 import {AudioRecorder, AudioUtils} from 'react-native-audio';
 import { RNS3 } from 'react-native-aws3';
 import axios from 'axios'
+import secrets from './secrets.json'
 
 
 let audioPath = AudioUtils.DocumentDirectoryPath + '/watson2.wav';
@@ -45,8 +46,8 @@ export default class Homepage extends Component {
           keyPrefix: "/",
           bucket: "watsonapi",
           region: "us-east-1",
-          accessKey: "AKIAI3DBDWZAJFDBTTEA",
-          secretKey: "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",
+          accessKey: secrets.keyA,
+          secretKey: secrets.keyB,
           successActionStatus: 201
         }
 

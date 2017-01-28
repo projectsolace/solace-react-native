@@ -188,6 +188,8 @@ fabric.properties
 # .idea/misc.xml
 # *.ipr
 
+#secrets
+secrets.json
 
 ### Node ###
 # Logs
