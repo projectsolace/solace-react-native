@@ -54,7 +54,7 @@ export default class Homepage extends Component {
         RNS3.put(file, options).then(response => {
             if (response.status !== 201) throw new Error("Failed to upload audio to S3");
             console.log(response.body.postResponse.location);
-            axios.get('http://localhost:1337/api/watson/').then(function(resp){
+            axios.get('https://watson-backend.herokuapp.com/api/watson/').then(function(resp){
               console.log(resp.data)
             })
         });

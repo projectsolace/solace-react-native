@@ -24,7 +24,7 @@ const newUser = (createdUser) => {
 // };
 
 export const registerUser = (credentials) => dispatch => {
-  axios.post('watson-backend.herokuapp.com/api/users/', credentials)
+  axios.post('http://watson-backend.herokuapp.com/api/users/', credentials)
   .then(response => {
     dispatch(newUser(response.data));
   })
