@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, Image } from 'react-native';
+import { StyleSheet, Text, Image, AlertIOS, AsyncStorage } from 'react-native';
 import { Row, Grid } from 'react-native-easy-grid';
 import { Content, InputGroup, Input, Icon, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
-import { registerUser } from '../reducer/UserReducer.native';
+import { newUser } from '../reducer/UserReducer.native';
 import { connect } from 'react-redux';
+import store from '../store.native';
 // import { BlurView, VibrancyView } from 'react-native-blur';
+
+var STORAGE_KEY = 'id_token';
 
 class Signup extends Component {
   constructor(props) {
@@ -16,28 +19,58 @@ class Signup extends Component {
       password: '',
       email: ''
     };
-    this.onUserSubmit = this.onUserSubmit.bind(this);
+
+    this.onValueChange = this.onValueChange.bind(this);
+    this._userSignup = this._userSignup.bind(this);
   }
 
-  onUserSubmit() {
+  async onValueChange(item, selectedValue) {
+  try {
+    await AsyncStorage.setItem(item, selectedValue);
+  } catch (error) {
+    console.log('AsyncStorage error: ' + error.message);
+    }
+  }
+
+  _userSignup() {
     const { firstName, lastName, password, email } = this.state;
-    let userInfo = {
+    let value = {
       firstName,
       lastName,
       password,
       email
     };
 
-    console.log('userInfo', userInfo);
-
-    registerUser(userInfo);
-
-    Actions.pop();
+    if (value) { // if validation fails, value will be null
+      fetch("http://localhost:1337/api/tokens/signup", {
+        method: "POST",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          firstName: value.firstName,
+          lastName: value.lastName,
+          password: value.password,
+          email: value.email
+        })
+      })
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log('this is the response', responseData),
+        this.onValueChange(STORAGE_KEY, responseData.id_token),
+        store.dispatch(newUser(responseData.user)),
+        AlertIOS.alert(
+          "Signup Success!"
+        ),
+        Actions.homepage();
+      })
+      .catch(err => console.error('signup failed', err))
+      .done();
+    }
   }
 
    render() {
-    console.log('these are the props', this.props);
-    console.log('this is the state', this.state);
 
     return (
       <Image source={ require('../../../images/sky.jpeg')} style={ styles.container } >
@@ -91,7 +124,7 @@ class Signup extends Component {
               </InputGroup>
               <Row>
                 <Content>
-                  <Button rounded block success style={styles.login} onPress={this.onUserSubmit}>
+                  <Button rounded block success style={styles.login} onPress={this._userSignup}>
                     <Text style={{fontWeight: 'bold', color: 'white', fontSize: 20}}>
                       Continue
                     </Text>
@@ -154,6 +187,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { registerUser };
-
-export default connect(mapStateToProps, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps)(Signup);
