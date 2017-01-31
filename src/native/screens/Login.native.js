@@ -1,21 +1,67 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Dimensions, Image } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image, AlertIOS, AsyncStorage } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Content, InputGroup, Input, Icon, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import { currentUser } from '../reducer/UserReducer.native'
+import store from '../store.native';
 
-export default class Login extends Component {
+var STORAGE_KEY = 'id_token';
+
+ class Login extends Component {
   constructor(props) {
     super(props);
-    this.verifyLogin = this.verifyLogin.bind(this);
+    this.state = {
+      email: '',
+      password: ''
+    };
+
+    this.onValueChange = this.onValueChange.bind(this);
+    this._userLogin = this._userLogin.bind(this);
   }
 
-  verifyLogin() {
+  async onValueChange(item, selectedValue) {
+    try {
+      await AsyncStorage.setItem(item, selectedValue);
+    } catch (error) {
+      console.log('AsyncStorage error: ' + error.message);
+      }
+  }
 
+  _userLogin() {
+    const { email, password } = this.state;
+    let value = {email, password};
+    console.log('here comes the value', value)
+    if (value) { // if validation fails, value will be null
+      fetch("http://localhost:1337/api/tokens/sessions/create", {
+        method: "POST",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: value.email,
+          password: value.password,
+        })
+      })
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log('this is the response', responseData),
+        this.onValueChange(STORAGE_KEY, responseData.id_token),
+        store.dispatch(currentUser(responseData.user)),
+        AlertIOS.alert(
+          "Authentication Success!"
+        ),
+        Actions.homepage()
+      })
+      .catch(err => console.error('Authentication failed', err))
+      .done();
+    }
   }
 
   render() {
-
+    console.log('here comes the state', this.state)
     return (
       <Image source={ require('../../../images/sky.jpeg')} style={ styles.container } >
         <Grid>
@@ -30,6 +76,9 @@ export default class Login extends Component {
                 <Icon name="ios-person-outline"/>
                 <Input
                 placeholder="email"
+                autofocus={true}
+                value={this.state.email}
+                onChangeText={email => this.setState({ email })}
                 style={styles.inputField}
                 />
               </InputGroup>
@@ -37,12 +86,15 @@ export default class Login extends Component {
                 <Icon name="ios-lock-outline"/>
                 <Input
                 placeholder="password"
+                autofocus={true}
+                value={this.state.password}
+                onChangeText={password => this.setState({ password })}
                 style={styles.inputField}
                 />
               </InputGroup>
               <Row>
                 <Content>
-                  <Button rounded block info style={styles.login} onPress={Actions.homepage}>
+                  <Button rounded block info style={styles.login} onPress={this._userLogin}>
                     <Text style={{fontWeight: 'bold', color: 'white', fontSize: 20}}>
                       Log In
                     </Text>
@@ -110,4 +162,16 @@ const styles = StyleSheet.create({
     marginRight: 20
   }
 });
+
+
+/* -----------------    CONTAINER     ------------------ */
+
+const mapStateToProps = (state) => {
+  return {
+    allUsers: state.currentUser
+  };
+};
+
+export default connect(mapStateToProps)(Login);
+
 
