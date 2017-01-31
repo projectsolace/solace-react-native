@@ -84,6 +84,7 @@ class Signup extends Component {
               <InputGroup borderType="rounded" style={styles.inputCreds}>
                 <Icon name="ios-person-outline"/>
                 <Input
+                autoCapitalize="none"
                 autofocus={true}
                 value={this.state.firstName}
                 onChangeText={firstName => this.setState({ firstName })}
@@ -94,6 +95,7 @@ class Signup extends Component {
               <InputGroup borderType="rounded" style={styles.inputCreds}>
                 <Icon name="ios-person-outline"/>
                 <Input
+                autoCapitalize="none"
                 autofocus={true}
                 value={this.state.lastName}
                 onChangeText={lastName => this.setState({ lastName })}
@@ -104,6 +106,7 @@ class Signup extends Component {
               <InputGroup borderType="rounded" style={styles.inputCreds}>
                 <Icon name="ios-mail"/>
                 <Input
+                autoCapitalize="none"
                 autofocus={true}
                 value={this.state.email}
                 onChangeText={email => this.setState({ email })}
@@ -114,6 +117,7 @@ class Signup extends Component {
               <InputGroup borderType="rounded" style={styles.inputCreds}>
                 <Icon name="ios-lock-outline"/>
                 <Input
+                autoCapitalize="none"
                 autofocus={true}
                 value={this.state.password}
                 onChangeText={password => this.setState({ password })}
