@@ -42,7 +42,7 @@ class Signup extends Component {
     };
 
     if (value) { // if validation fails, value will be null
-      fetch("http://localhost:1337/api/tokens/signup", {
+      fetch("https://watson-backend.herokuapp.com/api/tokens/signup", {
         method: "POST",
         headers: {
           'Accept': 'application/json',
@@ -57,7 +57,6 @@ class Signup extends Component {
       })
       .then((response) => response.json())
       .then((responseData) => {
-        console.log('this is the response', responseData),
         this.onValueChange(STORAGE_KEY, responseData.id_token),
         store.dispatch(newUser(responseData.user)),
         AlertIOS.alert(
