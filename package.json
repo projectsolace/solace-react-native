@@ -20,6 +20,7 @@
     "react-native-blur": "^2.0.0",
     "react-native-easy-grid": "^0.1.8",
     "react-native-router-flux": "^3.37.0",
+    "react-native-swiper": "^1.5.4",
     "react-native-vector-icons": "^4.0.0",
     "react-native-web": "0.0.65",
     "react-redux": "^5.0.2",
