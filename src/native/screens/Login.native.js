@@ -34,7 +34,7 @@ var STORAGE_KEY = 'id_token';
     let value = {email, password};
     console.log('here comes the value', value)
     if (value) { // if validation fails, value will be null
-      fetch("http://localhost:1337/api/tokens/sessions/create", {
+      fetch("https://watson-backend.herokuapp.com/api/tokens/sessions/create", {
         method: "POST",
         headers: {
           'Accept': 'application/json',
@@ -86,6 +86,7 @@ var STORAGE_KEY = 'id_token';
                 <Icon name="ios-lock-outline"/>
                 <Input
                 placeholder="password"
+                secureTextEntry
                 autofocus={true}
                 value={this.state.password}
                 onChangeText={password => this.setState({ password })}
