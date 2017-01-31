@@ -33,6 +33,15 @@ export default class Homepage extends Component {
     const onStartRecord = () => {
       console.log('STARTED RECORDING')
       AudioRecorder.startRecording();
+    //   RNFetchBlob.fs.readStream(audioPath, 'base64')
+    //   .then((stream) => {
+    //     stream.open()
+    //     stream.onData((chunk) => {
+    //         console.log(chunk)
+    //     })
+    //     stream.onEnd(() => {
+    //     })
+    // })
     };
 
      const onStopRecord = () => {
