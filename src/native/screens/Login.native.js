@@ -75,6 +75,7 @@ var STORAGE_KEY = 'id_token';
               <InputGroup borderType="rounded" style={styles.inputCreds}>
                 <Icon name="ios-person-outline"/>
                 <Input
+                autoCapitalize="none"
                 placeholder="email"
                 autofocus={true}
                 value={this.state.email}
@@ -85,6 +86,7 @@ var STORAGE_KEY = 'id_token';
               <InputGroup borderType="rounded" style={styles.inputCreds}>
                 <Icon name="ios-lock-outline"/>
                 <Input
+                secureTextEntry={true}
                 placeholder="password"
                 secureTextEntry
                 autofocus={true}
