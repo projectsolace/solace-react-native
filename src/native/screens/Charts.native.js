@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Dimensions, Image, AlertIOS, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image, AlertIOS, AsyncStorage, Container } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Content, InputGroup, Input, Icon, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
@@ -19,17 +19,63 @@ var STORAGE_KEY = 'id_token';
     this.state = {
       recording: {}
     };
-
   }
 
   render() {
     console.log('here comes the state', this.state)
     return (
-      <Image source={{ uri: 'https://s3.amazonaws.com/watsonapi/images/3.jpg'}} style={ styles.container }>
-              <Button info style={{alignSelf: 'center'}}> Overtime Data </Button>
-              <Button danger style={{alignSelf: 'center'}}> Average Data (Most Accurate) </Button>
-              <Avg/>
-
+      <Image source={{ uri: 'https://s3.amazonaws.com/watsonapi/images/3.jpg'}} style={styles.container} >
+        <Grid>
+          <Row size={30} style={styles.content} >
+            <Text style={styles.text} >
+              Choose a filter below
+            </Text>
+          </Row>
+          <Row size={70} style={styles.content} >
+            <Content>
+              <Row style={{paddingLeft: 10, paddingRight: 10}}>
+                <Content>
+                  <Button rounded block info iconRight style={styles.button} onPress={Actions.chartModal}>
+                    <Text style={{fontWeight: 'bold', color: 'white', fontSize: 20}}>
+                      Latest Data
+                    </Text>
+                    <Icon name='ios-arrow-forward' />
+                  </Button>
+                </Content>
+              </Row>
+              <Row>
+                <Col style={{paddingLeft: 10}}>
+                  <Button rounded success iconRight style={styles.button} onPress={Actions.chartModal}>
+                      Weekly Average
+                    <Icon name='ios-arrow-forward' />
+                  </Button>
+                  <Button rounded success iconRight style={styles.button} onPress={Actions.chartModal}>
+                      Monthly Average
+                    <Icon name='ios-arrow-forward' />
+                  </Button>
+                  <Button rounded success iconRight style={styles.button} onPress={Actions.chartModal}>
+                      All Time Average
+                    <Icon name='ios-arrow-forward' />
+                  </Button>
+                </Col>
+                <Col style={{paddingRight: 10}}>
+                  <Button rounded warning iconRight style={styles.button} onPress={Actions.chartModal}>
+                      Weekly Over Time
+                    <Icon name='ios-arrow-forward' />
+                  </Button>
+                  <Button rounded warning iconRight style={styles.button} onPress={Actions.chartModal}>
+                      Monthly Over Time
+                    <Icon name='ios-arrow-forward' />
+                  </Button>
+                  <Button rounded warning iconRight style={styles.button} onPress={Actions.chartModal}>
+                      All Time Over Time
+                    <Icon name='ios-arrow-forward' />
+                  </Button>
+                </Col>
+              </Row>
+            </Content>
+          </Row>
+        </Grid>
       </Image>
     );
   }
@@ -49,26 +95,12 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 30,
     fontFamily: 'Helvetica',
-    color: 'white',
+    color: 'black',
     fontWeight: 'bold'
   },
-  inputField: {
-    fontSize: 18,
-    fontFamily: 'Helvetica',
-    color: 'white',
-    fontWeight: 'bold'
-  },
-  inputCreds: {
-    paddingLeft: 15,
-    marginBottom: 17,
-    marginLeft: 20,
-    marginRight: 20,
-    backgroundColor: 'rgba(0,0,0,0.3)',
-    borderColor: 'rgba(0,0,0,0)'
-  },
-  login: {
-    marginLeft: 20,
-    marginRight: 20
+  button: {
+    alignSelf: 'stretch',
+    margin: 5
   }
 });
 
@@ -84,3 +116,10 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(Charts);
 
 
+          // <Grid>
+          //   <Row size={65} style={styles.content} >
+          //     <Text style={styles.text} onPress={()=> Actions.chartModal()}>
+          //       Here are the charts!
+          //     </Text>
+          //   </Row>
+          // </Grid>

@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { currentUser } from '../reducer/UserReducer.native'
 import store from '../store.native';
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from 'victory-native'
+import Swiper from 'react-native-swiper';
 
 
 var STORAGE_KEY = 'id_token';
@@ -22,7 +23,6 @@ var STORAGE_KEY = 'id_token';
   }
 
   render() {
-    console.log('STATE', this.state);
     let count = 1
     let tonecount = 1
     let data=this.state.personality.sort(function(a,b){return b.score - a.score}).map(function(obj){return {x:count++,y:obj.score*100}})
@@ -30,153 +30,194 @@ var STORAGE_KEY = 'id_token';
     let tonaldata=this.state.tone.sort(function(a,b){return b.score - a.score}).map(function(obj){return {x:tonecount++,y:obj.score*100}})
     let tonelabels=this.state.tone.map(function(obj){return obj.quality+` ${(obj.score*100).toFixed(2)}%`})
     return (
-    <View style={styles.scrollView}centerContent={true}>
-      <ScrollView>
-            <VictoryChart>
-                <VictoryBar
-                 horizontal
-                 domain={{x:[0,100]}}
-                 labels={labels.slice(35,47)}
-                 height={500}
-                 padding={75}
-                 style={{
-                  labels: {
-                   fontSize: 5
-                  },
-                  data: {
-                   width: 8,
-                   fill: (data) => data.x%2==0 ? "blue" : "tomato"
-                  }
-             }}
-                 data={data.slice(35,47)}
+      <View style={styles.container}>
+        <Swiper style={styles.wrapper} showsButtons={true}>
 
-                />
-            </VictoryChart>
+          <View style={styles.slide}>
             <VictoryChart>
-                <VictoryBar
-                 horizontal
-                 domain={{x:[0,100]}}
-                 labels={labels.slice(24,35)}
-                 height={1000}
-                 padding={75}
-                 style={{
-                  labels: {
-                   fontSize: 5
-                  },
-                  data: {
-                   width: 8,
-                   fill: (data) => data.x%2==0 ? "blue" : "tomato"
-                  }
-             }}
-                 data={data.slice(24,35)}
-
-                />
-          </VictoryChart>
-          <VictoryChart>
               <VictoryBar
                horizontal
                domain={{x:[0,100]}}
-               labels={labels.slice(12,24)}
+               labels={labels.slice(35,47)}
+               height={500}
+               padding={75}
+               style={{
+                labels: {
+                 fontSize: 5
+                },
+                data: {
+                 width: 12,
+                 fill: (data) => data.x%2==0 ? "blue" : "tomato"
+                }
+                }}
+               data={data.slice(35,47)}
+
+              />
+            </VictoryChart>
+          </View>
+
+          <View style={styles.slide}>
+            <VictoryChart>
+              <VictoryBar
+               horizontal
+               domain={{x:[0,100]}}
+               labels={labels.slice(24,35)}
                height={1000}
                padding={75}
                style={{
                 labels: {
-                  fontSize:5
+                 fontSize: 5
                 },
                 data: {
-                  width: 8,
-                  fill: (data) => data.x%2==0 ?"blue" : "tomato"
+                 width: 8,
+                 fill: (data) => data.x%2==0 ? "blue" : "tomato"
+                }
+                }}
+               data={data.slice(24,35)}
+              />
+            </VictoryChart>
+          </View>
+
+          <View style={styles.slide}>
+            <VictoryChart>
+                <VictoryBar
+                 horizontal
+                 domain={{x:[0,100]}}
+                 labels={labels.slice(12,24)}
+                 height={1000}
+                 padding={75}
+                 style={{
+                  labels: {
+                    fontSize:5
+                  },
+                  data: {
+                    width: 8,
+                    fill: (data) => data.x%2==0 ?"blue" : "tomato"
+                  }
+                 }}
+                 data={data.slice(12,24)}
+
+                />
+            </VictoryChart>
+          </View>
+
+          <View style={styles.slide}>
+            <VictoryChart>
+              <VictoryBar
+               horizontal
+               domain={{x:[0,100]}}
+               labels={labels.slice(0,12)}
+               height={1000}
+               padding={75}
+               style={{
+                labels: {
+                 fontSize:5
+                },
+                data: {
+                 width: 8,
+                 fill: (data) => data.x%2==0 ? "blue" : "tomato"
                 }
                }}
-               data={data.slice(12,24)}
-
+               data={data.slice(0,12)}
               />
-        </VictoryChart>
-        <VictoryChart>
-            <VictoryBar
-             horizontal
-             domain={{x:[0,100]}}
-             labels={labels.slice(0,12)}
-             height={1000}
-             padding={75}
-             style={{
-              labels: {
-               fontSize:5
-              },
-              data: {
-               width: 8,
-               fill: (data) => data.x%2==0 ? "blue" : "tomato"
-              }
-             }}
-             data={data.slice(0,12)}
-            />
-        </VictoryChart>
-        <VictoryChart>
-            <VictoryBar
-             horizontal
-             domain={{x:[0,100]}}
-             labels={tonelabels}
-             height={1000}
-             padding={10}
-             style={{
-              labels: {
-               fontSize: 5
-              },
-              data: {
-               width: 8,
-               fill: (data) => data.x%2==0 ? "blue" : "tomato"
-              }
-             }}
-             data={tonaldata}
-            />
-        </VictoryChart>
-    </ScrollView>
-</View>
+            </VictoryChart>
+          </View>
+
+          <View style={styles.slide}>
+            <VictoryChart>
+              <VictoryBar
+               horizontal
+               domain={{x:[0,100]}}
+               labels={tonelabels}
+               height={1000}
+               padding={10}
+               style={{
+                labels: {
+                 fontSize: 5
+                },
+                data: {
+                 width: 8,
+                 fill: (data) => data.x%2==0 ? "blue" : "tomato"
+                }
+               }}
+               data={tonaldata}
+              />
+            </VictoryChart>
+          </View>
+
+        </Swiper>
+      </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  scrollView:{
-    backgroundColor: '#6A85B1',
-    height:1000
-  },
   container: {
     flex: 1,
-    width: null,
-    height: 2000,
-    backgroundColor: 'rgba(0,0,100,0)'
-  },
-  content: {
     justifyContent: 'center',
     alignItems: 'center'
   },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+    color: '#ffffff',
+  },
+  wrapper: {
+  },
+  slide: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+  },
   text: {
+    color: 'black',
     fontSize: 30,
-    fontFamily: 'Helvetica',
-    color: 'white',
-    fontWeight: 'bold'
-  },
-  inputField: {
-    fontSize: 18,
-    fontFamily: 'Helvetica',
-    color: 'white',
-    fontWeight: 'bold'
-  },
-  inputCreds: {
-    paddingLeft: 15,
-    marginBottom: 17,
-    marginLeft: 20,
-    marginRight: 20,
-    backgroundColor: 'rgba(0,0,0,0.3)',
-    borderColor: 'rgba(0,0,0,0)'
-  },
-  login: {
-    marginLeft: 20,
-    marginRight: 20
+    fontWeight: 'bold',
   }
 });
 
+// const styles = StyleSheet.create({
+//   scrollView:{
+//     backgroundColor: '#6A85B1',
+//     height:1000
+//   },
+//   container: {
+//     flex: 1,
+//     width: null,
+//     height: 2000,
+//     backgroundColor: 'rgba(0,0,100,0)'
+//   },
+//   content: {
+//     justifyContent: 'center',
+//     alignItems: 'center'
+//   },
+//   text: {
+//     fontSize: 30,
+//     fontFamily: 'Helvetica',
+//     color: 'white',
+//     fontWeight: 'bold'
+//   },
+//   inputField: {
+//     fontSize: 18,
+//     fontFamily: 'Helvetica',
+//     color: 'white',
+//     fontWeight: 'bold'
+//   },
+//   inputCreds: {
+//     paddingLeft: 15,
+//     marginBottom: 17,
+//     marginLeft: 20,
+//     marginRight: 20,
+//     backgroundColor: 'rgba(0,0,0,0.3)',
+//     borderColor: 'rgba(0,0,0,0)'
+//   },
+//   login: {
+//     marginLeft: 20,
+//     marginRight: 20
+//   }
+// });
 
 /* -----------------    CONTAINER     ------------------ */
 
