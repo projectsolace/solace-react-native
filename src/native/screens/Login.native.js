@@ -61,9 +61,8 @@ var STORAGE_KEY = 'id_token';
   }
 
   render() {
-    console.log('here comes the state', this.state)
     return (
-      <Image source={ require('../../../images/sky.jpeg')} style={ styles.container } >
+      <Image source={{uri:'https://s3.amazonaws.com/watsonapi/images/3.jpg'}} style={ styles.container } >
         <Grid>
           <Row size={65} style={styles.content} >
             <Text style={styles.text}>
@@ -131,8 +130,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: null,
     height: null,
-    backgroundColor: 'rgba(0,0,0,0)',
-    resizeMode: 'stretch'
+    backgroundColor: 'rgba(0,0,0,0)'
   },
   content: {
     justifyContent: 'center',

@@ -3,6 +3,7 @@ import {Scene, Router} from "react-native-router-flux";
 import Login from './screens/Login.native';
 import Signup from './screens/Signup.native';
 import Homepage from './screens/Homepage.native';
+import CompleteProfile from './screens/CompleteProfile.native';
 import { Provider } from 'react-redux';
 import store from './store.native';
 
@@ -12,9 +13,10 @@ export default class App extends React.Component {
       <Provider store={ store }>
         <Router>
           <Scene key="root">
-            <Scene key="entryPoint" component={Login} hideNavBar initial/>
+            <Scene key="entryPoint" component={Login} hideNavBar />
             <Scene key="signup" component={Signup} title="Signup"/>
             <Scene key="homepage" component={Homepage} title="Homepage"/>
+            <Scene key="homepage" component={CompleteProfile} title="CompleteProfile" hideNavBar initial/>
           </Scene>
         </Router>
       </Provider>
