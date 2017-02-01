@@ -67,8 +67,8 @@ var STORAGE_KEY = 'id_token';
       <Image source={ require('../../../images/sky.jpeg')} style={ styles.container } >
         <Grid>
           <Row size={65} style={styles.content} >
-            <Text style={styles.text} onPress={()=> Actions.modal()}>
-              Welcome to Watson {'\n'}   Let's get started!
+            <Text style={styles.text} >
+              Welcome to Watson {'\n'}   Lets get started!
             </Text>
           </Row>
           <Row size={35}>

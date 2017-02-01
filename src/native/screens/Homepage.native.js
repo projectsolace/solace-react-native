@@ -32,15 +32,7 @@ export default class Homepage extends Component {
     const onStartRecord = () => {
       console.log('STARTED RECORDING')
       AudioRecorder.startRecording();
-    //   RNFetchBlob.fs.readStream(audioPath, 'base64')
-    //   .then((stream) => {
-    //     stream.open()
-    //     stream.onData((chunk) => {
-    //         console.log(chunk)
-    //     })
-    //     stream.onEnd(() => {
-    //     })
-    // })
+      Actions.questionModal();
     };
 
      const onStopRecord = () => {
@@ -76,11 +68,9 @@ export default class Homepage extends Component {
       <Image source={ require('../../../images/sky.jpeg')} style={ styles.container } >
         <Container style={styles.content}>
           <Content>
-              <Button style={{alignSelf: 'center'}}>
-                You've made it
-              </Button>
               <Button info style={{alignSelf: 'center'}} onPress = { onStartRecord } > Start Record </Button>
               <Button danger style={{alignSelf: 'center'}} onPress = { onStopRecord } > Stop Record </Button>
+              <Button info style={{alignSelf: 'center'}} onPress={()=> Actions.questionModal()} > Today's Questions </Button>
           </Content>
         </Container>
       </Image>

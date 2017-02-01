@@ -26,7 +26,6 @@ export default class App extends React.Component {
             <Scene key="entryPoint" component={Login} hideNavBar initial />
             <Scene key="signup" component={Signup} title="Signup"/>
             <Scene key="homepage" component={Homepage} title="Homepage"/>
-            <Scene key="modal" component={QuestionsModal} title="Modal" direction = "vertical" hideNavBar />
             <Scene key="charts" component={Charts} hideNavBar title="Charts" />
             <Scene key="latestData" component={LatestDataChart} title="LatestDataChart" direction="vertical" hideNavBar />
             <Scene key="weeklyAverage" component={WeeklyAverageChart} title="WeeklyAverageChart" direction="vertical" hideNavBar />
@@ -35,6 +34,7 @@ export default class App extends React.Component {
             <Scene key="weeklyTotal" component={WeeklyTotalChart} title="WeeklyTotalChart" direction="vertical" hideNavBar />
             <Scene key="monthlyTotal" component={MonthlyTotalChart} title="MonthlyTotalChart" direction="vertical" hideNavBar />
             <Scene key="allTimeTotal" component={AllTimeTotalChart} title="AllTimeTotalChart" direction="vertical" hideNavBar />
+            <Scene key="questionModal" component={QuestionsModal} title="Modal" direction = "vertical" hideNavBar />
           </Scene>
         </Router>
       </Provider>
