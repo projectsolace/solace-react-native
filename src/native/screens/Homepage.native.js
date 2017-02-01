@@ -8,7 +8,6 @@ import { RNS3 } from 'react-native-aws3';
 import axios from 'axios'
 import secrets from './secrets.json'
 
-
 let audioPath = AudioUtils.DocumentDirectoryPath + '/watson2.wav';
 
 AudioRecorder.prepareRecordingAtPath(audioPath, {

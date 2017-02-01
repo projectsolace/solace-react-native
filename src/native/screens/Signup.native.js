@@ -3,7 +3,7 @@ import { StyleSheet, Text, Image, AlertIOS, AsyncStorage } from 'react-native';
 import { Row, Grid } from 'react-native-easy-grid';
 import { Content, InputGroup, Input, Icon, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
-import { newUser } from '../reducer/UserReducer.native';
+import { newUser } from '../reducer/user.native';
 import { connect } from 'react-redux';
 import store from '../store.native';
 // import { BlurView, VibrancyView } from 'react-native-blur';
