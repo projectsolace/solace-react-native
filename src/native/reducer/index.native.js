@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux';
-import currentUserReducer from './UserReducer.native';
-import userRecordingsReducer from './users.native';
 import adminReducer from './admin.native';
 import questionsReducer from './questions.native';
+import recordingsReducer from './recordings.native';
+import userReducer from './user.native';
 
 const rootReducer = combineReducers({
-  currentUser: currentUserReducer,
-  userRecordings: userRecordingsReducer,
   admin: adminReducer,
-  questions: questionsReducer
+  questions: questionsReducer,
+  recordings: recordingsReducer,
+  user: userReducer,
 });
 
 export default rootReducer;

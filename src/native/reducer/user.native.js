@@ -6,8 +6,6 @@ import { Actions, ActionConst } from 'react-native-router-flux';
 const CREATE_USER = 'CREATE_USER';
 const SET_CURRENT_USER = 'SET_CURRENT_USER';
 
-
-
 /* -----------------    ACTION CREATORS   ------------------ */
 
 export const newUser = (createdUser) => {
@@ -24,15 +22,9 @@ export const currentUser = (authenticatedUser) => {
   };
 };
 
-
-/* -----------------    DISPATCHERS     ------------------ */
-
-
-
-
 /* -----------------    REDUCER     ------------------ */
 
-const reducer = (state = {}, action) => {
+export default function userReducer (state = {}, action) {
   switch (action.type) {
   case CREATE_USER:
     return action.createdUser;
@@ -41,6 +33,4 @@ const reducer = (state = {}, action) => {
   default:
     return state;
   }
-};
-
-export default reducer;
+}

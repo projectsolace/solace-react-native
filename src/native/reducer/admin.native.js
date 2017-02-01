@@ -148,7 +148,7 @@ const initialState = {
   genderData: {}
 };
 
-const adminReducer = function(state = initialState, action) {
+export default function adminReducer (state = initialState, action) {
   switch (action.type) {
     case RECEIVE_RELIGION_DATA:
       return Object.assign({}, state, { religionData: action.dataObj });
@@ -169,6 +169,4 @@ const adminReducer = function(state = initialState, action) {
     default:
       return state;
   }
-};
-
-export default adminReducer;
+}

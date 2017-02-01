@@ -4,7 +4,7 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Content, InputGroup, Input, Icon, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { currentUser } from '../reducer/UserReducer.native'
+import { currentUser } from '../reducer/user.native'
 import store from '../store.native';
 
 var STORAGE_KEY = 'id_token';
@@ -53,7 +53,8 @@ var STORAGE_KEY = 'id_token';
         AlertIOS.alert(
           "Authentication Success!"
         ),
-        Actions.homepage()
+        Actions.charts()
+        // Actions.homepage()
       })
       .catch(err => console.error('Authentication failed', err))
       .done();
@@ -171,7 +172,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    allUsers: state.currentUser
+    user: state.user
   };
 };
 
