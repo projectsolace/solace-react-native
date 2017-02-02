@@ -113,12 +113,10 @@ class Homepage extends Component {
             })
         });
 
-
     };
 
-
     return (
-      <Image source={ require('../../../images/sky.jpeg')} style={ styles.container } >
+      <Image source={ this.state.personActive ? null : require('../../../images/sky.jpeg')} style={ styles.container } >
         <Container>
           <Content>
 

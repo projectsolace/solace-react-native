@@ -4,12 +4,12 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Content, List, ListItem, InputGroup, Input, Icon, Picker, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { updateCurrentUser } from '../reducer/UserReducer.native';
+import { updateCurrentUser } from '../reducer/user.native';
 
 const Item = Picker.Item;
 
 
-let occupation = ['Select', 'Sales', 'Hospitality', 'Healthcare', 'Custodial', 'Accounting', 'Teaching', 'Law-Enforcement', 'Law', 'Finance', 'Engineering', 'Administration', 'Student', 'Other'];
+let occupation = ['Select', 'Sales', 'Hospitality', 'Healthcare', 'Custodial', 'accountant', 'Teaching', 'Law-Enforcement', 'Law', 'Finance', 'Engineering', 'Administration', 'Student', 'Other'];
 
 let income = ['Select', 'Under-$15,000', '$15,000-to-$24,999', '$25,000-to-$34,999', '$35,000-to-$49,999', '$50,000-to-$74,999', '$75,000-to-$99,999', '$100,000-to-$149,999', '$150,000-to-$199,999', '$200,000-and-over'];
 
@@ -22,11 +22,11 @@ let education = ['Select', 'High-School', 'Some-College', 'Associate-Degree', 'B
 let maritalStatus = ['Select', 'Single', 'Married', 'Widowed', 'Divorced'];
 
 
-export default class Account extends Component {
+class Account extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      occupation: 'Select',
+      occupation: this.props.user.occupation || 'Select',
       income: 'Select',
       ethnicity: 'Select',
       religion: 'Select',
@@ -37,6 +37,7 @@ export default class Account extends Component {
     };
     this.onValueChange = this.onValueChange.bind(this);
     this.onPressUpdate = this.onPressUpdate.bind(this);
+    console.log('here comes the user', this.props);
   }
 
   onValueChange(value, type) {
@@ -101,7 +102,7 @@ export default class Account extends Component {
         <Row size={18}>
           <Content style={{ alignSelf: "center" }}>
             <Text style={styles.inputField}>
-            Complete your profile!
+            Acount Setting
             </Text>
           </Content>
         </Row>
@@ -226,9 +227,8 @@ export default class Account extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: null,
-    height: null,
-    backgroundColor: 'rgba(0,0,0,0)'
+    backgroundColor: 'white',
+    resizeMode: 'stretch'
   },
   content: {
     padding: 8,
@@ -246,11 +246,12 @@ const styles = StyleSheet.create({
     marginLeft: 5
   },
   inputField: {
-    fontSize: 26,
+    fontSize: 20,
     textAlign: 'center',
     fontFamily: 'Helvetica',
     color: 'black',
-    fontWeight: 'bold'
+    marginTop: 40,
+    marginBottom: 20
   },
   inputCreds: {
     paddingLeft: 15,
@@ -261,3 +262,13 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(0,0,0,0)'
   }
 });
+
+/* -----------------    CONTAINER     ------------------ */
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(Account);
