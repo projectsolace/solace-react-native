@@ -107,7 +107,7 @@ class Account extends Component {
       <Grid>
         <Row size={18}>
           <Content style={{ alignSelf: 'center' }}>
-            <Text style={styles.inputField}>
+            <Text style={styles.header}>
             Profile
             </Text>
           </Content>
@@ -287,22 +287,14 @@ const styles = StyleSheet.create({
     color: '#C7C7CD',
     marginLeft: 5
   },
-  inputField: {
+  header: {
     fontSize: 20,
     textAlign: 'center',
     fontFamily: 'Helvetica',
     color: 'black',
     marginTop: 40,
-    marginBottom: 20
+    marginBottom: 5
   },
-  inputCreds: {
-    paddingLeft: 15,
-    marginBottom: 17,
-    marginLeft: 20,
-    marginRight: 20,
-    backgroundColor: 'rgba(0,0,0,0.3)',
-    borderColor: 'rgba(0,0,0,0)'
-  }
 });
 
 /* -----------------    CONTAINER     ------------------ */

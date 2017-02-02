@@ -34,33 +34,39 @@ export default class Recording extends Component {
       Actions.questionModal();
     };
 
-     const onStopRecord = () => {
-        AudioRecorder.stopRecording();
-        console.log('STOPPED RECORDING')
-        let file = {
-          // `uri` can also be a file system path (i.e. file://)
-          uri: audioPath,
-          name: "test.wav",
-          type: "audio/wav"
-        }
-        let options = {
-          keyPrefix: "/",
-          bucket: "watsonapi",
-          region: "us-east-1",
-          accessKey: secrets.keyA,
-          secretKey: secrets.keyB,
-          successActionStatus: 201
-        }
+    const onStartRecordFreeSpeak = () => {
+      console.log('STARTED FEE RECORDING')
+      AudioRecorder.startRecording();
+      Actions.freeSpeakModal();
+    };
 
-        RNS3.put(file, options)
-        .then(response => {
-            if (response.status !== 201) throw new Error("Failed to upload audio to S3");
-            console.log(response.body.postResponse.location);
-            return axios.get('http://localhost:1337/api/watson/').then(function(resp){
-              console.log(resp.data)
-            })
-        })
-        .catch(err => console.log(err));
+    const onStopRecord = () => {
+      AudioRecorder.stopRecording();
+      console.log('STOPPED RECORDING')
+      let file = {
+        // `uri` can also be a file system path (i.e. file://)
+        uri: audioPath,
+        name: "test.wav",
+        type: "audio/wav"
+      }
+      let options = {
+        keyPrefix: "/",
+        bucket: "watsonapi",
+        region: "us-east-1",
+        accessKey: secrets.keyA,
+        secretKey: secrets.keyB,
+        successActionStatus: 201
+      }
+
+      RNS3.put(file, options)
+      .then(response => {
+          if (response.status !== 201) throw new Error("Failed to upload audio to S3");
+          console.log(response.body.postResponse.location);
+          return axios.get('http://localhost:1337/api/watson/').then(function(resp){
+            console.log(resp.data)
+          })
+      })
+      .catch(err => console.log(err));
 
     };
 
@@ -68,6 +74,7 @@ export default class Recording extends Component {
       <View>
           <Button info style={{alignSelf: 'center'}} onPress = { onStartRecord } > Start Record </Button>
           <Button danger style={{alignSelf: 'center'}} onPress = { onStopRecord } > Stop Record </Button>
+          <Button info style={{alignSelf: 'center'}} onPress = { onStartRecordFreeSpeak } > Speak Your Mind Freely </Button>
           <Button info style={{alignSelf: 'center'}} onPress={()=> Actions.questionModal()} > Today's Questions </Button>
       </View>
     );
