@@ -4,6 +4,7 @@ import Login from './screens/Login.native';
 import Signup from './screens/Signup.native';
 import Homepage from './screens/Homepage.native';
 import QuestionsModal from './screens/QuestionsModal.native';
+import CompleteProfile from './screens/CompleteProfile.native';
 import { Provider } from 'react-redux';
 import store from './store.native';
 
@@ -25,6 +26,7 @@ export default class App extends React.Component {
           <Scene key="root">
             <Scene key="entryPoint" component={Login} hideNavBar initial />
             <Scene key="signup" component={Signup} title="Signup"/>
+            <Scene key="completeProfile" component={CompleteProfile} title="CompleteProfile" hideNavBar />
             <Scene key="homepage" component={Homepage} title="Homepage"/>
             <Scene key="charts" component={Charts} hideNavBar title="Charts" />
             <Scene key="latestData" component={LatestDataChart} title="LatestDataChart" direction="vertical" hideNavBar />

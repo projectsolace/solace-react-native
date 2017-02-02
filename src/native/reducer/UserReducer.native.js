@@ -46,7 +46,7 @@ export const updateCurrentUser = (id, credentials) => dispatch => {
 
 /* -----------------    REDUCER     ------------------ */
 
-export default function userReducer (state = {}, action) {
+const reducer = (state = {}, action) => {
   switch (action.type) {
   case CREATE_USER:
     return action.createdUser;
@@ -57,4 +57,6 @@ export default function userReducer (state = {}, action) {
   default:
     return state;
   }
-}
+};
+
+export default reducer;
