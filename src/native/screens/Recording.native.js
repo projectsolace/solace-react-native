@@ -7,6 +7,8 @@ import {AudioRecorder, AudioUtils} from 'react-native-audio';
 import { RNS3 } from 'react-native-aws3';
 import axios from 'axios'
 import secrets from './secrets.json';
+import {connect} from 'react-redux'
+
 
 
 let audioPath = AudioUtils.DocumentDirectoryPath + '/watson2.wav';
@@ -19,7 +21,7 @@ AudioRecorder.prepareRecordingAtPath(audioPath, {
 });
 console.log('where are audioPath', audioPath)
 
-export default class Recording extends Component {
+class Recording extends Component {
 
     constructor(props, context) {
         super(props, context);
@@ -62,7 +64,7 @@ export default class Recording extends Component {
       .then(response => {
           if (response.status !== 201) throw new Error("Failed to upload audio to S3");
           console.log(response.body.postResponse.location);
-          return axios.get('http://localhost:1337/api/watson/').then(function(resp){
+          return axios.post('http://localhost:1337/api/watson/', {userID:this.props.user.id}).then(function(resp){
             console.log(resp.data)
           })
       })
@@ -90,3 +92,15 @@ const styles = StyleSheet.create({
     resizeMode: 'stretch'
   }
 });
+
+
+
+/* -----------------    CONTAINER     ------------------ */
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  };
+};
+
+export default connect(mapStateToProps)(Recording);
