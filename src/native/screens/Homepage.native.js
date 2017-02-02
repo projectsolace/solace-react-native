@@ -81,40 +81,6 @@ class Homepage extends Component {
 
   render() {
 
-    const onStartRecord = () => {
-      console.log('STARTED RECORDING')
-      AudioRecorder.startRecording();
-      Actions.questionModal();
-    };
-
-     const onStopRecord = () => {
-        AudioRecorder.stopRecording();
-        console.log('STOPPED RECORDING')
-        let file = {
-          // `uri` can also be a file system path (i.e. file://)
-          uri: audioPath,
-          name: "test.wav",
-          type: "audio/wav"
-        }
-        let options = {
-          keyPrefix: "/",
-          bucket: "watsonapi",
-          region: "us-east-1",
-          accessKey: secrets.keyA,
-          secretKey: secrets.keyB,
-          successActionStatus: 201
-        }
-
-        RNS3.put(file, options).then(response => {
-            if (response.status !== 201) throw new Error("Failed to upload audio to S3");
-            console.log(response.body.postResponse.location);
-            axios.get('http://localhost:1337/api/watson/').then(function(resp){
-              console.log(resp.data)
-            })
-        });
-
-    };
-
     return (
       <Image source={ this.state.personActive ? null : require('../../../images/sky.jpeg')} style={ styles.container } >
         <Container>
@@ -146,25 +112,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  text: {
-    fontSize: 30,
-    fontFamily: 'Helvetica',
-    color: 'white',
-    fontWeight: 'bold'
-  },
   inputField: {
     fontSize: 18,
     fontFamily: 'Helvetica',
     color: 'white',
     fontWeight: 'bold'
-  },
-  inputCreds: {
-    paddingLeft: 15,
-    marginBottom: 17,
-    marginLeft: 20,
-    marginRight: 20,
-    backgroundColor: 'rgba(0,0,0,0.3)',
-    borderColor: 'rgba(0,0,0,0)'
   },
   login: {
     marginLeft: 20,
