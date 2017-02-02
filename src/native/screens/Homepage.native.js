@@ -10,6 +10,7 @@ import axios from 'axios'
 import secrets from './secrets.json';
 import Charts from './chartScreens/Charts.native';
 import Recording from './Recording.native.js';
+import Account from './Account.native.js';
 
 let audioPath = AudioUtils.DocumentDirectoryPath + '/watson2.wav';
 
@@ -61,7 +62,7 @@ class Homepage extends Component {
           personActive: true
       });
     };
- 
+
     componentDidMount() {
       const userId = this.props.user.id;
 
@@ -120,11 +121,9 @@ class Homepage extends Component {
       <Image source={ require('../../../images/sky.jpeg')} style={ styles.container } >
         <Container style={styles.content}>
           <Content>
-            {this.state.statsActive ? <Charts /> : this.state.microphoneActive ? <Recording /> : <Button>Account</Button>}
-              <Button info style={{alignSelf: 'center'}} onPress = { onStartRecord } > Start Record </Button>
-              <Button danger style={{alignSelf: 'center'}} onPress = { onStopRecord } > Stop Record </Button>
-              <Button info style={{alignSelf: 'center'}} onPress={()=> Actions.questionModal()} > Today's Questions </Button>
-              <Button info style={{alignSelf: 'center'}} onPress={()=> Actions.charts()} > Go To Charts </Button>
+
+            {this.state.statsActive ? <Charts /> : this.state.microphoneActive ? <Recording /> : <Account /> }
+
           </Content>
 
           <Footer>
