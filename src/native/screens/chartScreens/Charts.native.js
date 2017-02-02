@@ -43,7 +43,7 @@ class Charts extends Component {
 
   render() {
     return (
-      <Image source={{ uri: 'https://s3.amazonaws.com/watsonapi/images/3.jpg'}} style={styles.container} >
+
         <Grid>
           <Row size={30} style={styles.content} >
             <Text style={styles.text} >
@@ -95,7 +95,7 @@ class Charts extends Component {
             </Content>
           </Row>
         </Grid>
-      </Image>
+
     );
   }
 }
