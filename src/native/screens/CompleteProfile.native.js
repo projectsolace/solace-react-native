@@ -27,13 +27,13 @@ class CompleteProfile extends Component {
     super(props);
     this.state = {
       occupation: 'Select',
-      income: 'Select',
+      incomeLevel: 'Select',
       ethnicity: 'Select',
       religion: 'Select',
       education: 'Select',
       maritalStatus: 'Select',
       gender: 'Select',
-      zip: ''
+      zipCode: ''
     };
     this.onValueChange = this.onValueChange.bind(this);
     this.onPressUpdate = this.onPressUpdate.bind(this);
@@ -49,7 +49,7 @@ class CompleteProfile extends Component {
     const infoToUpdate = {};
     for (let props in this.state) {
       if (this.state[props] !== 'Select' && this.state[props]) {
-        infoToUpdate[props] = props === 'zip' ? +this.state[props] : this.state[props];
+        infoToUpdate[props] = props === 'zipCode' ? +this.state[props] : this.state[props];
       }
     }
     console.log('this is the info', infoToUpdate);
@@ -125,8 +125,8 @@ class CompleteProfile extends Component {
                 <Picker
                   iosHeader="Income"
                   mode="dropdown"
-                  selectedValue={ this.state.income }
-                  onValueChange={ (val) => this.onValueChange(val, 'income') } >
+                  selectedValue={ this.state.incomeLevel }
+                  onValueChange={ (val) => this.onValueChange(val, 'incomeLevel') } >
                     {incomeList}
                 </Picker>
               </ListItem>
@@ -196,8 +196,8 @@ class CompleteProfile extends Component {
                   keyboardType = "numeric"
                   maxLength={5}
                   placeholder="Zip Code"
-                  value={this.state.zip}
-                  onChangeText={(zip) => this.setState({ zip })}
+                  value={this.state.zipCode}
+                  onChangeText={(zipCode) => this.setState({ zipCode })}
                   />
                 </InputGroup>
               </ListItem>
