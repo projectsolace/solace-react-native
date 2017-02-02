@@ -10,6 +10,7 @@ import axios from 'axios'
 import secrets from './secrets.json';
 import Charts from './chartScreens/Charts.native';
 import Recording from './Recording.native.js';
+import Account from './Account.native.js';
 
 let audioPath = AudioUtils.DocumentDirectoryPath + '/watson2.wav';
 
@@ -112,15 +113,15 @@ class Homepage extends Component {
             })
         });
 
-
     };
 
-
     return (
-      <Image source={ require('../../../images/sky.jpeg')} style={ styles.container } >
-        <Container style={styles.content}>
+      <Image source={ this.state.personActive ? null : require('../../../images/sky.jpeg')} style={ styles.container } >
+        <Container>
           <Content>
-            {this.state.statsActive ? <Charts /> : this.state.microphoneActive ? <Recording /> : <Button>Account</Button>}
+
+            {this.state.statsActive ? <Charts /> : this.state.microphoneActive ? <Recording /> : <Account /> }
+
           </Content>
 
           <Footer>
