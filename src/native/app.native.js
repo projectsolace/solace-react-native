@@ -13,10 +13,10 @@ export default class App extends React.Component {
       <Provider store={ store }>
         <Router>
           <Scene key="root">
-            <Scene key="entryPoint" component={Login} hideNavBar />
+            <Scene key="entryPoint" component={Login} initial hideNavBar />
             <Scene key="signup" component={Signup} title="Signup"/>
+            <Scene key="completeProfile" component={CompleteProfile} title="CompleteProfile" hideNavBar />
             <Scene key="homepage" component={Homepage} title="Homepage"/>
-            <Scene key="homepage" component={CompleteProfile} title="CompleteProfile" hideNavBar initial/>
           </Scene>
         </Router>
       </Provider>
