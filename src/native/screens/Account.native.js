@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Content, List, ListItem, InputGroup, Input, Icon, Picker, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-
-import store from '../store.native';
+import { updateCurrentUser } from '../reducer/UserReducer.native';
 
 const Item = Picker.Item;
 
@@ -37,6 +36,7 @@ export default class Account extends Component {
       zip: ''
     };
     this.onValueChange = this.onValueChange.bind(this);
+    this.onPressUpdate = this.onPressUpdate.bind(this);
   }
 
   onValueChange(value, type) {
@@ -45,6 +45,17 @@ export default class Account extends Component {
   }
 
   onPressUpdate() {
+    const { loggedInUser, updateCurrentUser } = this.props;
+    const infoToUpdate = {};
+    for (let props in this.state) {
+      if (this.state[props] !== 'Select' && this.state[props]) {
+        infoToUpdate[props] = props === 'zip' ? +this.state[props] : this.state[props];
+      }
+    }
+    console.log('this is the info', infoToUpdate);
+    console.log('this is the user', loggedInUser);
+
+    updateCurrentUser(loggedInUser.id, infoToUpdate);
 
   }
 
@@ -86,7 +97,16 @@ export default class Account extends Component {
     });
 
     return (
-        <View>
+      <Grid>
+        <Row size={18}>
+          <Content style={{ alignSelf: "center" }}>
+            <Text style={styles.inputField}>
+            Complete your profile!
+            </Text>
+          </Content>
+        </Row>
+        <Row size={82}>
+          <Content>
             <List>
               <ListItem iconLeft style={ styles.list }>
                 <Icon name="ios-briefcase" style={{ color: '#0A69FE' }} />
@@ -103,7 +123,7 @@ export default class Account extends Component {
                 <Icon name="md-cash" style={{ color: '#0A69FE' }} />
                 <Text style={ styles.text }>Income</Text>
                 <Picker
-                  iosHeader="income"
+                  iosHeader="Income"
                   mode="dropdown"
                   selectedValue={ this.state.income }
                   onValueChange={ (val) => this.onValueChange(val, 'income') } >
@@ -114,7 +134,7 @@ export default class Account extends Component {
                 <Icon name="md-globe" style={{ color: '#0A69FE' }} />
                 <Text style={ styles.text }>Ethnicity</Text>
                 <Picker
-                  iosHeader="ethnicity"
+                  iosHeader="Ethnicity"
                   mode="dropdown"
                   selectedValue={ this.state.ethnicity }
                   onValueChange={ (val) => this.onValueChange(val, 'ethnicity') } >
@@ -125,7 +145,7 @@ export default class Account extends Component {
                 <Icon name="ios-flower-outline" style={{ color: '#0A69FE' }} />
                 <Text style={ styles.text }>Religion</Text>
                 <Picker
-                  iosHeader="religion"
+                  iosHeader="Religion"
                   mode="dropdown"
                   selectedValue={ this.state.religion }
                   onValueChange={ (val) => this.onValueChange(val, 'religion') } >
@@ -136,7 +156,7 @@ export default class Account extends Component {
                 <Icon name="ios-school" style={{ color: '#0A69FE' }} />
                 <Text style={ styles.text }>Education</Text>
                 <Picker
-                  iosHeader="education"
+                  iosHeader="Education"
                   mode="dropdown"
                   selectedValue={ this.state.education }
                   onValueChange={ (val) => this.onValueChange(val, 'education') } >
@@ -158,13 +178,13 @@ export default class Account extends Component {
                 <Icon name="ios-transgender" style={{ color: '#0A69FE' }} />
                 <Text style={ styles.text }>Gender</Text>
                 <Picker
-                  iosHeader="Marital Status"
+                  iosHeader="Gender"
                   mode="dropdown"
                   selectedValue={ this.state.gender }
                   onValueChange={ (val) => this.onValueChange(val, 'gender') } >
                     <Item label="Select" value="Select" />
-                    <Item label="Male" value="key1" />
-                    <Item label="Female" value="key2" />
+                    <Item label="Male" value="Male" />
+                    <Item label="Female" value="Female" />
                 </Picker>
               </ListItem>
               <ListItem>
@@ -184,18 +204,20 @@ export default class Account extends Component {
             </List>
             <Row>
               <Col>
-                <Button success style={{ alignSelf: 'center', marginTop: 30}}>
+                <Button success onPress={ this.onPressUpdate }style={{ alignSelf: 'center', marginTop: 30}}>
                   Save
                 </Button>
               </Col>
               <Col>
-                <Button iconRight info style={{ alignSelf: 'center', marginTop: 30}}>
+                <Button iconRight info onPress={ Actions.homepage } style={{ alignSelf: 'center', marginTop: 30}}>
                   Skip
                   <Icon name="ios-arrow-forward" />
                 </Button>
               </Col>
             </Row>
-        </View>
+          </Content>
+        </Row>
+      </Grid>
     );
   }
 }
@@ -239,6 +261,3 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(0,0,0,0)'
   }
 });
-
-
-

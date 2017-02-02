@@ -119,7 +119,7 @@ class Homepage extends Component {
 
     return (
       <Image source={ require('../../../images/sky.jpeg')} style={ styles.container } >
-        <Container style={styles.content}>
+        <Container>
           <Content>
 
             {this.state.statsActive ? <Charts /> : this.state.microphoneActive ? <Recording /> : <Account /> }
