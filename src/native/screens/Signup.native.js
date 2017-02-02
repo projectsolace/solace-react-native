@@ -62,7 +62,7 @@ class Signup extends Component {
         AlertIOS.alert(
           "Signup Success!"
         ),
-        Actions.homepage();
+        Actions.completeProfile();
       })
       .catch(err => console.error('signup failed', err))
       .done();
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    allUsers: state.currentUser
+    loggedInUser: state.user
   };
 };
 
