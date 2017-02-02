@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, AlertIOS } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Content, List, ListItem, InputGroup, Input, Icon, Picker, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { updateCurrentUser } from '../reducer/user.native';
+import { updateCurrentUser, logoutUser } from '../reducer/user.native';
 
 const Item = Picker.Item;
 
 
-let occupation = ['Select', 'Sales', 'Hospitality', 'Healthcare', 'Custodial', 'accountant', 'Teaching', 'Law-Enforcement', 'Law', 'Finance', 'Engineering', 'Administration', 'Student', 'Other'];
+let occupation = ['Select', 'Sales', 'Hospitality', 'Healthcare', 'Custodial', 'Accounting', 'Teaching', 'Law-Enforcement', 'Law', 'Finance', 'Engineering', 'Administration', 'Student', 'Other'];
 
 let income = ['Select', 'Under-$15,000', '$15,000-to-$24,999', '$25,000-to-$34,999', '$35,000-to-$49,999', '$50,000-to-$74,999', '$75,000-to-$99,999', '$100,000-to-$149,999', '$150,000-to-$199,999', '$200,000-and-over'];
 
@@ -25,15 +25,19 @@ let maritalStatus = ['Select', 'Single', 'Married', 'Widowed', 'Divorced'];
 class Account extends Component {
   constructor(props) {
     super(props);
+    const { user } = this.props;
     this.state = {
-      occupation: this.props.user.occupation || 'Select',
-      income: 'Select',
-      ethnicity: 'Select',
-      religion: 'Select',
-      education: 'Select',
-      maritalStatus: 'Select',
-      gender: 'Select',
-      zip: ''
+      occupation: user.occupation || 'Select',
+      incomeLevel: user.incomeLevel || 'Select',
+      ethnicity: user.ethnicity || 'Select',
+      religion: user.religion || 'Select',
+      education: user.education || 'Select',
+      maritalStatus: user.maritalStatus || 'Select',
+      gender: user.gender || 'Select',
+      zipCode: user.zipCode + '' || '',
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email
     };
     this.onValueChange = this.onValueChange.bind(this);
     this.onPressUpdate = this.onPressUpdate.bind(this);
@@ -46,21 +50,23 @@ class Account extends Component {
   }
 
   onPressUpdate() {
-    const { loggedInUser, updateCurrentUser } = this.props;
+    const { user, updateCurrentUser } = this.props;
     const infoToUpdate = {};
     for (let props in this.state) {
       if (this.state[props] !== 'Select' && this.state[props]) {
-        infoToUpdate[props] = props === 'zip' ? +this.state[props] : this.state[props];
+        infoToUpdate[props] = props === 'zipCode' ? +this.state[props] : this.state[props];
       }
     }
     console.log('this is the info', infoToUpdate);
-    console.log('this is the user', loggedInUser);
+    console.log('this is the user', user);
 
-    updateCurrentUser(loggedInUser.id, infoToUpdate);
-
+    updateCurrentUser(user.id, infoToUpdate);
+    AlertIOS.alert("Update Success!");
   }
 
   render() {
+    const { logoutUser } = this.props;
+
     let occupationList = occupation.map((job, i) => {
       return (
         <Item label={ job } value={ job } key={ i } />
@@ -100,15 +106,65 @@ class Account extends Component {
     return (
       <Grid>
         <Row size={18}>
-          <Content style={{ alignSelf: "center" }}>
+          <Content style={{ alignSelf: 'center' }}>
             <Text style={styles.inputField}>
-            Acount Setting
+            Profile
             </Text>
           </Content>
         </Row>
         <Row size={82}>
           <Content>
             <List>
+              <ListItem>
+                <InputGroup style={styles.content}>
+                  <Icon name="ios-navigate-outline" style={{ color: '#0A69FE', marginRight: -5}} />
+                  <Input
+                  style={{ fontFamily: 'HelveticaNeue-Medium'}}
+                  placeholderTextColor= "#C7C7CD"
+                  keyboardType = "numeric"
+                  maxLength={5}
+                  placeholder="Zip Code"
+                  value={this.state.zipCode}
+                  onChangeText={(zipCode) => this.setState({ zipCode })}
+                  />
+                </InputGroup>
+              </ListItem>
+              <ListItem>
+                <InputGroup style={styles.content}>
+                  <Icon name="ios-person-outline" style={{ color: '#0A69FE', marginRight: -5}} />
+                  <Input
+                  style={{ fontFamily: 'HelveticaNeue-Medium'}}
+                  placeholderTextColor= "#C7C7CD"
+                  placeholder="First Name"
+                  value={this.state.firstName}
+                  onChangeText={(firstName) => this.setState({ firstName })}
+                  />
+                </InputGroup>
+              </ListItem>
+              <ListItem>
+                <InputGroup style={styles.content}>
+                  <Icon name="ios-person-outline" style={{ color: '#0A69FE', marginRight: -5}} />
+                  <Input
+                  style={{ fontFamily: 'HelveticaNeue-Medium'}}
+                  placeholderTextColor= "#C7C7CD"
+                  placeholder="Last Name"
+                  value={this.state.lastName}
+                  onChangeText={(lastName) => this.setState({ lastName })}
+                  />
+                </InputGroup>
+              </ListItem>
+              <ListItem>
+                <InputGroup style={styles.content}>
+                  <Icon name="ios-mail" style={{ color: '#0A69FE', marginRight: -5}} />
+                  <Input
+                  style={{ fontFamily: 'HelveticaNeue-Medium'}}
+                  placeholderTextColor= "#C7C7CD"
+                  placeholder="Email"
+                  value={this.state.email}
+                  onChangeText={(email) => this.setState({ email })}
+                  />
+                </InputGroup>
+              </ListItem>
               <ListItem iconLeft style={ styles.list }>
                 <Icon name="ios-briefcase" style={{ color: '#0A69FE' }} />
                 <Text style={ styles.text }>Occupation</Text>
@@ -126,8 +182,8 @@ class Account extends Component {
                 <Picker
                   iosHeader="Income"
                   mode="dropdown"
-                  selectedValue={ this.state.income }
-                  onValueChange={ (val) => this.onValueChange(val, 'income') } >
+                  selectedValue={ this.state.incomeLevel }
+                  onValueChange={ (val) => this.onValueChange(val, 'incomeLevel') } >
                     {incomeList}
                 </Picker>
               </ListItem>
@@ -188,30 +244,16 @@ class Account extends Component {
                     <Item label="Female" value="Female" />
                 </Picker>
               </ListItem>
-              <ListItem>
-                <InputGroup style={styles.content}>
-                  <Icon name="ios-navigate-outline" style={{ color: '#0A69FE', marginRight: -5}} />
-                  <Input
-                  style={{ fontFamily: 'HelveticaNeue-Medium'}}
-                  placeholderTextColor= "#C7C7CD"
-                  keyboardType = "numeric"
-                  maxLength={5}
-                  placeholder="Zip Code"
-                  value={this.state.zip}
-                  onChangeText={(zip) => this.setState({ zip })}
-                  />
-                </InputGroup>
-              </ListItem>
             </List>
             <Row>
               <Col>
                 <Button success onPress={ this.onPressUpdate }style={{ alignSelf: 'center', marginTop: 30}}>
-                  Save
+                  Update
                 </Button>
               </Col>
               <Col>
-                <Button iconRight info onPress={ Actions.homepage } style={{ alignSelf: 'center', marginTop: 30}}>
-                  Skip
+                <Button iconRight info onPress={ logoutUser } style={{ alignSelf: 'center', marginTop: 30}}>
+                  Signout
                   <Icon name="ios-arrow-forward" />
                 </Button>
               </Col>
@@ -271,4 +313,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Account);
+const mapDispatchToProps = ({ updateCurrentUser, logoutUser });
+
+export default connect(mapStateToProps, mapDispatchToProps)(Account);

@@ -119,11 +119,8 @@ class Homepage extends Component {
       <Image source={ this.state.personActive ? null : require('../../../images/sky.jpeg')} style={ styles.container } >
         <Container>
           <Content>
-
             {this.state.statsActive ? <Charts /> : this.state.microphoneActive ? <Recording /> : <Account /> }
-
           </Content>
-
           <Footer>
             <FooterTab>
               <Button active = { this.state.statsActive }  onPress = {this.toggleStatsActiveButton} > Charts <Icon name='ios-stats'></Icon></Button>
@@ -131,7 +128,6 @@ class Homepage extends Component {
               <Button active = { this.state.personActive } onPress = {this.togglePersonActiveButton} > Account <Icon name='ios-person'></Icon></Button>
             </FooterTab>
           </Footer>
-
         </Container>
       </Image>
     );

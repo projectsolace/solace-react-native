@@ -1,11 +1,15 @@
 import axios from 'axios';
-import { Actions, ActionConst } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
+import { AlertIOS, AsyncStorage } from 'react-native';
+
+
 
 /* -----------------    ACTIONS     ------------------ */
 
 const CREATE_USER = 'CREATE_USER';
 const SET_CURRENT_USER = 'SET_CURRENT_USER';
 const UPDATE_USER = 'UPDATE_USER';
+const REMOVE_USER = 'REMOVE_USER';
 
 
 /* -----------------    ACTION CREATORS   ------------------ */
@@ -31,6 +35,12 @@ export const updateUser = (updatedUser) => {
   };
 };
 
+export const removeUser = () => {
+  return {
+    type: REMOVE_USER
+  };
+};
+
 /* -----------------    DISPATCHERS     ------------------ */
 
 export const updateCurrentUser = (id, credentials) => dispatch => {
@@ -41,6 +51,16 @@ export const updateCurrentUser = (id, credentials) => dispatch => {
     Actions.homepage();
   })
   .catch(err => console.error('unable to update', err));
+};
+
+export const logoutUser = () => dispatch => {
+  AsyncStorage.removeItem('id_token')
+  .then(removed => {
+    dispatch(removeUser()),
+    Actions.entryPoint(),
+    AlertIOS.alert('Logout Success!')
+  })
+  .catch(err => console.error('unable to logout', err));
 };
 
 
@@ -54,6 +74,8 @@ export default function userReducer (state = {}, action) {
     return action.authenticatedUser;
   case UPDATE_USER:
     return action.updatedUser;
+  case REMOVE_USER:
+    return {};
   default:
     return state;
   }

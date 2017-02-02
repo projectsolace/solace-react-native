@@ -19,6 +19,7 @@
     "react-native-aws3": "0.0.3",
     "react-native-blur": "^2.0.0",
     "react-native-easy-grid": "^0.1.8",
+    "react-native-floating-label-text-input": "^0.1.2",
     "react-native-router-flux": "^3.37.0",
     "react-native-svg": "^5.1.4",
     "react-native-swiper": "^1.5.4",
@@ -29,8 +30,8 @@
     "redux": "^3.6.0",
     "redux-logger": "^2.7.4",
     "redux-thunk": "^2.2.0",
-    "victory-native": "^0.6.0",
-    "tcomb-form-native": "^0.6.4"
+    "tcomb-form-native": "^0.6.4",
+    "victory-native": "^0.6.0"
   },
   "devDependencies": {
     "babel-jest": "18.0.0",
