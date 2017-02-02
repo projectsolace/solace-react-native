@@ -47,9 +47,9 @@ class newUserInfo extends Component {
   onPressUpdate() {
     const { loggedInUser, updateCurrentUser } = this.props;
     const infoToUpdate = {};
-    for (var props in this.state) {
+    for (let props in this.state) {
       if (this.state[props] !== 'Select' && this.state[props]) {
-        infoToUpdate[props] = this.state[props];
+        infoToUpdate[props] = props === 'zip' ? +this.state[props] : this.state[props];
       }
     }
     console.log('this is the info', infoToUpdate);
@@ -209,7 +209,7 @@ class newUserInfo extends Component {
                 </Button>
               </Col>
               <Col>
-                <Button iconRight info style={{ alignSelf: 'center', marginTop: 30}}>
+                <Button iconRight info onPress={ Actions.homepage } style={{ alignSelf: 'center', marginTop: 30}}>
                   Skip
                   <Icon name="ios-arrow-forward" />
                 </Button>
