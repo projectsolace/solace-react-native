@@ -3,10 +3,11 @@ import { StyleSheet, Text, View, Dimensions, Image } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Content, InputGroup, Input, Icon, Button, Container } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
 import {AudioRecorder, AudioUtils} from 'react-native-audio';
 import { RNS3 } from 'react-native-aws3';
-import axios from 'axios'
-import secrets from './secrets.json'
+import axios from 'axios';
+import secrets from './secrets.json';
 
 let audioPath = AudioUtils.DocumentDirectoryPath + '/watson2.wav';
 
@@ -19,12 +20,27 @@ AudioRecorder.prepareRecordingAtPath(audioPath, {
 console.log("Here are AudioRecorder", AudioRecorder);
 console.log('where are audioPath', audioPath)
 
-
-export default class Homepage extends Component {
+class Homepage extends Component {
 
     constructor(props, context) {
         super(props, context);
 
+    }
+
+    componentDidMount() {
+      const userId = this.props.user.id;
+
+      axios.post(`https://watson-backend.herokuapp.com/api/users/${userId}/weekrecordings/average`)
+      .then(response => console.log('weekly avg', response.data))
+      .catch(err => console.error('failed to post weekly average recordings', err));
+
+      axios.post(`https://watson-backend.herokuapp.com/api/users/${userId}/monthrecordings/average`)
+      .then(response => console.log('monthly avg', response.data))
+      .catch(err => console.error('failed to post monthly average recordings', err));
+
+      axios.post(`https://watson-backend.herokuapp.com/api/users/${userId}/allrecordings/average`)
+      .then(response => console.log('all avg', response.data))
+      .catch(err => console.error('failed to post all average recordings', err));
     }
 
   render() {
@@ -71,6 +87,7 @@ export default class Homepage extends Component {
               <Button info style={{alignSelf: 'center'}} onPress = { onStartRecord } > Start Record </Button>
               <Button danger style={{alignSelf: 'center'}} onPress = { onStopRecord } > Stop Record </Button>
               <Button info style={{alignSelf: 'center'}} onPress={()=> Actions.questionModal()} > Today's Questions </Button>
+              <Button info style={{alignSelf: 'center'}} onPress={()=> Actions.charts()} > Go To Charts </Button>
           </Content>
         </Container>
       </Image>
@@ -115,3 +132,13 @@ const styles = StyleSheet.create({
     marginRight: 20
   }
 });
+
+/* -----------------    CONTAINER     ------------------ */
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  };
+};
+
+export default connect(mapStateToProps)(Homepage);
