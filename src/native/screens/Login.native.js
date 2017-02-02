@@ -32,7 +32,6 @@ var STORAGE_KEY = 'id_token';
   _userLogin() {
     const { email, password } = this.state;
     let value = {email, password};
-    console.log('here comes the value', value)
     if (value) { // if validation fails, value will be null
       fetch("https://watson-backend.herokuapp.com/api/tokens/sessions/create", {
         method: "POST",
@@ -53,7 +52,6 @@ var STORAGE_KEY = 'id_token';
         AlertIOS.alert(
           "Authentication Success!"
         ),
-        // Actions.charts()
         Actions.homepage()
       })
       .catch(err => console.error('Authentication failed', err))
@@ -62,7 +60,6 @@ var STORAGE_KEY = 'id_token';
   }
 
   render() {
-    console.log('here comes the state', this.state)
     return (
       <Image source={ require('../../../images/sky.jpeg')} style={ styles.container } >
         <Grid>
