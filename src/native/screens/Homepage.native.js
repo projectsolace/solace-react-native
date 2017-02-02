@@ -116,7 +116,7 @@ class Homepage extends Component {
     };
 
     return (
-      <Image source={ this.state.personActive ? null : require('../../../images/sky.jpeg')} style={ styles.container } >
+      <Image source={ this.state.personActive ? null : {uri:'https://s3.amazonaws.com/watsonapi/images/3.jpg'}} style={ styles.container } >
         <Container>
           <Content>
             {this.state.statsActive ? <Charts /> : this.state.microphoneActive ? <Recording /> : <Account /> }
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     width: null,
     height: null,
     backgroundColor: 'rgba(0,0,0,0)',
-    resizeMode: 'stretch'
+    resizeMode: 'cover'
   },
   content: {
     justifyContent: 'center',
