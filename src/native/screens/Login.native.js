@@ -53,8 +53,8 @@ var STORAGE_KEY = 'id_token';
         AlertIOS.alert(
           "Authentication Success!"
         ),
-        Actions.charts()
-        // Actions.homepage()
+        // Actions.charts()
+        Actions.homepage()
       })
       .catch(err => console.error('Authentication failed', err))
       .done();

@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, Dimensions, Image } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
-import { Content, InputGroup, Input, Icon, Button, Container } from 'native-base';
+import { Content, InputGroup, Input, Icon, Button, Container, Footer, FooterTab } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import {AudioRecorder, AudioUtils} from 'react-native-audio';
 import { RNS3 } from 'react-native-aws3';
 import axios from 'axios'
-import secrets from './secrets.json'
+import secrets from './secrets.json';
+import Charts from './chartScreens/Charts.native';
+import Recording from './Recording.native.js';
 
 let audioPath = AudioUtils.DocumentDirectoryPath + '/watson2.wav';
 
@@ -24,8 +26,41 @@ export default class Homepage extends Component {
 
     constructor(props, context) {
         super(props, context);
-
+        this.state = {
+          statsActive: false,
+          microphoneActive: true,
+          personActive: false
+        };
+        this.toggleStatsActiveButton = this.toggleStatsActiveButton.bind(this);
+        this.toggleMicrophoneActiveButton = this.toggleMicrophoneActiveButton.bind(this);
+        this.togglePersonActiveButton = this.togglePersonActiveButton.bind(this);
     }
+
+    toggleStatsActiveButton() {
+      this.setState({
+          statsActive: true,
+          microphoneActive: false,
+          personActive: false
+      });
+
+    };
+
+    toggleMicrophoneActiveButton() {
+      this.setState({
+          statsActive: false,
+          microphoneActive: true,
+          personActive: false
+      });
+
+    };
+
+    togglePersonActiveButton() {
+      this.setState({
+          statsActive: false,
+          microphoneActive: false,
+          personActive: true
+      });
+    };
 
   render() {
 
@@ -64,14 +99,24 @@ export default class Homepage extends Component {
 
     };
 
+
     return (
       <Image source={ require('../../../images/sky.jpeg')} style={ styles.container } >
         <Container style={styles.content}>
           <Content>
-              <Button info style={{alignSelf: 'center'}} onPress = { onStartRecord } > Start Record </Button>
-              <Button danger style={{alignSelf: 'center'}} onPress = { onStopRecord } > Stop Record </Button>
-              <Button info style={{alignSelf: 'center'}} onPress={()=> Actions.questionModal()} > Today's Questions </Button>
+
+            {this.state.statsActive ? <Charts /> : this.state.microphoneActive ? <Recording /> : <Button>Account</Button>}
+
           </Content>
+
+          <Footer>
+            <FooterTab>
+              <Button active = { this.state.statsActive }  onPress = {this.toggleStatsActiveButton} > Charts <Icon name='ios-stats'></Icon></Button>
+              <Button active = { this.state.microphoneActive } onPress = {this.toggleMicrophoneActiveButton} > Record <Icon name='ios-microphone'></Icon></Button>
+              <Button active = { this.state.personActive } onPress = {this.togglePersonActiveButton} > Account <Icon name='ios-person'></Icon></Button>
+            </FooterTab>
+          </Footer>
+
         </Container>
       </Image>
     );
