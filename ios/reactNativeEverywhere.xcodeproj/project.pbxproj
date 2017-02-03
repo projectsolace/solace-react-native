@@ -49,6 +49,7 @@
 		C152A160261141E6AB2E4416 /* Skia.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A88241CD5A0A4F55867B4D7A /* Skia.ttf */; };
 		A46AF5D065C04CD5995FB349 /* Times New Roman.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B228574865CF45EFB5199219 /* Times New Roman.ttf */; };
 		0FDC50ED297A4A4D85613269 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 259C2E0F3016432D900A4D85 /* libRNSVG.a */; };
+		A5697ACE17A34E48A7F377A7 /* libRNSpinkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D145923DE9946C99775E98C /* libRNSpinkit.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -310,6 +311,8 @@
 		B228574865CF45EFB5199219 /* Times New Roman.ttf */ = {isa = PBXFileReference; name = "Times New Roman.ttf"; path = "../node_modules/native-base/Fonts/Times New Roman.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		CF6EE1EA509C44159C92B182 /* RNSVG.xcodeproj */ = {isa = PBXFileReference; name = "RNSVG.xcodeproj"; path = "../node_modules/react-native-svg/ios/RNSVG.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		259C2E0F3016432D900A4D85 /* libRNSVG.a */ = {isa = PBXFileReference; name = "libRNSVG.a"; path = "libRNSVG.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		C43E970A6CF64A35B7F7A8D6 /* RNSpinkit.xcodeproj */ = {isa = PBXFileReference; name = "RNSpinkit.xcodeproj"; path = "../node_modules/react-native-spinkit/ios/RNSpinkit.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		5D145923DE9946C99775E98C /* libRNSpinkit.a */ = {isa = PBXFileReference; name = "libRNSpinkit.a"; path = "libRNSpinkit.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -340,6 +343,7 @@
 				33338DBFAEDE4E32A89EB5A6 /* libRNBlur.a in Frameworks */,
 				2EE72D1AD8C94C2BB28017B3 /* libRNAudio.a in Frameworks */,
 				0FDC50ED297A4A4D85613269 /* libRNSVG.a in Frameworks */,
+				A5697ACE17A34E48A7F377A7 /* libRNSpinkit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,6 +516,7 @@
 				B8A8E0890DFA4FD6B5500C3A /* RNBlur.xcodeproj */,
 				05EED40A4DA3430D9E97948B /* RNAudio.xcodeproj */,
 				CF6EE1EA509C44159C92B182 /* RNSVG.xcodeproj */,
+				C43E970A6CF64A35B7F7A8D6 /* RNSpinkit.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1030,6 +1035,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/reactNativeEverywhere.app/reactNativeEverywhere";
@@ -1048,6 +1054,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",

@@ -72,56 +72,60 @@ class Signup extends Component {
    render() {
 
     return (
-      <Image source={ require('../../../images/sky.jpeg')} style={ styles.container } >
+      <Image source={{uri:'https://s3.amazonaws.com/watsonapi/images/7.jpg'}} style={ styles.container } >
         <Grid>
-          <Row style={styles.content}>
+          <Row size={30} style={styles.content}>
             <Text style={styles.text}>
-              Sign up!
+              Lets get started!
             </Text>
           </Row>
-          <Row>
-            <Content>
+          <Row size={70}>
+            <Content style={{paddingTop: 50}}>
               <InputGroup borderType="rounded" style={styles.inputCreds}>
-                <Icon name="ios-person-outline"/>
+                <Icon name="ios-person-outline" style={{color: 'white'}}/>
                 <Input
                 autoCapitalize="none"
                 autofocus={true}
                 value={this.state.firstName}
                 onChangeText={firstName => this.setState({ firstName })}
                 placeholder="first name"
+                placeholderTextColor="#F0FFFF"
                 style={styles.inputField}
                 />
               </InputGroup>
               <InputGroup borderType="rounded" style={styles.inputCreds}>
-                <Icon name="ios-person-outline"/>
+                <Icon name="ios-person-outline" style={{color: 'white'}}/>
                 <Input
                 autoCapitalize="none"
                 autofocus={true}
                 value={this.state.lastName}
                 onChangeText={lastName => this.setState({ lastName })}
                 placeholder="last name"
+                placeholderTextColor="#F0FFFF"
                 style={styles.inputField}
                 />
               </InputGroup>
               <InputGroup borderType="rounded" style={styles.inputCreds}>
-                <Icon name="ios-mail"/>
+                <Icon name="ios-mail" style={{color: 'white'}}/>
                 <Input
                 autoCapitalize="none"
                 autofocus={true}
                 value={this.state.email}
                 onChangeText={email => this.setState({ email })}
                 placeholder="email"
+                placeholderTextColor="#F0FFFF"
                 style={styles.inputField}
                 />
               </InputGroup>
               <InputGroup borderType="rounded" style={styles.inputCreds}>
-                <Icon name="ios-lock-outline"/>
+                <Icon name="ios-lock-outline" style={{color: 'white'}}/>
                 <Input
                 autoCapitalize="none"
                 autofocus={true}
                 value={this.state.password}
                 onChangeText={password => this.setState({ password })}
                 placeholder="password"
+                placeholderTextColor="#F0FFFF"
                 style={styles.inputField}
                 />
               </InputGroup>
@@ -177,7 +181,7 @@ const styles = StyleSheet.create({
   login: {
     marginLeft: 20,
     marginRight: 20,
-    marginTop: 20
+    marginTop: 40
   }
 });
 

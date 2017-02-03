@@ -30,7 +30,9 @@ class Homepage extends Component {
         this.state = {
           statsActive: false,
           microphoneActive: true,
-          personActive: false
+          personActive: false,
+          isVisible: true,
+          size: 40
         };
         this.toggleStatsActiveButton = this.toggleStatsActiveButton.bind(this);
         this.toggleMicrophoneActiveButton = this.toggleMicrophoneActiveButton.bind(this);
@@ -116,7 +118,7 @@ class Homepage extends Component {
     };
 
     return (
-      <Image source={ this.state.personActive ? null : {uri:'https://s3.amazonaws.com/watsonapi/images/3.jpg'}} style={ styles.container } >
+      <Image source={{uri: 'https://s3.amazonaws.com/watsonapi/images/3.jpg'}} style={ styles.container } >
         <Container>
           <Content>
             {this.state.statsActive ? <Charts /> : this.state.microphoneActive ? <Recording /> : <Account /> }
@@ -181,3 +183,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(Homepage);
+
+
+// <Image source={ this.state.personActive ? null : {uri: 'https://s3.amazonaws.com/watsonapi/images/3.jpg'}} style={ styles.container } >

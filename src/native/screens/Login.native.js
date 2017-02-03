@@ -63,18 +63,17 @@ var STORAGE_KEY = 'id_token';
     return (
       <Image source={{uri:'https://s3.amazonaws.com/watsonapi/images/3.jpg'}} style={ styles.container } >
         <Grid>
-          <Row size={65} style={styles.content} >
-            <Text style={styles.text} >
-              Welcome to Watson {'\n'}   Lets get started!
-            </Text>
+          <Row size={33} style={styles.content} >
+            <Image source={require('../../../images/solace.png')}></Image>
           </Row>
-          <Row size={35}>
+          <Row size={67} style={styles.field}>
             <Content>
               <InputGroup borderType="rounded" style={styles.inputCreds}>
-                <Icon name="ios-person-outline"/>
+                <Icon name="ios-person-outline" style={{color: 'white'}}/>
                 <Input
                 autoCapitalize="none"
                 placeholder="email"
+                placeholderTextColor="#F0FFFF"
                 autofocus={true}
                 value={this.state.email}
                 onChangeText={email => this.setState({ email })}
@@ -82,12 +81,14 @@ var STORAGE_KEY = 'id_token';
                 />
               </InputGroup>
               <InputGroup borderType="rounded" style={styles.inputCreds}>
-                <Icon name="ios-lock-outline"/>
+                <Icon name="ios-lock-outline" style={{color: 'white'}}/>
                 <Input
                 secureTextEntry={true}
                 placeholder="password"
                 secureTextEntry
                 autofocus={true}
+                autoCapitalize="none"
+                placeholderTextColor="#F0FFFF"
                 value={this.state.password}
                 onChangeText={password => this.setState({ password })}
                 style={styles.inputField}
@@ -137,11 +138,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  text: {
-    fontSize: 30,
-    fontFamily: 'Helvetica',
-    color: 'white',
-    fontWeight: 'bold'
+  field: {
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    paddingBottom: 25
   },
   inputField: {
     fontSize: 18,
