@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Dimensions, Image, AlertIOS, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image, AlertIOS, AsyncStorage} from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Content, InputGroup, Input, Icon, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { currentUser } from '../reducer/user.native'
 import store from '../store.native';
+import { checkEmail } from '../utils';
 
 var STORAGE_KEY = 'id_token';
 
@@ -31,32 +32,39 @@ var STORAGE_KEY = 'id_token';
 
   _userLogin() {
     const { email, password } = this.state;
-    let value = {email, password};
-    if (value) { // if validation fails, value will be null
-      fetch("https://watson-backend.herokuapp.com/api/tokens/sessions/create", {
-        method: "POST",
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          email: value.email,
-          password: value.password,
-        })
-      })
-      .then((response) => response.json())
-      .then((responseData) => {
-        console.log('this is the response', responseData),
-        this.onValueChange(STORAGE_KEY, responseData.id_token),
-        store.dispatch(currentUser(responseData.user)),
-        AlertIOS.alert(
-          "Authentication Success!"
-        ),
-        Actions.homepage()
-      })
-      .catch(err => console.error('Authentication failed', err))
-      .done();
-    }
+
+        let value = {email, password};
+        if (value) { // if validation fails, value will be null
+          fetch("https://watson-backend.herokuapp.com/api/tokens/sessions/create", {
+            method: "POST",
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              email: value.email,
+              password: value.password,
+            })
+          })
+          .then((response) => response.json())
+          .then((responseData) => {
+            if(!responseData.id_token) {
+              AlertIOS.alert("Invalid Credential")
+            } else {
+
+              console.log('this is the response', responseData),
+              this.onValueChange(STORAGE_KEY, responseData.id_token),
+              store.dispatch(currentUser(responseData.user)),
+              AlertIOS.alert(
+                "Authentication Success!"
+              ),
+              Actions.homepage()
+            }
+          })
+          .catch(err => console.error('Authentication failed', err))
+          .done();
+        }
+
   }
 
   render() {
@@ -79,6 +87,7 @@ var STORAGE_KEY = 'id_token';
                 onChangeText={email => this.setState({ email })}
                 style={styles.inputField}
                 />
+                {this.state.email === '' ? null : checkEmail(this.state.email) ? <Icon name='ios-checkmark-circle' style={{color:'#00C497'}}/> :  <Icon name='ios-close-circle' style={{color:'red'}}/>}
               </InputGroup>
               <InputGroup borderType="rounded" style={styles.inputCreds}>
                 <Icon name="ios-lock-outline" style={{color: 'white'}}/>
