@@ -6,23 +6,40 @@ import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { fetchLatestRecordings, fetchWeeklyAvgRecordings, fetchMonthlyAvgRecordings, fetchAllAvgRecordings, fetchWeeklyTotalRecordings, fetchMonthlyTotalRecordings, fetchAllTotalRecordings} from '../../reducer/recordings.native';
 import store from '../../store.native';
-import IntroToCharts from './IntroToCharts.native';
 
 class Charts extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.getMonthlyAvgRecordings = this.getMonthlyAvgRecordings.bind(this);
+    this.getAllTimeAvgRecordings = this.getAllTimeAvgRecordings.bind(this);
+    this.getWeeklyTotalRecordings = this.getMonthlyAvgRecordings.bind(this);
+    this.getMonthlyTotalRecordings = this.getMonthlyTotalRecordings.bind(this);
+    this.getAllTimeTotalRecordings = this.getAllTimeTotalRecordings.bind(this);
   }
 
   componentDidMount() {
-    const userId = this.props.user.id;
-    store.dispatch(fetchLatestRecordings(userId));
-    store.dispatch(fetchWeeklyAvgRecordings(userId));
-    store.dispatch(fetchMonthlyAvgRecordings(userId));
-    store.dispatch(fetchAllAvgRecordings(userId));
-    store.dispatch(fetchWeeklyTotalRecordings(userId));
-    store.dispatch(fetchMonthlyTotalRecordings(userId));
-    store.dispatch(fetchAllTotalRecordings(userId));
+    store.dispatch(fetchLatestRecordings(this.props.user.id));
+    store.dispatch(fetchWeeklyAvgRecordings(this.props.user.id));
+  }
+
+  getMonthlyAvgRecordings() {
+    store.dispatch(fetchMonthlyAvgRecordings(this.props.user.id));
+  }
+
+  getAllTimeAvgRecordings() {
+    store.dispatch(fetchAllAvgRecordings(this.props.user.id));
+  }
+
+  getWeeklyTotalRecordings() {
+    store.dispatch(fetchWeeklyTotalRecordings(this.props.user.id));
+  }
+
+  getMonthlyTotalRecordings() {
+    store.dispatch(fetchMonthlyTotalRecordings(this.props.user.id));
+  }
+
+  getAllTimeTotalRecordings() {
+    store.dispatch(fetchAllTotalRecordings(this.props.user.id));
   }
 
   render() {
@@ -57,25 +74,25 @@ class Charts extends Component {
                           Weekly Average
                         <Icon name="ios-arrow-forward" />
                       </Button>
-                      <Button rounded success iconRight style={styles.button} onPress={Actions.monthlyAverage}>
+                      <Button rounded success iconRight style={styles.button} onPress={this.getMonthlyAvgRecordings}>
                           Monthly Average
                         <Icon name="ios-arrow-forward" />
                       </Button>
-                      <Button rounded success iconRight style={styles.button} onPress={Actions.allTimeAverage}>
+                      <Button rounded success iconRight style={styles.button} onPress={this.getAllTimeAvgRecordings}>
                           All Time Average
                         <Icon name="ios-arrow-forward" />
                       </Button>
                     </Col>
                     <Col style={{paddingRight: 10}}>
-                      <Button rounded warning iconRight style={styles.button} onPress={Actions.weeklyTotal}>
+                      <Button rounded warning iconRight style={styles.button} onPress={this.getWeeklyTotalRecordings}>
                           Weekly Total
                         <Icon name="ios-arrow-forward" />
                       </Button>
-                      <Button rounded warning iconRight style={styles.button} onPress={Actions.monthlyTotal}>
+                      <Button rounded warning iconRight style={styles.button} onPress={this.getMonthlyTotalRecordings}>
                           Monthly Total
                         <Icon name="ios-arrow-forward" />
                       </Button>
-                      <Button rounded warning iconRight style={styles.button} onPress={Actions.allTimeTotal}>
+                      <Button rounded warning iconRight style={styles.button} onPress={this.getAllTimeTotalRecordings}>
                           All Time Total
                         <Icon name="ios-arrow-forward" />
                       </Button>

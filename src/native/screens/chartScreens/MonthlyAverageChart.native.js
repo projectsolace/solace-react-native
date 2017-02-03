@@ -27,7 +27,6 @@ class MonthlyAverageChart extends Component {
     return (
       <View style={styles.container}>
         <Swiper style={styles.wrapper} showsButtons={true}>
-
           <View style={styles.slide}>
             <VictoryChart>
               <VictoryBar
@@ -139,7 +138,6 @@ class MonthlyAverageChart extends Component {
               />
             </VictoryChart>
           </View>
-
         </Swiper>
       </View>
     )

@@ -85,7 +85,7 @@ class Signup extends Component {
         <Grid>
           <Row size={30} style={styles.content}>
             <Text style={styles.text}>
-              Lets get started!
+              Let's get started!
             </Text>
           </Row>
           <Row size={70}>
