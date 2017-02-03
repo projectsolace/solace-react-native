@@ -12,6 +12,7 @@ import Charts from './chartScreens/Charts.native';
 import Recording from './Recording.native.js';
 import Account from './Account.native.js';
 import { fetchAQuote } from '../reducer/quote.native';
+import { getImageId } from '../reducer/admin.native';
 import store from '../store.native';
 
 let audioPath = AudioUtils.DocumentDirectoryPath + '/watson2.wav';
@@ -68,11 +69,13 @@ class Homepage extends Component {
 
     componentDidMount() {
 
-      this.setState({imageId: Math.floor(Math.random() * 24) + 1})
+      let imageId = Math.floor(Math.random() * 24) + 1
+      this.setState({imageId})
 
       const userId = this.props.user.id;
 
       store.dispatch(fetchAQuote())
+      store.dispatch(getImageId(imageId))
 
       axios.post(`https://watson-backend.herokuapp.com/api/users/${userId}/weekrecordings/average`)
       .then(response => console.log('weekly avg', response.data))
@@ -88,6 +91,7 @@ class Homepage extends Component {
     }
 
   render() {
+    console.log('CURRENT USER', this.props.user)
 
     return (
       <Image source={{ uri: `https://s3.amazonaws.com/watsonapi/images/${this.state.imageId}.jpg`}} style={ styles.container } >

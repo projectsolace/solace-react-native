@@ -10,8 +10,16 @@ const RECEIVE_EDUCATION_DATA = 'RECEIVE_EDUCATION_DATA';
 const RECEIVE_MARITAL_DATA = 'RECEIVE_MARITAL_DATA';
 const RECEIVE_ZIP_CODE_DATA = 'RECEIVE_ZIP_CODE_DATA';
 const RECEIVE_GENDER_DATA = 'RECEIVE_GENDER_DATA';
+const GET_IMAGE = 'GET_IMAGE'
 
 /* -----------------    ACTION CREATORS   ------------------ */
+
+export const getImageId = (imageid) => {
+  return {
+    type: GET_IMAGE,
+    imageid
+  };
+}
 
 const receiveReligionData = (dataObj) => {
   return {
@@ -145,7 +153,8 @@ const initialState = {
   educationData: {},
   maritalData: {},
   zipCodeData: {},
-  genderData: {}
+  genderData: {},
+  imageid: 1
 };
 
 export default function adminReducer (state = initialState, action) {
@@ -166,6 +175,8 @@ export default function adminReducer (state = initialState, action) {
       return Object.assign({}, state, { zipCodeData: action.dataObj });
     case RECEIVE_GENDER_DATA:
       return Object.assign({}, state, { genderData: action.dataObj });
+    case GET_IMAGE:
+    return Object.assign({}, state, { imageid: action.imageid });
     default:
       return state;
   }

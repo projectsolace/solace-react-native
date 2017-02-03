@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
-import { VictoryBar, VictoryChart } from 'victory-native'
+import { VictoryBar, VictoryChart } from 'victory-native';
 import Swiper from 'react-native-swiper';
 
 class MonthlyTotalChart extends Component {

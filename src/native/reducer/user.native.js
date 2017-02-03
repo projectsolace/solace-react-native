@@ -21,6 +21,7 @@ export const newUser = (createdUser) => {
   };
 };
 
+
 export const currentUser = (authenticatedUser) => {
   return {
     type: SET_CURRENT_USER,
