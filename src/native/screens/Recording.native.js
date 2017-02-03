@@ -69,7 +69,7 @@ class Recording extends Component {
       return (
           <View>
           <TouchableOpacity onPress={onStartRecord} style={styles.image2}>
-           <Image source={require('./mic.png')} style={styles.image2}/>
+           <Image source={require('../../images/mic.png')} style={styles.image2}/>
            </TouchableOpacity>
            <View style={styles.phantom}>
            </View>
@@ -81,7 +81,7 @@ class Recording extends Component {
       return (
           <View>
           <TouchableOpacity onPress={onStopRecord} style={styles.image3}>
-           <Image source={require('./stopmic.png')} style={styles.image3}/>
+           <Image source={require('../../images/stopmic.png')} style={styles.image3}/>
            </TouchableOpacity>
            <View style={styles.phantom2}>
            </View>
@@ -124,11 +124,12 @@ class Recording extends Component {
 
     return (
       <View>
-          <Image source={require('./solace.png')} style={styles.image}/>
-          <Text style={styles.text2}> {`Hello ${this.props.user.firstName},\n What's on your mind today?`}</Text>
-          {!this.state.recording ? recordingMic(): stopMic()}
+        <Image source={require('../../images/solace.png')} style={styles.image}/>
           <Text style={styles.text}> {`"${this.props.quote.quote}"`}</Text>
-          <Button info style={{alignSelf: 'center'}} onPress={()=> Actions.questionModal()} > Helpful Questions </Button>
+            {!this.state.recording ? recordingMic(): stopMic()}
+          <Button transparent style={{alignSelf: 'center', marginTop: 35}} onPress={()=> Actions.questionModal()} >
+           <Text style={{fontWeight: 'bold', color: 'white'}}> Helpful Questions </Text>
+          </Button>
       </View>
     );
   }

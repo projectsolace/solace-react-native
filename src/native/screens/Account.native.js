@@ -5,7 +5,7 @@ import { Content, List, ListItem, InputGroup, Input, Icon, Picker, Button } from
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { updateCurrentUser, logoutUser } from '../reducer/user.native';
-const { BlurView, VibrancyView } = require('react-native-blur');
+const { BlurView } = require('react-native-blur');
 
 const Item = Picker.Item;
 

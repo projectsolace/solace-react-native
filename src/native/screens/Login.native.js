@@ -61,7 +61,9 @@ var STORAGE_KEY = 'id_token';
               Actions.homepage()
             }
           })
-          .catch(err => console.error('Authentication failed', err))
+          .catch(err => {
+            AlertIOS.alert("Invalid Password")
+          })
           .done();
         }
 
@@ -69,10 +71,10 @@ var STORAGE_KEY = 'id_token';
 
   render() {
     return (
-      <Image source={{uri:'https://s3.amazonaws.com/watsonapi/images/3.jpg'}} style={ styles.container } >
+      <Image source={{uri: `https://s3.amazonaws.com/watsonapi/images/3.jpg`}} style={ styles.container } >
         <Grid>
           <Row size={33} style={styles.content} >
-            <Image source={require('../../../images/solace.png')}></Image>
+            <Image source={require('../../images/solace.png')}></Image>
           </Row>
           <Row size={67} style={styles.field}>
             <Content>
@@ -182,5 +184,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(Login);
-
-

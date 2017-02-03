@@ -6,6 +6,7 @@ import { Actions } from 'react-native-router-flux';
 import { newUser } from '../reducer/user.native';
 import { connect } from 'react-redux';
 import store from '../store.native';
+import { checkEmail } from '../utils';
 // import { BlurView, VibrancyView } from 'react-native-blur';
 
 var STORAGE_KEY = 'id_token';
@@ -34,38 +35,46 @@ class Signup extends Component {
 
   _userSignup() {
     const { firstName, lastName, password, email } = this.state;
-    let value = {
-      firstName,
-      lastName,
-      password,
-      email
-    };
 
-    if (value) { // if validation fails, value will be null
-      fetch("https://watson-backend.herokuapp.com/api/tokens/signup", {
-        method: "POST",
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          firstName: value.firstName,
-          lastName: value.lastName,
-          password: value.password,
-          email: value.email
+    if(firstName && lastName && checkEmail(email) && password ){
+
+      let value = {
+        firstName,
+        lastName,
+        password,
+        email
+      };
+
+      if (value) { // if validation fails, value will be null
+        fetch("https://watson-backend.herokuapp.com/api/tokens/signup", {
+          method: "POST",
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            firstName: value.firstName,
+            lastName: value.lastName,
+            password: value.password,
+            email: value.email
+          })
         })
-      })
-      .then((response) => response.json())
-      .then((responseData) => {
-        this.onValueChange(STORAGE_KEY, responseData.id_token),
-        store.dispatch(newUser(responseData.user)),
-        AlertIOS.alert(
-          "Signup Success!"
-        ),
-        Actions.completeProfile();
-      })
-      .catch(err => console.error('signup failed', err))
-      .done();
+        .then((response) => response.json())
+        .then((responseData) => {
+
+            this.onValueChange(STORAGE_KEY, responseData.id_token),
+            store.dispatch(newUser(responseData.user)),
+            AlertIOS.alert(
+              "Signup Success!"
+            ),
+            Actions.completeProfile();
+        })
+        .catch(err => console.error('signup failed', err))
+        .done();
+      }
+    } else {
+
+       AlertIOS.alert("Invalid Input")
     }
   }
 
@@ -92,6 +101,7 @@ class Signup extends Component {
                 placeholderTextColor="#F0FFFF"
                 style={styles.inputField}
                 />
+                {this.state.firstName !== '' ? <Icon name='ios-checkmark-circle' style={{color:'#00C497'}}/> :  null }
               </InputGroup>
               <InputGroup borderType="rounded" style={styles.inputCreds}>
                 <Icon name="ios-person-outline" style={{color: 'white'}}/>
@@ -104,6 +114,7 @@ class Signup extends Component {
                 placeholderTextColor="#F0FFFF"
                 style={styles.inputField}
                 />
+                {this.state.lastName !== '' ? <Icon name='ios-checkmark-circle' style={{color:'#00C497'}}/> :  null }
               </InputGroup>
               <InputGroup borderType="rounded" style={styles.inputCreds}>
                 <Icon name="ios-mail" style={{color: 'white'}}/>
@@ -116,6 +127,7 @@ class Signup extends Component {
                 placeholderTextColor="#F0FFFF"
                 style={styles.inputField}
                 />
+                {this.state.email === '' ? null : checkEmail(this.state.email) ? <Icon name='ios-checkmark-circle' style={{color:'#00C497'}}/> :  <Icon name='ios-close-circle' style={{color:'red'}}/>}
               </InputGroup>
               <InputGroup borderType="rounded" style={styles.inputCreds}>
                 <Icon name="ios-lock-outline" style={{color: 'white'}}/>
@@ -128,6 +140,7 @@ class Signup extends Component {
                 placeholderTextColor="#F0FFFF"
                 style={styles.inputField}
                 />
+                {this.state.password !== '' ? <Icon name='ios-checkmark-circle' style={{color:'#00C497'}}/> :  null }
               </InputGroup>
               <Row>
                 <Content>
