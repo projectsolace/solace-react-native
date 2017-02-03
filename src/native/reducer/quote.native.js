@@ -14,6 +14,7 @@ const receiveAQuote = (quote) => {
   }
 }
 
+
 /* ------------       REDUCER     ------------------ */
 
 export default function quotesReducer (quote = {}, action) {

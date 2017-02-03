@@ -25,7 +25,7 @@ export class QuestionsModal extends Component {
       <View >
         <Swiper style={styles.wrapper} showsButtons={true} transparent={true} >
             { questions && questions.map(questionObj => (
-               <Image key = {questionObj.id} source={require('../../../images/sky.jpeg')} style={styles.container} >
+               <Image key = {questionObj.id} source={{ uri: `https://s3.amazonaws.com/watsonapi/images/${this.props.imageid}.jpg`}} style={styles.container} >
                 <View>
                   <Icon name='ios-close-circle-outline' style = {styles.closeButton } onPress={() => Actions.pop()} ></Icon>
                   <Text style={styles.text}> {questionObj.question}</Text>
@@ -84,7 +84,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    questions: state.questions
+    questions: state.questions,
+    imageid: state.admin.imageid
   };
 };
 
