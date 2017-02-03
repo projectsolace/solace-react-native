@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Actions } from 'react-native-router-flux';
 
 /* -----------------    ACTIONS     ------------------ */
 
@@ -84,6 +85,7 @@ export const fetchMonthlyAvgRecordings = (userId) => dispatch => {
     .then(response => {
       dispatch(receiveMonthlyAvgRecordings(response.data));
     })
+    .then(() => Actions.monthlyAverage())
     .catch(err => console.error('failed to get monthly average recordings', err));
 };
 
@@ -92,6 +94,7 @@ export const fetchAllAvgRecordings = (userId) => dispatch => {
     .then(response => {
       dispatch(receiveAllAvgRecordings(response.data));
     })
+    .then(() => Actions.allTimeAverage())
     .catch(err => console.error('failed to get all average recordings', err));
 };
 
@@ -100,6 +103,7 @@ export const fetchWeeklyTotalRecordings = (userId) => dispatch => {
     .then(response => {
       dispatch(receiveWeeklyTotalRecordings(response.data));
     })
+    .then(() => Actions.weeklyTotal())
     .catch(err => console.error('failed to get weekly total recordings', err));
 };
 
@@ -108,6 +112,7 @@ export const fetchMonthlyTotalRecordings = (userId) => dispatch => {
     .then(response => {
       dispatch(receiveMonthlyTotalRecordings(response.data));
     })
+    .then(() => Actions.monthlyTotal())
     .catch(err => console.error('failed to get monthly total recordings', err));
 };
 
@@ -116,6 +121,7 @@ export const fetchAllTotalRecordings = (userId) => dispatch => {
     .then(response => {
       dispatch(receiveAllTotalRecordings(response.data));
     })
+    .then(() => Actions.allTimeTotal())
     .catch(err => console.error('failed to get all total recordings', err));
 };
 
