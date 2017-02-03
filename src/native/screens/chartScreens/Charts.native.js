@@ -27,95 +27,93 @@ class Charts extends Component {
 
   render() {
     return (
-      <View>
-        <Grid>
-          <Row size={30} style={styles.content}>
-            <Text style={styles.text}>
-              View Your Data
-            </Text>
-          </Row>
-          <Row size={70} style={styles.content} >
-            <Content>
-              <Row style={{paddingLeft: 10, paddingRight: 10}}>
-                <Content>
-                  { this.props.recordings.latestRecordings && this.props.recordings.latestRecordings.personality
-                    ? (<Button rounded block info iconRight style={styles.button} onPress={Actions.latestData}>
-                        <Text> Latest Data </Text>
-                        <Icon name="ios-arrow-forward" />
-                      </Button>)
-                    : (<Button rounded info block iconRight style={styles.button} onPress={Actions.intro}>
-                        <Text> Latest Data </Text>
-                        <Icon name="ios-arrow-forward" />
-                      </Button>)
-                  }
-                </Content>
-              </Row>
-              { this.props.recordings.weeklyAvgRecordings.created_at
-                ? (<Row>
-                    <Col style={{paddingLeft: 10}}>
-                      <Button rounded success iconRight style={styles.button} onPress={Actions.weeklyAverage}>
-                          Weekly Average
-                        <Icon name="ios-arrow-forward" />
-                      </Button>
-                      <Button rounded success iconRight style={styles.button} onPress={Actions.monthlyAverage}>
-                          Monthly Average
-                        <Icon name="ios-arrow-forward" />
-                      </Button>
-                      <Button rounded success iconRight style={styles.button} onPress={Actions.allTimeAverage}>
-                          All Time Average
-                        <Icon name="ios-arrow-forward" />
-                      </Button>
-                    </Col>
-                    <Col style={{paddingRight: 10}}>
-                      <Button rounded warning iconRight style={styles.button} onPress={Actions.weeklyTotal}>
-                          Weekly Total
-                        <Icon name="ios-arrow-forward" />
-                      </Button>
-                      <Button rounded warning iconRight style={styles.button} onPress={Actions.monthlyTotal}>
-                          Monthly Total
-                        <Icon name="ios-arrow-forward" />
-                      </Button>
-                      <Button rounded warning iconRight style={styles.button} onPress={Actions.allTimeTotal}>
-                          All Time Total
-                        <Icon name="ios-arrow-forward" />
-                      </Button>
-                    </Col>
-                  </Row>)
-                : (<Row>
-                    <Col style={{paddingLeft: 10}}>
-                      <Button disabled rounded iconRight style={styles.button}>
-                          Weekly Average
-                        <Icon name="ios-arrow-forward" />
-                      </Button>
-                      <Button disabled rounded iconRight style={styles.button}>
-                          Monthly Average
-                        <Icon name="ios-arrow-forward" />
-                      </Button>
-                      <Button disabled rounded iconRight style={styles.button}>
-                          All Time Average
-                        <Icon name="ios-arrow-forward" />
-                      </Button>
-                    </Col>
-                    <Col style={{paddingRight: 10}}>
-                      <Button disabled rounded iconRight style={styles.button}>
-                          Weekly Total
-                        <Icon name="ios-arrow-forward" />
-                      </Button>
-                      <Button disabled rounded iconRight style={styles.button}>
-                          Monthly Total
-                        <Icon name="ios-arrow-forward" />
-                      </Button>
-                      <Button disabled rounded iconRight style={styles.button}>
-                          All Time Total
-                        <Icon name="ios-arrow-forward" />
-                      </Button>
-                    </Col>
-                  </Row>)
-              }
-            </Content>
-          </Row>
-        </Grid>
-      </View>
+      <Content>
+        <Row size={30} style={styles.content}>
+          <Text style={styles.text}>
+            View Your Data
+          </Text>
+        </Row>
+        <Row size={70} style={styles.content} >
+          <Content>
+            <Row style={{paddingLeft: 10, paddingRight: 10}}>
+              <Content>
+                { this.props.recordings.latestRecordings && this.props.recordings.latestRecordings.personality
+                  ? (<Button rounded block info iconRight style={styles.button} onPress={Actions.latestData}>
+                      <Text> Latest Data </Text>
+                      <Icon name="ios-arrow-forward" />
+                    </Button>)
+                  : (<Button rounded info block iconRight style={styles.button} onPress={Actions.intro}>
+                      <Text> Latest Data </Text>
+                      <Icon name="ios-arrow-forward" />
+                    </Button>)
+                }
+              </Content>
+            </Row>
+            { this.props.recordings.weeklyAvgRecordings.created_at
+              ? (<Row>
+                  <Col style={{paddingLeft: 10}}>
+                    <Button rounded success iconRight style={styles.button} onPress={Actions.weeklyAverage}>
+                        Weekly Average
+                      <Icon name="ios-arrow-forward" />
+                    </Button>
+                    <Button rounded success iconRight style={styles.button} onPress={Actions.monthlyAverage}>
+                        Monthly Average
+                      <Icon name="ios-arrow-forward" />
+                    </Button>
+                    <Button rounded success iconRight style={styles.button} onPress={Actions.allTimeAverage}>
+                        All Time Average
+                      <Icon name="ios-arrow-forward" />
+                    </Button>
+                  </Col>
+                  <Col style={{paddingRight: 10}}>
+                    <Button rounded warning iconRight style={styles.button} onPress={Actions.weeklyTotal}>
+                        Weekly Total
+                      <Icon name="ios-arrow-forward" />
+                    </Button>
+                    <Button rounded warning iconRight style={styles.button} onPress={Actions.monthlyTotal}>
+                        Monthly Total
+                      <Icon name="ios-arrow-forward" />
+                    </Button>
+                    <Button rounded warning iconRight style={styles.button} onPress={Actions.allTimeTotal}>
+                        All Time Total
+                      <Icon name="ios-arrow-forward" />
+                    </Button>
+                  </Col>
+                </Row>)
+              : (<Row>
+                  <Col style={{paddingLeft: 10}}>
+                    <Button disabled rounded iconRight style={styles.button}>
+                        Weekly Average
+                      <Icon name="ios-arrow-forward" />
+                    </Button>
+                    <Button disabled rounded iconRight style={styles.button}>
+                        Monthly Average
+                      <Icon name="ios-arrow-forward" />
+                    </Button>
+                    <Button disabled rounded iconRight style={styles.button}>
+                        All Time Average
+                      <Icon name="ios-arrow-forward" />
+                    </Button>
+                  </Col>
+                  <Col style={{paddingRight: 10}}>
+                    <Button disabled rounded iconRight style={styles.button}>
+                        Weekly Total
+                      <Icon name="ios-arrow-forward" />
+                    </Button>
+                    <Button disabled rounded iconRight style={styles.button}>
+                        Monthly Total
+                      <Icon name="ios-arrow-forward" />
+                    </Button>
+                    <Button disabled rounded iconRight style={styles.button}>
+                        All Time Total
+                      <Icon name="ios-arrow-forward" />
+                    </Button>
+                  </Col>
+                </Row>)
+            }
+          </Content>
+        </Row>
+      </Content>
     );
   }
 }

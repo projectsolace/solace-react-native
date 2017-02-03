@@ -49,7 +49,7 @@ var STORAGE_KEY = 'id_token';
           .then((response) => response.json())
           .then((responseData) => {
             if(!responseData.id_token) {
-              AlertIOS.alert("Invalid Credential")
+              AlertIOS.alert("Invalid Username")
             } else {
 
               console.log('this is the response', responseData),
@@ -114,21 +114,12 @@ var STORAGE_KEY = 'id_token';
                   </Button>
                 </Content>
               </Row>
-              <Row>
-                <Col style={{paddingTop: 15, paddingLeft: 20}}>
-                  <Button transparent>
-                    <Text style={{fontWeight: 'bold', color: 'white', fontSize: 14}} onPress={ Actions.signup} >
-                      Create Account
-                    </Text>
-                  </Button>
-                </Col>
-                <Col style={{paddingTop: 15, width: 80}}>
-                  <Button transparent>
-                    <Text style={{fontWeight: 'bold', color: 'white', fontSize: 14}}>
-                      Help
-                    </Text>
-                  </Button>
-                </Col>
+              <Row style={{ alignItems: 'flex-end', justifyContent: 'flex-end' }}>
+                <Button transparent style={{ paddingRight: 20, marginTop: 15 }}>
+                  <Text style={{fontWeight: 'bold', color: 'white', fontSize: 14, textAlign: 'center'}} onPress={ Actions.signup} >
+                    Create Account
+                  </Text>
+                </Button>
               </Row>
             </Content>
           </Row>
@@ -184,5 +175,4 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(Login);
-
 

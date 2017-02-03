@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Dimensions, Image } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Content, InputGroup, Input, Icon, Button, Container, Footer, FooterTab } from 'native-base';
 import { Actions } from 'react-native-router-flux';
@@ -94,29 +94,40 @@ class Homepage extends Component {
     console.log('CURRENT USER', this.props.user)
 
     return (
-      <Image source={{ uri: `https://s3.amazonaws.com/watsonapi/images/${this.state.imageId}.jpg`}} style={ styles.container } >
-          <Content>
+      <View style={ styles.container }>
+        <Image source={{ uri: `https://s3.amazonaws.com/watsonapi/images/${this.state.imageId}.jpg`}} style={ styles.img } >
             {this.state.statsActive ? <Charts /> : this.state.microphoneActive ? <Recording /> : <Account /> }
-          </Content>
-          <Footer>
+          <Footer style={{position: 'absolute', left: 0, right: 0, bottom: 0}}>
             <FooterTab>
               <Button active = { this.state.statsActive }  onPress = {this.toggleStatsActiveButton} > Charts <Icon name='ios-stats'></Icon></Button>
               <Button active = { this.state.microphoneActive } onPress = {this.toggleMicrophoneActiveButton} > Record <Icon name='ios-microphone'></Icon></Button>
               <Button active = { this.state.personActive } onPress = {this.togglePersonActiveButton} > Account <Icon name='ios-person'></Icon></Button>
             </FooterTab>
           </Footer>
-      </Image>
+        </Image>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  img: {
     flex: 1,
     width: null,
     height: null,
     backgroundColor: 'rgba(0,0,0,0)',
-    resizeMode: 'cover'
+    resizeMode: 'cover',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    backgroundColor: 'transparent',
   },
   content: {
     justifyContent: 'center',
@@ -143,6 +154,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(Homepage);
-
-
-// <Image source={ this.state.personActive ? null : {uri: 'https://s3.amazonaws.com/watsonapi/images/3.jpg'}} style={ styles.container } >

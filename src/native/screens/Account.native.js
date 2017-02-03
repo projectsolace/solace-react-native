@@ -102,7 +102,7 @@ class Account extends Component {
     });
 
     return (
-      <BlurView blurType="dark" blurAmount={10}>
+      <BlurView blurType="dark" blurAmount={10} style={styles.blurContainer}>
         <Grid>
           <Row size={18}>
             <Content style={{ alignSelf: 'center' }}>
@@ -246,12 +246,12 @@ class Account extends Component {
               </List>
               <Row>
                 <Col>
-                  <Button success onPress={ this.onPressUpdate }style={{ alignSelf: 'center', marginTop: 30}}>
+                  <Button success onPress={ this.onPressUpdate }style={{ alignSelf: 'center', marginTop: 30, marginBottom: 30}}>
                     Update
                   </Button>
                 </Col>
                 <Col>
-                  <Button iconRight info onPress={ logoutUser } style={{ alignSelf: 'center', marginTop: 30}}>
+                  <Button iconRight info onPress={ logoutUser } style={{ alignSelf: 'center', marginTop: 30, marginBottom: 30}}>
                     Signout
                     <Icon name="ios-arrow-forward" />
                   </Button>
@@ -267,10 +267,12 @@ class Account extends Component {
 
 
 const styles = StyleSheet.create({
-  container: {
+  blurContainer: {
     flex: 1,
-    backgroundColor: 'white',
-    resizeMode: 'stretch'
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    backgroundColor: 'transparent',
+    paddingHorizontal: 10
   },
   content: {
     padding: 8,
