@@ -88,6 +88,7 @@ class Homepage extends Component {
     }
 
   render() {
+    console.log('CURRENT USER', this.props.user)
 
     return (
       <Image source={{ uri: `https://s3.amazonaws.com/watsonapi/images/${this.state.imageId}.jpg`}} style={ styles.container } >

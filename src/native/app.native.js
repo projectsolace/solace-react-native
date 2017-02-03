@@ -11,6 +11,7 @@ import store from './store.native';
 
 // Charts data
 import Charts from './screens/chartScreens/Charts.native';
+import IntroToCharts from './screens/chartScreens/IntroToCharts.native';
 import LatestDataChart from './screens/chartScreens/LatestDataChart.native';
 import WeeklyAverageChart from './screens/chartScreens/WeeklyAverageChart.native';
 import MonthlyAverageChart from './screens/chartScreens/MonthlyAverageChart.native';
@@ -30,7 +31,8 @@ export default class App extends React.Component {
             <Scene key="completeProfile" component={CompleteProfile} title="CompleteProfile" hideNavBar />
             <Scene key="homepage" component={Homepage} title="Homepage" panHandlers={null} hideNavBar/>
             <Scene key="freeSpeakModal" component={FreeSpeakModal} title="Modal" direction = "vertical" hideNavBar />
-            <Scene key="charts" component={Charts} hideNavBar title="Charts" />
+            <Scene key="charts" component={Charts} title="Charts" hideNavBar  />
+            <Scene key="intro" component={IntroToCharts} title="IntroToCharts" direction="vertical" hideNavBar />
             <Scene key="latestData" component={LatestDataChart} title="LatestDataChart" direction="vertical" hideNavBar />
             <Scene key="weeklyAverage" component={WeeklyAverageChart} title="WeeklyAverageChart" direction="vertical" hideNavBar />
             <Scene key="monthlyAverage" component={MonthlyAverageChart} title="MonthlyAverageChart" direction="vertical" hideNavBar />
