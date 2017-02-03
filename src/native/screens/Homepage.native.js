@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     width: null,
     height: null,
     backgroundColor: 'rgba(0,0,0,0)',
-    resizeMode: 'stretch'
+    resizeMode: 'cover'
   },
   content: {
     justifyContent: 'center',
@@ -141,3 +141,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(Homepage);
+
+
+// <Image source={ this.state.personActive ? null : {uri: 'https://s3.amazonaws.com/watsonapi/images/3.jpg'}} style={ styles.container } >

@@ -4,8 +4,6 @@ import android.app.Application;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
-import com.BV.LinearGradient.LinearGradientPackage;
-import com.react.rnspinkit.RNSpinkitPackage;
 import com.horcrux.svg.SvgPackage;
 import com.rnim.rn.audio.ReactNativeAudioPackage;
 import com.cmcewen.blurview.BlurViewPackage;
@@ -31,7 +29,10 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+<<<<<<< HEAD
+=======
             new LinearGradientPackage(),
+>>>>>>> master
             new RNSpinkitPackage(),
             new SvgPackage(),
             new ReactNativeAudioPackage(),

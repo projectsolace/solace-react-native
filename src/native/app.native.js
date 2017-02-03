@@ -28,7 +28,7 @@ export default class App extends React.Component {
             <Scene key="entryPoint" component={Login} hideNavBar initial/>
             <Scene key="signup" component={Signup} title="Signup"/>
             <Scene key="completeProfile" component={CompleteProfile} title="CompleteProfile" hideNavBar />
-            <Scene key="homepage" component={Homepage} title="Homepage" hideNavBar/>
+            <Scene key="homepage" component={Homepage} title="Homepage" panHandlers={null} hideNavBar/>
             <Scene key="freeSpeakModal" component={FreeSpeakModal} title="Modal" direction = "vertical" hideNavBar />
             <Scene key="charts" component={Charts} hideNavBar title="Charts" />
             <Scene key="latestData" component={LatestDataChart} title="LatestDataChart" direction="vertical" hideNavBar />

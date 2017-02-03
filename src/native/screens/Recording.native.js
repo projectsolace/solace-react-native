@@ -8,9 +8,6 @@ import { RNS3 } from 'react-native-aws3';
 import axios from 'axios'
 import secrets from './secrets.json';
 import {connect} from 'react-redux'
-import ButtonComponent, { CircleButton, RoundButton, RectangleButton } from 'react-native-button-component';
-
-
 
 
 let audioPath = AudioUtils.DocumentDirectoryPath + '/watson2.wav';
