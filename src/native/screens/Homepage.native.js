@@ -95,7 +95,6 @@ class Homepage extends Component {
 
     return (
       <Image source={{ uri: `https://s3.amazonaws.com/watsonapi/images/${this.state.imageId}.jpg`}} style={ styles.container } >
-        <Container>
           <Content>
             {this.state.statsActive ? <Charts /> : this.state.microphoneActive ? <Recording /> : <Account /> }
           </Content>
@@ -106,7 +105,6 @@ class Homepage extends Component {
               <Button active = { this.state.personActive } onPress = {this.togglePersonActiveButton} > Account <Icon name='ios-person'></Icon></Button>
             </FooterTab>
           </Footer>
-        </Container>
       </Image>
     );
   }
