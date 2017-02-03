@@ -125,9 +125,10 @@ class Recording extends Component {
     return (
       <View>
         <Image source={require('../../images/solace.png')} style={styles.image}/>
-          <Text style={styles.text}> {`"${this.props.quote.quote}"`}</Text>
+          <Text style={styles.text}> {`Hello ${this.props.user.firstName}, \n Whats on your mind today?`}</Text>
             {!this.state.recording ? recordingMic(): stopMic()}
-          <Button transparent style={{alignSelf: 'center', marginTop: 35}} onPress={()=> Actions.questionModal()} >
+          <Text style={styles.text}> {`"${this.props.quote.quote}"`}</Text>
+          <Button style={{alignSelf: 'center', marginTop: 35}} onPress={()=> Actions.questionModal()} >
            <Text style={{fontWeight: 'bold', color: 'white'}}> Helpful Questions </Text>
           </Button>
       </View>
