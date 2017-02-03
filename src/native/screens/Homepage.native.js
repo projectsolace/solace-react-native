@@ -80,6 +80,7 @@ class Homepage extends Component {
     }
 
   render() {
+    console.log('CURRENT USER', this.props.user)
 
     return (
       <Image source={ this.state.personActive ? null : require('../../../images/sky.jpeg')} style={ styles.container } >
