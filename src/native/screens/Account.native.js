@@ -301,14 +301,6 @@ const styles = StyleSheet.create({
     marginTop: 40,
     marginBottom: 20,
     fontWeight: 'bold'
-  },
-  inputCreds: {
-    paddingLeft: 15,
-    marginBottom: 17,
-    marginLeft: 20,
-    marginRight: 20,
-    backgroundColor: 'rgba(0,0,0,0.3)',
-    borderColor: 'rgba(0,0,0,0)'
   }
 });
 
