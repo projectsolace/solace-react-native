@@ -46,7 +46,7 @@ class Recording extends Component {
     const recordingMic = () =>{
       return (
           <View>
-          <TouchableOpacity onPress={onStartRecord}>
+          <TouchableOpacity onPress={onStartRecord} style={styles.image2}>
            <Image source={require('./mic.png')} style={styles.image2}/>
            </TouchableOpacity>
            <View style={styles.phantom}>
@@ -58,7 +58,7 @@ class Recording extends Component {
      const stopMic = () =>{
       return (
           <View>
-          <TouchableOpacity onPress={onStopRecord}>
+          <TouchableOpacity onPress={onStopRecord} style={styles.image3}>
            <Image source={require('./stopmic.png')} style={styles.image3}/>
            </TouchableOpacity>
            <View style={styles.phantom2}>
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
     image3: {
-    marginTop: 15,
+    marginTop: 9,
     height:67,
     width:67,
     alignSelf: 'center'
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     height: 100
   },
   phantom2: {
-    height: 118
+    height: 124
   }
 
 });
