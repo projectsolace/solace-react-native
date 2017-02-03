@@ -61,7 +61,9 @@ var STORAGE_KEY = 'id_token';
               Actions.homepage()
             }
           })
-          .catch(err => console.error('Authentication failed', err))
+          .catch(err => {
+            AlertIOS.alert("Invalid Password")
+          })
           .done();
         }
 
