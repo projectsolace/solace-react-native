@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Dimensions, Image } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image, TouchableHighlight, TouchableOpacity } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Content, InputGroup, Input, Icon, Button, Container, Footer, FooterTab } from 'native-base';
 import { Actions } from 'react-native-router-flux';
@@ -8,6 +8,8 @@ import { RNS3 } from 'react-native-aws3';
 import axios from 'axios'
 import secrets from './secrets.json';
 import {connect} from 'react-redux'
+import ButtonComponent, { CircleButton, RoundButton, RectangleButton } from 'react-native-button-component';
+
 
 
 
@@ -25,22 +27,40 @@ class Recording extends Component {
 
     constructor(props, context) {
         super(props, context);
+        this.state={
+          recording:false
+        }
 
+    }
+
+    componentDidMount(){
     }
 
   render() {
 
+
     const onStartRecord = () => {
       console.log('STARTED RECORDING')
       AudioRecorder.startRecording();
-      Actions.questionModal();
+      this.setState({recording:true})
+
     };
 
-    const onStartRecordFreeSpeak = () => {
-      console.log('STARTED FEE RECORDING')
-      AudioRecorder.startRecording();
-      Actions.freeSpeakModal();
-    };
+    const recordingMic = () =>{
+      return (
+          <TouchableOpacity onPress={onStartRecord}>
+           <Image source={require('./mic.png')} style={styles.image2}/>
+           </TouchableOpacity>
+           )
+    }
+
+     const stopMic = () =>{
+      return (
+          <TouchableOpacity onPress={onStopRecord}>
+           <Image source={require('./stopmic.png')} style={styles.image3}/>
+           </TouchableOpacity>
+           )
+    }
 
     const onStopRecord = () => {
       AudioRecorder.stopRecording();
@@ -69,15 +89,16 @@ class Recording extends Component {
           })
       })
       .catch(err => console.log(err));
+      this.setState({recording:false})
 
     };
 
     return (
       <View>
-          <Button info style={{alignSelf: 'center'}} onPress = { onStartRecord } > Start Record </Button>
-          <Button danger style={{alignSelf: 'center'}} onPress = { onStopRecord } > Stop Record </Button>
-          <Button info style={{alignSelf: 'center'}} onPress = { onStartRecordFreeSpeak } > Speak Your Mind Freely </Button>
-          <Button info style={{alignSelf: 'center'}} onPress={()=> Actions.questionModal()} > Today's Questions </Button>
+          <Image source={require('./solace.png')} style={styles.image}/>
+          <Text style={styles.text}> {`"${this.props.quote.quote}"`}</Text>
+          {!this.state.recording ? recordingMic(): stopMic()}
+          <Button info style={{alignSelf: 'center'}} onPress={()=> Actions.questionModal()} > Helpful Questions </Button>
       </View>
     );
   }
@@ -90,6 +111,38 @@ const styles = StyleSheet.create({
     height: null,
     backgroundColor: 'rgba(0,0,0,0)',
     resizeMode: 'stretch'
+  },
+  image: {
+    alignSelf: 'center',
+    marginTop: 50,
+    marginBottom: 50
+
+  },
+  image2: {
+    height:100,
+    width:100,
+    alignSelf: 'center',
+    marginBottom: 100
+  },
+    image3: {
+    marginTop: 15,
+    height:67,
+    width:67,
+    alignSelf: 'center',
+    marginBottom: 118
+  },
+    text: {
+    alignSelf: 'center',
+    color: 'white',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    shadowColor: '#000000',
+   shadowOffset: {
+     width: 0,
+     height: 3
+   },
+   shadowRadius: 5,
+   shadowOpacity: 1.0
   }
 });
 
@@ -99,7 +152,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
+    quote:state.quote
   };
 };
 

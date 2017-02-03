@@ -11,6 +11,8 @@ import secrets from './secrets.json';
 import Charts from './chartScreens/Charts.native';
 import Recording from './Recording.native.js';
 import Account from './Account.native.js';
+import { fetchAQuote } from '../reducer/quote.native';
+import store from '../store.native';
 
 let audioPath = AudioUtils.DocumentDirectoryPath + '/watson2.wav';
 
@@ -30,7 +32,8 @@ class Homepage extends Component {
         this.state = {
           statsActive: false,
           microphoneActive: true,
-          personActive: false
+          personActive: false,
+          imageId: 1
         };
         this.toggleStatsActiveButton = this.toggleStatsActiveButton.bind(this);
         this.toggleMicrophoneActiveButton = this.toggleMicrophoneActiveButton.bind(this);
@@ -64,7 +67,12 @@ class Homepage extends Component {
     };
 
     componentDidMount() {
+
+      this.setState({imageId: Math.floor(Math.random() * 24) + 1})
+
       const userId = this.props.user.id;
+
+      store.dispatch(fetchAQuote())
 
       axios.post(`https://watson-backend.herokuapp.com/api/users/${userId}/weekrecordings/average`)
       .then(response => console.log('weekly avg', response.data))
@@ -82,7 +90,7 @@ class Homepage extends Component {
   render() {
 
     return (
-      <Image source={ this.state.personActive ? null : require('../../../images/sky.jpeg')} style={ styles.container } >
+      <Image source={{ uri: `https://s3.amazonaws.com/watsonapi/images/${this.state.imageId}.jpg`}} style={ styles.container } >
         <Container>
           <Content>
             {this.state.statsActive ? <Charts /> : this.state.microphoneActive ? <Recording /> : <Account /> }
