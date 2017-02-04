@@ -14,10 +14,10 @@ const GET_IMAGE = 'GET_IMAGE'
 
 /* -----------------    ACTION CREATORS   ------------------ */
 
-export const getImageId = (imageid) => {
+export const getImageId = (imageId) => {
   return {
     type: GET_IMAGE,
-    imageid
+    imageId
   };
 }
 
@@ -154,7 +154,7 @@ const initialState = {
   maritalData: {},
   zipCodeData: {},
   genderData: {},
-  imageid: 1
+  imageId: 1
 };
 
 export default function adminReducer (state = initialState, action) {
@@ -176,7 +176,7 @@ export default function adminReducer (state = initialState, action) {
     case RECEIVE_GENDER_DATA:
       return Object.assign({}, state, { genderData: action.dataObj });
     case GET_IMAGE:
-    return Object.assign({}, state, { imageid: action.imageid });
+    return Object.assign({}, state, { imageId: action.imageId });
     default:
       return state;
   }

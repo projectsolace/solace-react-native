@@ -9,7 +9,8 @@ import axios from 'axios'
 import secrets from './secrets.json';
 import {connect} from 'react-redux'
 
-
+// Deleted this library for now because it breaks everything
+// import { Stopwatch, Timer } from 'react-native-stopwatch-timer'
 
 let audioPath = AudioUtils.DocumentDirectoryPath + '/watson2.wav';
 
@@ -124,7 +125,7 @@ class Recording extends Component {
     return (
       <View>
         <Image source={require('../../images/solace.png')} style={styles.image}/>
-          <Text style={styles.text2}> {`Hello ${this.props.user.firstName}, \n Whats on your mind today?`}</Text>
+          <Text style={styles.text2}> {`Hello ${this.props.user.firstName}, \n What's on your mind today?`}</Text>
             {!this.state.recording ? recordingMic(): stopMic()}
           <Text style={styles.text}> {`"${this.props.quote.quote}"`}</Text>
           <Button transparent style={{alignSelf: 'center', marginTop: 25, borderWidth: 3}} onPress={()=> Actions.questionModal()} >
@@ -166,14 +167,14 @@ const styles = StyleSheet.create({
 
   },
   image2: {
-    height:100,
-    width:100,
+    height: 100,
+    width: 100,
     alignSelf: 'center',
   },
-    image3: {
+  image3: {
     marginTop: 9,
-    height:67,
-    width:67,
+    height: 67,
+    width: 67,
     alignSelf: 'center'
   },
     text: {
@@ -190,7 +191,7 @@ const styles = StyleSheet.create({
    shadowOpacity: 1.0,
    marginBottom: 10,
    marginLeft: 15,
-   marginRight: 15,
+   marginRight: 15
   },
   text2: {
     alignSelf: 'center',
@@ -198,9 +199,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     shadowColor: '#000000',
-   shadowOffset: {
-     width: 0,
-     height: 3
+    shadowOffset: {
+      width: 0,
+      height: 3
    },
    shadowRadius: 5,
    shadowOpacity: 1.0
@@ -214,10 +215,7 @@ const styles = StyleSheet.create({
   timer: {
     alignSelf: 'center',
   }
-
 });
-
-
 
 /* -----------------    CONTAINER     ------------------ */
 

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, Image, View} from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Content, List, ListItem, InputGroup, Input, Icon, Picker, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { updateCurrentUser } from '../reducer/user.native';
+import { BlurView } from 'react-native-blur';
 
 const Item = Picker.Item;
-
 
 let occupation = ['Select', 'Sales', 'Hospitality', 'Healthcare', 'Custodial', 'Accounting', 'Teaching', 'Law-Enforcement', 'Law', 'Finance', 'Engineering', 'Administration', 'Student', 'Other'];
 
@@ -97,138 +97,163 @@ class CompleteProfile extends Component {
     });
 
     return (
-      <Grid>
-        <Row size={18}>
-          <Content style={{ alignSelf: "center" }}>
-            <Text style={styles.inputField}>
-            Complete your profile!
-            </Text>
-          </Content>
-        </Row>
-        <Row size={82}>
-          <Content>
-            <List>
-              <ListItem iconLeft style={ styles.list }>
-                <Icon name="ios-briefcase" style={{ color: '#0A69FE' }} />
-                <Text style={ styles.text }>Occupation</Text>
-                <Picker
-                  iosHeader="Occupation"
-                  mode="dropdown"
-                  selectedValue={ this.state.occupation }
-                  onValueChange={ (val) => this.onValueChange(val, 'occupation') } >
-                    {occupationList}
-                </Picker>
-              </ListItem>
-              <ListItem iconLeft style={styles.list}>
-                <Icon name="md-cash" style={{ color: '#0A69FE' }} />
-                <Text style={ styles.text }>Income</Text>
-                <Picker
-                  iosHeader="Income"
-                  mode="dropdown"
-                  selectedValue={ this.state.incomeLevel }
-                  onValueChange={ (val) => this.onValueChange(val, 'incomeLevel') } >
-                    {incomeList}
-                </Picker>
-              </ListItem>
-              <ListItem iconLeft style={styles.list}>
-                <Icon name="md-globe" style={{ color: '#0A69FE' }} />
-                <Text style={ styles.text }>Ethnicity</Text>
-                <Picker
-                  iosHeader="Ethnicity"
-                  mode="dropdown"
-                  selectedValue={ this.state.ethnicity }
-                  onValueChange={ (val) => this.onValueChange(val, 'ethnicity') } >
-                    {ethnicityList}
-                </Picker>
-              </ListItem>
-              <ListItem iconLeft style={styles.list}>
-                <Icon name="ios-flower-outline" style={{ color: '#0A69FE' }} />
-                <Text style={ styles.text }>Religion</Text>
-                <Picker
-                  iosHeader="Religion"
-                  mode="dropdown"
-                  selectedValue={ this.state.religion }
-                  onValueChange={ (val) => this.onValueChange(val, 'religion') } >
-                    {religionList}
-                </Picker>
-              </ListItem>
-              <ListItem iconLeft style={styles.list}>
-                <Icon name="ios-school" style={{ color: '#0A69FE' }} />
-                <Text style={ styles.text }>Education</Text>
-                <Picker
-                  iosHeader="Education"
-                  mode="dropdown"
-                  selectedValue={ this.state.education }
-                  onValueChange={ (val) => this.onValueChange(val, 'education') } >
-                    {educationList}
-                </Picker>
-              </ListItem>
-              <ListItem iconLeft style={styles.list}>
-                <Icon name="ios-contacts-outline" style={{ color: '#0A69FE' }} />
-                <Text style={ styles.text }>Marital Status</Text>
-                <Picker
-                  iosHeader="Marital Status"
-                  mode="dropdown"
-                  selectedValue={ this.state.maritalStatus }
-                  onValueChange={ (val) => this.onValueChange(val, 'maritalStatus') } >
-                    {maritalStatusList}
-                </Picker>
-              </ListItem>
-              <ListItem iconLeft style={styles.list}>
-                <Icon name="ios-transgender" style={{ color: '#0A69FE' }} />
-                <Text style={ styles.text }>Gender</Text>
-                <Picker
-                  iosHeader="Gender"
-                  mode="dropdown"
-                  selectedValue={ this.state.gender }
-                  onValueChange={ (val) => this.onValueChange(val, 'gender') } >
-                    <Item label="Select" value="Select" />
-                    <Item label="Male" value="Male" />
-                    <Item label="Female" value="Female" />
-                </Picker>
-              </ListItem>
-              <ListItem>
-                <InputGroup style={styles.content}>
-                  <Icon name="ios-navigate-outline" style={{ color: '#0A69FE', marginRight: -5}} />
-                  <Input
-                  style={{ fontFamily: 'HelveticaNeue-Medium'}}
-                  placeholderTextColor= "#C7C7CD"
-                  keyboardType = "numeric"
-                  maxLength={5}
-                  placeholder="Zip Code"
-                  value={this.state.zipCode}
-                  onChangeText={(zipCode) => this.setState({ zipCode })}
-                  />
-                </InputGroup>
-              </ListItem>
-            </List>
-            <Row>
-              <Col>
-                <Button success onPress={ this.onPressUpdate }style={{ alignSelf: 'center', marginTop: 30}}>
-                  Save
-                </Button>
-              </Col>
-              <Col>
-                <Button iconRight info onPress={ Actions.homepage } style={{ alignSelf: 'center', marginTop: 30}}>
-                  Skip
-                  <Icon name="ios-arrow-forward" />
-                </Button>
-              </Col>
-            </Row>
-          </Content>
-        </Row>
-      </Grid>
+      <View style={styles.container} >
+        <Image source={{uri:'https://s3.amazonaws.com/watsonapi/images/7.jpg'}} style={ styles.img } >
+          <BlurView blurType="dark" style={styles.blurContainer}>
+            <Grid>
+              <Row size={18}>
+                <Content style={{ alignSelf: "center", marginTop: 25 }}>
+                  <Text style={styles.inputField}>
+                  Complete your profile!
+                  </Text>
+                </Content>
+              </Row>
+              <Row size={82}>
+                <Content>
+                  <List>
+                    <ListItem iconLeft style={ styles.list }>
+                      <Icon name="ios-briefcase" style={{ color: '#0A69FE' }} />
+                      <Text style={ styles.text }>Occupation</Text>
+                      <Picker
+                        iosHeader="Occupation"
+                        mode="dropdown"
+                        selectedValue={ this.state.occupation }
+                        onValueChange={ (val) => this.onValueChange(val, 'occupation') } >
+                          {occupationList}
+                      </Picker>
+                    </ListItem>
+                    <ListItem iconLeft style={styles.list}>
+                      <Icon name="md-cash" style={{ color: '#0A69FE' }} />
+                      <Text style={ styles.text }>Income</Text>
+                      <Picker
+                        iosHeader="Income"
+                        mode="dropdown"
+                        selectedValue={ this.state.incomeLevel }
+                        onValueChange={ (val) => this.onValueChange(val, 'incomeLevel') } >
+                          {incomeList}
+                      </Picker>
+                    </ListItem>
+                    <ListItem iconLeft style={styles.list}>
+                      <Icon name="md-globe" style={{ color: '#0A69FE' }} />
+                      <Text style={ styles.text }>Ethnicity</Text>
+                      <Picker
+                        iosHeader="Ethnicity"
+                        mode="dropdown"
+                        selectedValue={ this.state.ethnicity }
+                        onValueChange={ (val) => this.onValueChange(val, 'ethnicity') } >
+                          {ethnicityList}
+                      </Picker>
+                    </ListItem>
+                    <ListItem iconLeft style={styles.list}>
+                      <Icon name="ios-flower-outline" style={{ color: '#0A69FE' }} />
+                      <Text style={ styles.text }>Religion</Text>
+                      <Picker
+                        iosHeader="Religion"
+                        mode="dropdown"
+                        selectedValue={ this.state.religion }
+                        onValueChange={ (val) => this.onValueChange(val, 'religion') } >
+                          {religionList}
+                      </Picker>
+                    </ListItem>
+                    <ListItem iconLeft style={styles.list}>
+                      <Icon name="ios-school" style={{ color: '#0A69FE' }} />
+                      <Text style={ styles.text }>Education</Text>
+                      <Picker
+                        iosHeader="Education"
+                        mode="dropdown"
+                        selectedValue={ this.state.education }
+                        onValueChange={ (val) => this.onValueChange(val, 'education') } >
+                          {educationList}
+                      </Picker>
+                    </ListItem>
+                    <ListItem iconLeft style={styles.list}>
+                      <Icon name="ios-contacts-outline" style={{ color: '#0A69FE' }} />
+                      <Text style={ styles.text }>Marital Status</Text>
+                      <Picker
+                        iosHeader="Marital Status"
+                        mode="dropdown"
+                        selectedValue={ this.state.maritalStatus }
+                        onValueChange={ (val) => this.onValueChange(val, 'maritalStatus') } >
+                          {maritalStatusList}
+                      </Picker>
+                    </ListItem>
+                    <ListItem iconLeft style={styles.list}>
+                      <Icon name="ios-transgender" style={{ color: '#0A69FE' }} />
+                      <Text style={ styles.text }>Gender</Text>
+                      <Picker
+                        iosHeader="Gender"
+                        mode="dropdown"
+                        selectedValue={ this.state.gender }
+                        onValueChange={ (val) => this.onValueChange(val, 'gender') } >
+                          <Item label="Select" value="Select" />
+                          <Item label="Male" value="Male" />
+                          <Item label="Female" value="Female" />
+                      </Picker>
+                    </ListItem>
+                    <ListItem>
+                      <InputGroup style={styles.content}>
+                        <Icon name="ios-navigate-outline" style={{ color: '#0A69FE', marginRight: -5}} />
+                        <Input
+                        style={styles.textInput}
+                        placeholderTextColor= "#C7C7CD"
+                        keyboardType = "numeric"
+                        maxLength={5}
+                        placeholder="Zip Code"
+                        value={this.state.zipCode}
+                        onChangeText={(zipCode) => this.setState({ zipCode })}
+                        />
+                      </InputGroup>
+                    </ListItem>
+                  </List>
+                  <Row>
+                    <Col>
+                      <Button success onPress={ this.onPressUpdate }style={{ alignSelf: 'center', marginTop: 30}}>
+                        Save
+                      </Button>
+                    </Col>
+                    <Col>
+                      <Button iconRight info onPress={ Actions.homepage } style={{ alignSelf: 'center', marginTop: 30}}>
+                        Skip
+                        <Icon name="ios-arrow-forward" />
+                      </Button>
+                    </Col>
+                  </Row>
+                </Content>
+              </Row>
+            </Grid>
+          </BlurView>
+        </Image>
+      </View>
     );
   }
 }
 
 
 const styles = StyleSheet.create({
-  container: {
+  img: {
     flex: 1,
     width: null,
     height: null,
-    backgroundColor: 'rgba(0,0,0,0)'
+    backgroundColor: 'rgba(0,0,0,0)',
+    resizeMode: 'cover',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    backgroundColor: 'transparent',
+  },
+  blurContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    backgroundColor: 'transparent',
+    paddingHorizontal: 10
   },
   content: {
     padding: 8,
@@ -241,15 +266,21 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
-    fontFamily: 'HelveticaNeue-Medium',
-    color: '#C7C7CD',
-    marginLeft: 5
+    fontFamily: 'Helvetica',
+    color: 'white',
+    marginLeft: 5,
+    fontWeight: 'bold'
+  },
+  textInput: {
+    color: '#A9A9A9',
+    fontSize: 16,
+    fontFamily: 'Helvetica'
   },
   inputField: {
-    fontSize: 26,
+    fontSize: 30,
     textAlign: 'center',
     fontFamily: 'Helvetica',
-    color: 'black',
+    color: 'white',
     fontWeight: 'bold'
   },
   inputCreds: {
