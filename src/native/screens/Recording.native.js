@@ -8,9 +8,9 @@ import { RNS3 } from 'react-native-aws3';
 import axios from 'axios'
 import secrets from './secrets.json';
 import {connect} from 'react-redux'
-import { Stopwatch, Timer } from 'react-native-stopwatch-timer'
 
-
+// Deleted this library for now because it breaks everything
+// import { Stopwatch, Timer } from 'react-native-stopwatch-timer'
 
 let audioPath = AudioUtils.DocumentDirectoryPath + '/watson2.wav';
 
