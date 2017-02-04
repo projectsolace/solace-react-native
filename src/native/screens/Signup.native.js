@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, Image, AlertIOS, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, Image, AlertIOS, AsyncStorage, Dimensions } from 'react-native';
 import { Row, Grid } from 'react-native-easy-grid';
 import { Content, InputGroup, Input, Icon, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
@@ -80,6 +80,8 @@ class Signup extends Component {
 
    render() {
 
+    console.log('these are the dimensions', Dimensions.get('window').width);
+
     return (
       <Image source={{uri:'https://s3.amazonaws.com/watsonapi/images/7.jpg'}} style={ styles.container } >
         <Grid>
@@ -134,6 +136,7 @@ class Signup extends Component {
                 <Input
                 autoCapitalize="none"
                 autofocus={true}
+                secureTextEntry
                 value={this.state.password}
                 onChangeText={password => this.setState({ password })}
                 placeholder="password"

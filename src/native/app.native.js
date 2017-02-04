@@ -1,4 +1,5 @@
 import React from "react";
+import { Platform } from 'react-native';
 import {Scene, Router} from "react-native-router-flux";
 import Login from './screens/Login.native';
 import Signup from './screens/Signup.native';
@@ -19,15 +20,17 @@ import AllTimeAverageChart from './screens/chartScreens/AllTimeAverageChart.nati
 import WeeklyTotalChart from './screens/chartScreens/WeeklyTotalChart.native';
 import MonthlyTotalChart from './screens/chartScreens/MonthlyTotalChart.native';
 import AllTimeTotalChart from './screens/chartScreens/AllTimeTotalChart.native';
+import customDimensions from './customDimensions';
 
 export default class App extends React.Component {
+
   render () {
     return (
       <Provider store={ store }>
         <Router>
           <Scene key="root">
             <Scene key="entryPoint" component={Login} initial hideNavBar />
-            <Scene key="signup" component={Signup} title="Signup"/>
+            <Scene key="signup" component={Signup} getPanHandlers={customDimensions} title="Signup"/>
             <Scene key="completeProfile" component={CompleteProfile} title="CompleteProfile" hideNavBar />
             <Scene key="homepage" component={Homepage} title="Homepage" panHandlers={null} hideNavBar/>
             <Scene key="freeSpeakModal" component={FreeSpeakModal} title="Modal" direction = "vertical" hideNavBar />

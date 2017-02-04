@@ -5,10 +5,9 @@ import { Content, List, ListItem, InputGroup, Input, Icon, Picker, Button } from
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { updateCurrentUser } from '../reducer/user.native';
+import { BlurView } from 'react-native-blur';
 
-const { BlurView } = require('react-native-blur');
 const Item = Picker.Item;
-
 
 let occupation = ['Select', 'Sales', 'Hospitality', 'Healthcare', 'Custodial', 'Accounting', 'Teaching', 'Law-Enforcement', 'Law', 'Finance', 'Engineering', 'Administration', 'Student', 'Other'];
 
