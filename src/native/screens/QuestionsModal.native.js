@@ -6,6 +6,7 @@ import Swiper from 'react-native-swiper';
 import store from '../store.native';
 import { fetchThreeQuestions } from '../reducer/questions.native';
 import { connect } from 'react-redux';
+import { BlurView } from 'react-native-blur';
 
 export class QuestionsModal extends Component {
 
@@ -19,23 +20,20 @@ export class QuestionsModal extends Component {
 
   render(){
     const { questions } = this.props;
-    console.log('here comes the questions', questions)
     return (
-
-      <View >
-        <Swiper style={styles.wrapper} showsButtons={true} transparent={true} >
-            { questions && questions.map(questionObj => (
-               <Image key = {questionObj.id} source={{ uri: `https://s3.amazonaws.com/watsonapi/images/${this.props.imageid}.jpg`}} style={styles.container} >
-                <View>
+      <Image source={{uri: `https://s3.amazonaws.com/watsonapi/images/${this.props.imageId}.jpg`}} style={styles.container} >
+        <BlurView blurType="dark" blurAmount={10}>
+          <Swiper showsButtons={true} transparent={true} >
+              { questions && questions.map(questionObj => (
+                <View key={questionObj.id}>
                   <Icon name='ios-close-circle-outline' style = {styles.closeButton } onPress={() => Actions.pop()} ></Icon>
                   <Text style={styles.text}> {questionObj.question}</Text>
                 </View>
-               </Image>
-              )
-            )}
-        </Swiper>
-      </View>
-
+                )
+              )}
+          </Swiper>
+        </BlurView>
+      </Image>
     );
   }
 }
@@ -46,19 +44,13 @@ const styles = StyleSheet.create({
     width: null,
     height: null,
     opacity: 0.85,
-
   },
   closeButton: {
     fontSize: 45,
-    textAlign: "right",
+    textAlign: 'right',
     marginTop: 35,
     marginRight: 20,
     color: 'white',
-  },
-  slide1: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   text: {
     color: 'white',
@@ -66,16 +58,15 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     marginRight: 30,
     top: 225,
-    textAlign:'center',
+    textAlign: 'center',
     fontWeight: 'bold',
     shadowColor: '#000000',
     shadowOffset: {
       width: 0,
       height: 3
     },
-    shadowRadius: 5,
-    shadowOpacity: 1.0
-
+  shadowRadius: 5,
+  shadowOpacity: 1.0
   }
 });
 
@@ -84,7 +75,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     questions: state.questions,
-    imageid: state.admin.imageid
+    imageId: state.admin.imageId
   };
 };
 

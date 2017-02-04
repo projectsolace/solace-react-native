@@ -20,11 +20,9 @@ let audioPath = AudioUtils.DocumentDirectoryPath + '/watson2.wav';
 AudioRecorder.prepareRecordingAtPath(audioPath, {
   SampleRate: 22050,
   Channels: 1,
-  AudioQuality: "Low",
-  AudioEncoding: "lpcm"
+  AudioQuality: 'Low',
+  AudioEncoding: 'lpcm'
 });
-console.log("Here are AudioRecorder", AudioRecorder);
-console.log('where are audioPath', audioPath)
 
 class Homepage extends Component {
 
@@ -47,8 +45,7 @@ class Homepage extends Component {
           microphoneActive: false,
           personActive: false
       });
-
-    };
+    }
 
     toggleMicrophoneActiveButton() {
       this.setState({
@@ -56,8 +53,7 @@ class Homepage extends Component {
           microphoneActive: true,
           personActive: false
       });
-
-    };
+    }
 
     togglePersonActiveButton() {
       this.setState({
@@ -65,17 +61,21 @@ class Homepage extends Component {
           microphoneActive: false,
           personActive: true
       });
-    };
+    }
+
+    componentWillMount() {
+      // Get random background image
+      let imageId = Math.floor(Math.random() * 24) + 1;
+      this.setState({imageId});
+      store.dispatch(getImageId(imageId));
+    }
 
     componentDidMount() {
+      // Get random quote
+      store.dispatch(fetchAQuote());
 
-      let imageId = Math.floor(Math.random() * 24) + 1
-      this.setState({imageId})
-
+      // Make post request to send average data to Watson API
       const userId = this.props.user.id;
-
-      store.dispatch(fetchAQuote())
-      store.dispatch(getImageId(imageId))
 
       axios.post(`https://watson-backend.herokuapp.com/api/users/${userId}/weekrecordings/average`)
       .then(response => console.log('weekly avg', response.data))
@@ -91,8 +91,6 @@ class Homepage extends Component {
     }
 
   render() {
-    console.log('CURRENT USER', this.props.user)
-
     return (
       <View style={ styles.container }>
         <Image source={{ uri: `https://s3.amazonaws.com/watsonapi/images/${this.state.imageId}.jpg`}} style={ styles.img } >

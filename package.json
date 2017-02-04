@@ -22,6 +22,7 @@
     "react-native-easy-grid": "^0.1.8",
     "react-native-floating-label-text-input": "^0.1.2",
     "react-native-router-flux": "^3.37.0",
+    "react-native-stopwatch-timer": "0.0.16",
     "react-native-svg": "^5.1.4",
     "react-native-swiper": "^1.5.4",
     "react-native-vector-icons": "^4.0.0",
