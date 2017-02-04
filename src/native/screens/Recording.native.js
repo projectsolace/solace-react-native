@@ -125,10 +125,10 @@ class Recording extends Component {
     return (
       <View>
         <Image source={require('../../images/solace.png')} style={styles.image}/>
-          <Text style={styles.text}> {`Hello ${this.props.user.firstName}, \n Whats on your mind today?`}</Text>
+          <Text style={styles.text2}> {`Hello ${this.props.user.firstName}, \n Whats on your mind today?`}</Text>
             {!this.state.recording ? recordingMic(): stopMic()}
           <Text style={styles.text}> {`"${this.props.quote.quote}"`}</Text>
-          <Button transparent style={{alignSelf: 'center', marginTop: 25, borderWidth: 1}} onPress={()=> Actions.questionModal()} >
+          <Button transparent style={{alignSelf: 'center', marginTop: 25, borderWidth: 3}} onPress={()=> Actions.questionModal()} >
            <Text style={{fontWeight: 'bold', color: 'white'}}> Helpful Questions </Text>
           </Button>
       </View>
@@ -185,11 +185,13 @@ const styles = StyleSheet.create({
     shadowColor: '#000000',
    shadowOffset: {
      width: 0,
-     height: 3
+     height: 3,
    },
    shadowRadius: 7,
    shadowOpacity: 1.0,
-   marginBottom: 10
+   marginBottom: 10,
+   marginLeft: 15,
+   marginRight: 15,
   },
   text2: {
     alignSelf: 'center',
