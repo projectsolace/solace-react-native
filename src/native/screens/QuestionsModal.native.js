@@ -6,6 +6,7 @@ import Swiper from 'react-native-swiper';
 import store from '../store.native';
 import { fetchThreeQuestions } from '../reducer/questions.native';
 import { connect } from 'react-redux';
+import { BlurView } from 'react-native-blur';
 
 export class QuestionsModal extends Component {
 
@@ -20,20 +21,19 @@ export class QuestionsModal extends Component {
   render(){
     const { questions } = this.props;
     return (
-      <View>
-        <Swiper showsButtons={true} transparent={true} >
-            { questions && questions.map(questionObj => (
-               <Image key={questionObj.id} source={{uri: `https://s3.amazonaws.com/watsonapi/images/${this.props.imageId}.jpg`}} style={styles.container} >
-                <View>
+      <Image source={{uri: `https://s3.amazonaws.com/watsonapi/images/${this.props.imageId}.jpg`}} style={styles.container} >
+        <BlurView blurType="dark" blurAmount={10}>
+          <Swiper showsButtons={true} transparent={true} >
+              { questions && questions.map(questionObj => (
+                <View key={questionObj.id}>
                   <Icon name='ios-close-circle-outline' style = {styles.closeButton } onPress={() => Actions.pop()} ></Icon>
                   <Text style={styles.text}> {questionObj.question}</Text>
                 </View>
-               </Image>
-              )
-            )}
-        </Swiper>
-      </View>
-
+                )
+              )}
+          </Swiper>
+        </BlurView>
+      </Image>
     );
   }
 }
