@@ -13,6 +13,9 @@ class MonthlyTotalChart extends Component {
     const personalityArray = this.props.recordings.personality;
     const toneArray = this.props.recordings.tone;
 
+    console.log(personalityArray)
+    console.log(toneArray)
+
     let count = 1;
     let toneCount = 1;
     const personalityData = personalityArray.sort((a, b) => b.score - a.score).map(obj => {
@@ -23,6 +26,7 @@ class MonthlyTotalChart extends Component {
       return {x: toneCount++, y: obj.score * 100}
     });
     const toneLabels = toneArray.map(obj => obj.quality + `${(obj.score * 100).toFixed(2)}%`);
+
 
     return (
       <View style={styles.container}>

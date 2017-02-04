@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
-import { VictoryBar, VictoryChart } from 'victory-native';
+import { VictoryBar, VictoryChart, VictoryTheme } from 'victory-native';
 import Swiper from 'react-native-swiper';
 
 class MonthlyAverageChart extends Component {
@@ -18,128 +18,131 @@ class MonthlyAverageChart extends Component {
     const personalityData = personalityArray.sort((a, b) => b.score - a.score).map(obj => {
       return {x: count++, y: obj.score * 100}
     });
-    const personalityLabels = personalityArray.map(obj => obj.quality + `${(obj.score * 100).toFixed(2)}%`);
+    const personalityLabels = personalityArray.map(obj => obj.quality + ` ${(obj.score * 100).toFixed(2)}%`);
     const toneData = toneArray.sort((a, b) => b.score - a.score).map(obj => {
       return {x: toneCount++, y: obj.score * 100}
     });
-    const toneLabels = toneArray.map(obj => obj.quality + `${(obj.score * 100).toFixed(2)}%`);
+    const toneLabels = toneArray.map(obj => obj.quality + ` ${(obj.score * 100).toFixed(2)}%`);
 
     return (
       <View style={styles.container}>
-        <Swiper style={styles.wrapper} showsButtons={true}>
-          <View style={styles.slide}>
-            <VictoryChart>
-              <VictoryBar
-               horizontal
-               domain={{x: [0, 100]}}
-               labels={personalityLabels.slice(35, 47)}
-               height={500}
-               padding={75}
-               style={{
-                labels: {
-                 fontSize: 5
-                },
-                data: {
-                 width: 12,
-                 fill: (data) => data.x%2==0 ? 'blue' : 'tomato'
-                }
-                }}
-               data={personalityData.slice(35, 47)}
-
-              />
-            </VictoryChart>
-          </View>
-
-          <View style={styles.slide}>
-            <VictoryChart>
-              <VictoryBar
-               horizontal
-               domain={{x: [0, 100]}}
-               labels={personalityLabels.slice(24, 35)}
-               height={1000}
-               padding={75}
-               style={{
-                labels: {
-                 fontSize: 5
-                },
-                data: {
-                 width: 8,
-                 fill: (data) => data.x%2==0 ? 'blue' : 'tomato'
-                }
-                }}
-               data={personalityData.slice(24, 35)}
-              />
-            </VictoryChart>
-          </View>
-
-          <View style={styles.slide}>
-            <VictoryChart>
-                <VictoryBar
-                 horizontal
-                 domain={{x: [0, 100]}}
-                 labels={personalityLabels.slice(12, 24)}
-                 height={1000}
-                 padding={75}
-                 style={{
-                  labels: {
-                    fontSize:5
-                  },
-                  data: {
-                    width: 8,
-                    fill: (data) => data.x%2==0 ?'blue' : 'tomato'
-                  }
+         <Swiper style={styles.wrapper} showsButtons={true}>
+           <View style={styles.slide}>
+             <VictoryChart>
+               <VictoryBar
+                horizontal
+                domain={{x: [0, 100], y: [35, 48]}}
+                labels={personalityLabels.slice(35, 47)}
+                height={500}
+                padding={75}
+                style={{
+                 labels: {
+                  fontSize: 5
+                 },
+                 data: {
+                  width: 12,
+                  fill: (data) => data.x%2==0 ? 'blue' : 'tomato'
+                 }
                  }}
-                 data={personalityData.slice(12, 24)}
+                data={personalityData.slice(35, 47)}
 
-                />
-            </VictoryChart>
-          </View>
+               />
+             </VictoryChart>
+           </View>
 
-          <View style={styles.slide}>
-            <VictoryChart>
-              <VictoryBar
-               horizontal
-               domain={{x: [0, 100]}}
-               labels={personalityLabels.slice(0, 12)}
-               height={1000}
-               padding={75}
-               style={{
-                labels: {
-                 fontSize:5
-                },
-                data: {
-                 width: 8,
-                 fill: (data) => data.x%2==0 ? 'blue' : 'tomato'
-                }
-               }}
-               data={personalityData.slice(0, 12)}
-              />
-            </VictoryChart>
-          </View>
+           <View style={styles.slide}>
+             <VictoryChart>
+               <VictoryBar
+                horizontal
+                domain={{x: [0, 100], y: [24, 36]}}
+                labels={personalityLabels.slice(24, 35)}
+                height={1000}
+                padding={75}
+                style={{
+                 labels: {
+                  fontSize: 5
+                 },
+                 data: {
+                  width: 8,
+                  fill: (data) => data.x%2==0 ? 'blue' : 'tomato'
+                 }
+                 }}
+                data={personalityData.slice(24, 35)}
+               />
+             </VictoryChart>
+           </View>
 
-          <View style={styles.slide}>
-            <VictoryChart>
-              <VictoryBar
-               horizontal
-               domain={{x: [0, 100]}}
-               labels={toneLabels}
-               height={1000}
-               padding={10}
-               style={{
-                labels: {
-                 fontSize: 5
-                },
-                data: {
-                 width: 8,
-                 fill: (data) => data.x%2==0 ? 'blue' : 'tomato'
-                }
-               }}
-               data={toneData}
-              />
-            </VictoryChart>
-          </View>
-        </Swiper>
-      </View>
+           <View style={styles.slide}>
+             <VictoryChart>
+                 <VictoryBar
+                  horizontal
+                  domain={{x: [0, 100], y: [12, 26]}}
+                  labels={personalityLabels.slice(12, 24)}
+                  height={1000}
+                  padding={75}
+                  style={{
+                   labels: {
+                     fontSize:5
+                   },
+                   data: {
+                     width: 8,
+                     fill: (data) => data.x%2==0 ?'blue' : 'tomato'
+                   }
+                  }}
+                  data={personalityData.slice(12, 24)}
+
+                 />
+             </VictoryChart>
+           </View>
+
+           <View style={styles.slide}>
+             <VictoryChart
+             theme={VictoryTheme.material}
+             domainPadding={40}
+             >
+               <VictoryBar
+                horizontal
+                domain={{x: [0, 100], y: [1, 14]}}
+                labels={personalityLabels.slice(0, 12)}
+                height={1000}
+                padding={75}
+                style={{
+                 labels: {
+                  fontSize:5
+                 },
+                 data: {
+                  width: 8,
+                  fill: (data) => data.x%2==0 ? 'blue' : 'tomato'
+                 }
+                }}
+                data={personalityData.slice(0, 12)}
+               />
+             </VictoryChart>
+           </View>
+
+           <View style={styles.slide}>
+             <VictoryChart>
+               <VictoryBar
+                horizontal
+                domain={{x: [0, 100], y: [0, 14]}}
+                labels={toneLabels}
+                height={1000}
+                padding={10}
+                style={{
+                 labels: {
+                  fontSize: 5
+                 },
+                 data: {
+                  width: 8,
+                  fill: (data) => data.x%2==0 ? 'blue' : 'tomato'
+                 }
+                }}
+                data={toneData}
+               />
+             </VictoryChart>
+           </View>
+         </Swiper>
+       </View>
     )
   }
 }

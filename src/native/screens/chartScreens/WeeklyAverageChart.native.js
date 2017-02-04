@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
-import { VictoryBar, VictoryChart } from 'victory-native';
+import { VictoryBar, VictoryChart, VictoryTheme } from 'victory-native';
 import Swiper from 'react-native-swiper';
 
 class WeeklyAverageChart extends Component {
@@ -18,11 +18,11 @@ class WeeklyAverageChart extends Component {
     const personalityData = personalityArray.sort((a, b) => b.score - a.score).map(obj => {
       return {x: count++, y: obj.score * 100}
     });
-    const personalityLabels = personalityArray.map(obj => obj.quality + `${(obj.score * 100).toFixed(2)}%`);
+    const personalityLabels = personalityArray.map(obj => obj.quality + ` ${(obj.score * 100).toFixed(2)}%`);
     const toneData = toneArray.sort((a, b) => b.score - a.score).map(obj => {
       return {x: toneCount++, y: obj.score * 100}
     });
-    const toneLabels = toneArray.map(obj => obj.quality + `${(obj.score * 100).toFixed(2)}%`);
+    const toneLabels = toneArray.map(obj => obj.quality + ` ${(obj.score * 100).toFixed(2)}%`);
 
     return (
       <View style={styles.container}>
@@ -32,7 +32,7 @@ class WeeklyAverageChart extends Component {
             <VictoryChart>
               <VictoryBar
                horizontal
-               domain={{x: [0, 100]}}
+               domain={{x: [0, 100], y: [35, 48]}}
                labels={personalityLabels.slice(35, 47)}
                height={500}
                padding={75}
@@ -55,7 +55,7 @@ class WeeklyAverageChart extends Component {
             <VictoryChart>
               <VictoryBar
                horizontal
-               domain={{x: [0, 100]}}
+               domain={{x: [0, 100], y: [24, 36]}}
                labels={personalityLabels.slice(24, 35)}
                height={1000}
                padding={75}
@@ -77,7 +77,7 @@ class WeeklyAverageChart extends Component {
             <VictoryChart>
                 <VictoryBar
                  horizontal
-                 domain={{x: [0, 100]}}
+                 domain={{x: [0, 100], y: [12, 26]}}
                  labels={personalityLabels.slice(12, 24)}
                  height={1000}
                  padding={75}
@@ -97,10 +97,13 @@ class WeeklyAverageChart extends Component {
           </View>
 
           <View style={styles.slide}>
-            <VictoryChart>
+            <VictoryChart
+            theme={VictoryTheme.material}
+            domainPadding={40}
+            >
               <VictoryBar
                horizontal
-               domain={{x: [0, 100]}}
+               domain={{x: [0, 100], y: [1, 14]}}
                labels={personalityLabels.slice(0, 12)}
                height={1000}
                padding={75}
@@ -122,7 +125,7 @@ class WeeklyAverageChart extends Component {
             <VictoryChart>
               <VictoryBar
                horizontal
-               domain={{x: [0, 100]}}
+               domain={{x: [0, 100], y: [0, 14]}}
                labels={toneLabels}
                height={1000}
                padding={10}

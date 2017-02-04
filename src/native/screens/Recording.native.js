@@ -111,7 +111,7 @@ class Recording extends Component {
       .then(response => {
           if (response.status !== 201) throw new Error("Failed to upload audio to S3");
           console.log(response.body.postResponse.location);
-          return axios.post('http://localhost:1337/api/watson/', {userID:this.props.user.id}).then(function(resp){
+          return axios.post('https://watson-backend.herokuapp.com/api/watson/', {userID:this.props.user.id}).then(function(resp){
             console.log(resp.data)
           })
       })
@@ -125,10 +125,10 @@ class Recording extends Component {
     return (
       <View>
         <Image source={require('../../images/solace.png')} style={styles.image}/>
-          <Text style={styles.text}> {`Hello ${this.props.user.firstName}, \n What's on your mind today?`}</Text>
+          <Text style={styles.text2}> {`Hello ${this.props.user.firstName}, \n What's on your mind today?`}</Text>
             {!this.state.recording ? recordingMic(): stopMic()}
           <Text style={styles.text}> {`"${this.props.quote.quote}"`}</Text>
-          <Button transparent style={{alignSelf: 'center', marginTop: 25, borderWidth: 1}} onPress={()=> Actions.questionModal()} >
+          <Button transparent style={{alignSelf: 'center', marginTop: 25, borderWidth: 3}} onPress={()=> Actions.questionModal()} >
            <Text style={{fontWeight: 'bold', color: 'white'}}> Helpful Questions </Text>
           </Button>
       </View>
@@ -177,19 +177,21 @@ const styles = StyleSheet.create({
     width: 67,
     alignSelf: 'center'
   },
-  text: {
-  alignSelf: 'center',
-  color: 'white',
-  textAlign: 'center',
-  fontWeight: 'bold',
-  shadowColor: '#000000',
-  shadowOffset: {
-    width: 0,
-    height: 3
-  },
-  shadowRadius: 7,
-  shadowOpacity: 1.0,
-  marginBottom: 10
+    text: {
+    alignSelf: 'center',
+    color: 'white',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    shadowColor: '#000000',
+   shadowOffset: {
+     width: 0,
+     height: 3,
+   },
+   shadowRadius: 7,
+   shadowOpacity: 1.0,
+   marginBottom: 10,
+   marginLeft: 15,
+   marginRight: 15
   },
   text2: {
     alignSelf: 'center',
