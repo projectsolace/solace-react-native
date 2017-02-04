@@ -8,7 +8,6 @@ import { RNS3 } from 'react-native-aws3';
 import axios from 'axios'
 import secrets from './secrets.json';
 import {connect} from 'react-redux'
-import { Stopwatch, Timer } from 'react-native-stopwatch-timer'
 
 
 
@@ -111,7 +110,7 @@ class Recording extends Component {
       .then(response => {
           if (response.status !== 201) throw new Error("Failed to upload audio to S3");
           console.log(response.body.postResponse.location);
-          return axios.post('http://localhost:1337/api/watson/', {userID:this.props.user.id}).then(function(resp){
+          return axios.post('https://watson-backend.herokuapp.com/api/watson/', {userID:this.props.user.id}).then(function(resp){
             console.log(resp.data)
           })
       })
