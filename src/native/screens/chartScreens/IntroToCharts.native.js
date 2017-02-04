@@ -4,6 +4,7 @@ import { Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
+import { BlurView } from 'react-native-blur';
 
 export class IntroToCharts extends Component {
   constructor(props){
@@ -12,9 +13,9 @@ export class IntroToCharts extends Component {
 
   render() {
     return (
-      <View>
-        <Swiper showsButtons={true} prevButton transparent={true}>
-          <Image source={{uri: `https://s3.amazonaws.com/watsonapi/images/${this.props.imageId}.jpg`}} style={styles.container} >
+      <Image source={{uri: `https://s3.amazonaws.com/watsonapi/images/${this.props.imageId}.jpg`}} style={styles.container} >
+        <BlurView blurType="dark" blurAmount={10}>
+          <Swiper showsButtons={true} prevButton transparent={true}>
             <View>
               <Text style={styles.text}>
                 No data yet. {'\n'}
@@ -22,15 +23,13 @@ export class IntroToCharts extends Component {
                 Once you have some data...
               </Text>
             </View>
-          </Image>
-          <Image source={{uri: `https://s3.amazonaws.com/watsonapi/images/${this.props.imageId}.jpg`}} style={styles.container} >
+
             <View>
               <Text style={styles.text}>
                 Click the "Average" options for more accurate data...
               </Text>
             </View>
-          </Image>
-          <Image source={{uri: `https://s3.amazonaws.com/watsonapi/images/${this.props.imageId}.jpg`}} style={styles.container} >
+
             <View>
               <Text style={styles.text}>
                 Click the "Total" options to compare your data over time
@@ -39,9 +38,9 @@ export class IntroToCharts extends Component {
                 Got it!
               </Button>
             </View>
-          </Image>
-        </Swiper>
-      </View>
+          </Swiper>
+        </BlurView>
+      </Image>
     );
   }
 }
