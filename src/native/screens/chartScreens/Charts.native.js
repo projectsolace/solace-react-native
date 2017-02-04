@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Col, Row, Grid } from 'react-native-easy-grid';
+import { StyleSheet, Text } from 'react-native';
+import { Col, Row } from 'react-native-easy-grid';
 import { Content, Icon, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
@@ -12,7 +12,7 @@ class Charts extends Component {
     super(props);
     this.getMonthlyAvgRecordings = this.getMonthlyAvgRecordings.bind(this);
     this.getAllTimeAvgRecordings = this.getAllTimeAvgRecordings.bind(this);
-    this.getWeeklyTotalRecordings = this.getMonthlyAvgRecordings.bind(this);
+    this.getWeeklyTotalRecordings = this.getWeeklyTotalRecordings.bind(this);
     this.getMonthlyTotalRecordings = this.getMonthlyTotalRecordings.bind(this);
     this.getAllTimeTotalRecordings = this.getAllTimeTotalRecordings.bind(this);
   }
@@ -73,25 +73,25 @@ class Charts extends Component {
                         Weekly Average
                       <Icon name="ios-arrow-forward" />
                     </Button>
-                    <Button rounded success iconRight style={styles.button} onPress={Actions.monthlyAverage}>
+                    <Button rounded success iconRight style={styles.button} onPress={this.getMonthlyAvgRecordings}>
                         Monthly Average
                       <Icon name="ios-arrow-forward" />
                     </Button>
-                    <Button rounded success iconRight style={styles.button} onPress={Actions.allTimeAverage}>
+                    <Button rounded success iconRight style={styles.button} onPress={this.getAllTimeAvgRecordings}>
                         All Time Average
                       <Icon name="ios-arrow-forward" />
                     </Button>
                   </Col>
                   <Col style={{paddingRight: 10}}>
-                    <Button rounded warning iconRight style={styles.button} onPress={Actions.weeklyTotal}>
+                    <Button rounded warning iconRight style={styles.button} onPress={this.getWeeklyTotalRecordings}>
                         Weekly Total
                       <Icon name="ios-arrow-forward" />
                     </Button>
-                    <Button rounded warning iconRight style={styles.button} onPress={Actions.monthlyTotal}>
+                    <Button rounded warning iconRight style={styles.button} onPress={this.getMonthlyTotalRecordings}>
                         Monthly Total
                       <Icon name="ios-arrow-forward" />
                     </Button>
-                    <Button rounded warning iconRight style={styles.button} onPress={Actions.allTimeTotal}>
+                    <Button rounded warning iconRight style={styles.button} onPress={this.getAllTimeTotalRecordings}>
                         All Time Total
                       <Icon name="ios-arrow-forward" />
                     </Button>
