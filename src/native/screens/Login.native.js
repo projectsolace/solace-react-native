@@ -35,7 +35,7 @@ var STORAGE_KEY = 'id_token';
 
         let value = {email, password};
         if (value) { // if validation fails, value will be null
-          fetch("https://watson-backend.herokuapp.com/api/tokens/sessions/create", {
+          fetch("https://solace-admin.herokuapp.com/api/tokens/sessions/create", {
             method: "POST",
             headers: {
               'Accept': 'application/json',

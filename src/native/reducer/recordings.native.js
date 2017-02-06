@@ -65,7 +65,7 @@ const receiveAllTotalRecordings = (recordings) => {
 /* -----------------    DISPATCHERS     ------------------ */
 
 export const fetchLatestRecordings = (userId) => dispatch => {
-  axios.get(`https://watson-backend.herokuapp.com/api/users/${userId}/singlerecording`)
+  axios.get(`https://solace-admin.herokuapp.com/api/users/${userId}/singlerecording`)
     .then(response => {
       dispatch(receiveLatestRecordings(response.data));
     })
@@ -73,7 +73,7 @@ export const fetchLatestRecordings = (userId) => dispatch => {
 };
 
 export const fetchWeeklyAvgRecordings = (userId) => dispatch => {
-  axios.get(`https://watson-backend.herokuapp.com/api/users/${userId}/weekrecordings/average`)
+  axios.get(`https://solace-admin.herokuapp.com/api/users/${userId}/weekrecordings/average`)
     .then(response => {
       dispatch(receiveWeeklyAvgRecordings(response.data));
     })
@@ -81,7 +81,7 @@ export const fetchWeeklyAvgRecordings = (userId) => dispatch => {
 };
 
 export const fetchMonthlyAvgRecordings = (userId) => dispatch => {
-  axios.get(`https://watson-backend.herokuapp.com/api/users/${userId}/monthrecordings/average`)
+  axios.get(`https://solace-admin.herokuapp.com/api/users/${userId}/monthrecordings/average`)
     .then(response => {
       dispatch(receiveMonthlyAvgRecordings(response.data));
     })
@@ -90,7 +90,7 @@ export const fetchMonthlyAvgRecordings = (userId) => dispatch => {
 };
 
 export const fetchAllAvgRecordings = (userId) => dispatch => {
-  axios.get(`https://watson-backend.herokuapp.com/api/users/${userId}/allrecordings/average`)
+  axios.get(`https://solace-admin.herokuapp.com/api/users/${userId}/allrecordings/average`)
     .then(response => {
       dispatch(receiveAllAvgRecordings(response.data));
     })
@@ -99,7 +99,7 @@ export const fetchAllAvgRecordings = (userId) => dispatch => {
 };
 
 export const fetchWeeklyTotalRecordings = (userId) => dispatch => {
-  axios.get(`https://watson-backend.herokuapp.com/api/users/${userId}/weekrecordings`)
+  axios.get(`https://solace-admin.herokuapp.com/api/users/${userId}/weekrecordings`)
     .then(response => {
       dispatch(receiveWeeklyTotalRecordings(response.data));
     })
@@ -108,7 +108,7 @@ export const fetchWeeklyTotalRecordings = (userId) => dispatch => {
 };
 
 export const fetchMonthlyTotalRecordings = (userId) => dispatch => {
-  axios.get(`https://watson-backend.herokuapp.com/api/users/${userId}/monthrecordings`)
+  axios.get(`https://solace-admin.herokuapp.com/api/users/${userId}/monthrecordings`)
     .then(response => {
       dispatch(receiveMonthlyTotalRecordings(response.data));
     })
@@ -117,7 +117,7 @@ export const fetchMonthlyTotalRecordings = (userId) => dispatch => {
 };
 
 export const fetchAllTotalRecordings = (userId) => dispatch => {
-  axios.get(`https://watson-backend.herokuapp.com/api/users/${userId}/allrecordings`)
+  axios.get(`https://solace-admin.herokuapp.com/api/users/${userId}/allrecordings`)
     .then(response => {
       dispatch(receiveAllTotalRecordings(response.data));
     })

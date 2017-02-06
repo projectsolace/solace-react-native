@@ -29,7 +29,7 @@ export default function quotesReducer (quote = {}, action) {
 /* ------------       DISPATCHERS     ------------------ */
 
 export const fetchAQuote = () => dispatch => {
-    axios.get(`https://watson-backend.herokuapp.com/api/questions/quote`)
+    axios.get(`https://solace-admin.herokuapp.com/api/questions/quote`)
     .then(res=> res.data)
     .then(quote => {
       dispatch(receiveAQuote(quote));

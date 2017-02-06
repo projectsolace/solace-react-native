@@ -46,7 +46,7 @@ class Signup extends Component {
       };
 
       if (value) { // if validation fails, value will be null
-        fetch("https://watson-backend.herokuapp.com/api/tokens/signup", {
+        fetch("https://solace-admin.herokuapp.com/api/tokens/signup", {
           method: "POST",
           headers: {
             'Accept': 'application/json',

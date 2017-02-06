@@ -77,15 +77,15 @@ class Homepage extends Component {
       // Make post request to send average data to Watson API
       const userId = this.props.user.id;
 
-      axios.post(`https://watson-backend.herokuapp.com/api/users/${userId}/weekrecordings/average`)
+      axios.post(`https://solace-admin.herokuapp.com/api/users/${userId}/weekrecordings/average`)
       .then(response => console.log('weekly avg', response.data))
       .catch(err => console.error('failed to post weekly average recordings', err));
 
-      axios.post(`https://watson-backend.herokuapp.com/api/users/${userId}/monthrecordings/average`)
+      axios.post(`https://solace-admin.herokuapp.com/api/users/${userId}/monthrecordings/average`)
       .then(response => console.log('monthly avg', response.data))
       .catch(err => console.error('failed to post monthly average recordings', err));
 
-      axios.post(`https://watson-backend.herokuapp.com/api/users/${userId}/allrecordings/average`)
+      axios.post(`https://solace-admin.herokuapp.com/api/users/${userId}/allrecordings/average`)
       .then(response => console.log('all avg', response.data))
       .catch(err => console.error('failed to post all average recordings', err));
     }

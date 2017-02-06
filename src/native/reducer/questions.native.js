@@ -28,7 +28,7 @@ export default function questionsReducer (questions = [], action) {
 /* ------------       DISPATCHERS     ------------------ */
 
 export const fetchThreeQuestions = () => dispatch => {
-    axios.get(`https://watson-backend.herokuapp.com/api/questions`)
+    axios.get(`https://solace-admin.herokuapp.com/api/questions`)
     .then(res=> res.data)
     .then(questions => {
       dispatch(receiveThreeQuestions(questions));

@@ -45,7 +45,7 @@ export const removeUser = () => {
 /* -----------------    DISPATCHERS     ------------------ */
 
 export const updateCurrentUser = (id, credentials) => dispatch => {
-  axios.put(`https://watson-backend.herokuapp.com/api/users/${id}`, credentials)
+  axios.put(`https://solace-admin.herokuapp.com/api/users/${id}`, credentials)
   .then(response => {
     const user = response.data;
     dispatch(updateUser(user));

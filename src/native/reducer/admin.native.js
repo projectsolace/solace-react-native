@@ -80,7 +80,7 @@ const receiveGenderData = (dataObj) => {
 /* -----------------    DISPATCHERS     ------------------ */
 
 export const fetchReligionData = (religion) => dispatch => {
-  axios.get(`https://watson-backend.herokuapp.com/api/admin/religion/${religion}`)
+  axios.get(`https://solace-admin.herokuapp.com/api/admin/religion/${religion}`)
     .then(response => {
       dispatch(receiveReligionData(response.data));
     })
@@ -88,7 +88,7 @@ export const fetchReligionData = (religion) => dispatch => {
 };
 
 export const fetchOccupationData = (occupation) => dispatch => {
-  axios.get(`https://watson-backend.herokuapp.com/api/admin/occupation/${occupation}`)
+  axios.get(`https://solace-admin.herokuapp.com/api/admin/occupation/${occupation}`)
     .then(response => {
       dispatch(receiveOccupationData(response.data));
     })
@@ -96,7 +96,7 @@ export const fetchOccupationData = (occupation) => dispatch => {
 };
 
 export const fetchIncomeData = (income) => dispatch => {
-  axios.get(`https://watson-backend.herokuapp.com/api/admin/incomeLevel/${income}`)
+  axios.get(`https://solace-admin.herokuapp.com/api/admin/incomeLevel/${income}`)
     .then(response => {
       dispatch(receiveIncomeData(response.data));
     })
@@ -104,7 +104,7 @@ export const fetchIncomeData = (income) => dispatch => {
 };
 
 export const fetchEthnicityData = (ethnicity) => dispatch => {
-  axios.get(`https://watson-backend.herokuapp.com/api/admin/ethnicity/${ethnicity}`)
+  axios.get(`https://solace-admin.herokuapp.com/api/admin/ethnicity/${ethnicity}`)
     .then(response => {
       dispatch(receiveEthnicityData(response.data));
     })
@@ -112,7 +112,7 @@ export const fetchEthnicityData = (ethnicity) => dispatch => {
 };
 
 export const fetchEducationData = (education) => dispatch => {
-  axios.get(`https://watson-backend.herokuapp.com/api/admin/education/${education}`)
+  axios.get(`https://solace-admin.herokuapp.com/api/admin/education/${education}`)
     .then(response => {
       dispatch(receiveEducationData(response.data));
     })
@@ -120,7 +120,7 @@ export const fetchEducationData = (education) => dispatch => {
 };
 
 export const fetchMaritalData = (marital) => dispatch => {
-  axios.get(`https://watson-backend.herokuapp.com/api/admin/maritalStatus/${marital}`)
+  axios.get(`https://solace-admin.herokuapp.com/api/admin/maritalStatus/${marital}`)
     .then(response => {
       dispatch(receiveMaritalData(response.data));
     })
@@ -128,7 +128,7 @@ export const fetchMaritalData = (marital) => dispatch => {
 };
 
 export const fetchZipCodeData = (zipCode) => dispatch => {
-  axios.get(`https://watson-backend.herokuapp.com/api/admin/zipCode/${zipCode}`)
+  axios.get(`https://solace-admin.herokuapp.com/api/admin/zipCode/${zipCode}`)
     .then(response => {
       dispatch(receiveZipCodeData(response.data));
     })
@@ -136,7 +136,7 @@ export const fetchZipCodeData = (zipCode) => dispatch => {
 };
 
 export const fetchGenderData = (gender) => dispatch => {
-  axios.get(`https://watson-backend.herokuapp.com/api/admin/gender/${gender}`)
+  axios.get(`https://solace-admin.herokuapp.com/api/admin/gender/${gender}`)
     .then(response => {
       dispatch(receiveGenderData(response.data));
     })
