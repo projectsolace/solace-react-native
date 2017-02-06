@@ -25,7 +25,7 @@ AudioRecorder.prepareRecordingAtPath(audioPath, {
 });
 
 class Homepage extends Component {
-
+    // EI: why is it necessary to pass in context?
     constructor(props, context) {
         super(props, context);
         this.state = {
@@ -77,6 +77,7 @@ class Homepage extends Component {
       // Make post request to send average data to Watson API
       const userId = this.props.user.id;
 
+      // EI: add more documentation here (Optimistic loading of averages here), abstract http request logic away?
       axios.post(`https://watson-backend.herokuapp.com/api/users/${userId}/weekrecordings/average`)
       .then(response => console.log('weekly avg', response.data))
       .catch(err => console.error('failed to post weekly average recordings', err));

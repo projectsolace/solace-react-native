@@ -65,6 +65,7 @@ class Account extends Component {
   render() {
     const { logoutUser } = this.props;
 
+    // EI: these should be consts...
     let occupationList = occupation.map((job, i) => {
       return (
         <Item label={ job } value={ job } key={ i } />
@@ -126,6 +127,14 @@ class Account extends Component {
                     />
                   </InputGroup>
                 </ListItem>
+              {/*
+                EI: DRY up code with sub-component?
+                <ProfileRow
+                  textColor="#C7C7CD"
+                  placeHolderText="Last Name"
+                  etc...
+                />
+              */}
                 <ListItem>
                   <InputGroup style={styles.content}>
                     <Icon name="ios-person-outline" style={{ color: '#0A69FE', marginRight: -5}} />

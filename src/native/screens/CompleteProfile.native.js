@@ -9,7 +9,8 @@ import { BlurView } from 'react-native-blur';
 
 const Item = Picker.Item;
 
-let occupation = ['Select', 'Sales', 'Hospitality', 'Healthcare', 'Custodial', 'Accounting', 'Teaching', 'Law-Enforcement', 'Law', 'Finance', 'Engineering', 'Administration', 'Student', 'Other'];
+// EI: these should be consts
+const occupation = ['Select', 'Sales', 'Hospitality', 'Healthcare', 'Custodial', 'Accounting', 'Teaching', 'Law-Enforcement', 'Law', 'Finance', 'Engineering', 'Administration', 'Student', 'Other'];
 
 let income = ['Select', 'Under-$15,000', '$15,000-to-$24,999', '$25,000-to-$34,999', '$35,000-to-$49,999', '$50,000-to-$74,999', '$75,000-to-$99,999', '$100,000-to-$149,999', '$150,000-to-$199,999', '$200,000-and-over'];
 
@@ -47,9 +48,10 @@ class CompleteProfile extends Component {
   onPressUpdate() {
     const { loggedInUser, updateCurrentUser } = this.props;
     const infoToUpdate = {};
+    // EI: better variable naming here?
     for (let props in this.state) {
       if (this.state[props] !== 'Select' && this.state[props]) {
-        infoToUpdate[props] = props === 'zipCode' ? +this.state[props] : this.state[props];
+        infoToUpdate[props] = props === 'zipCode' ? + this.state[props] : this.state[props];
       }
     }
     console.log('this is the info', infoToUpdate);
@@ -60,7 +62,8 @@ class CompleteProfile extends Component {
   }
 
   render() {
-    let occupationList = occupation.map((job, i) => {
+    // EI: DRY up these maps...
+    const occupationList = occupation.map((job, i) => {
       return (
         <Item label={ job } value={ job } key={ i } />
       );
