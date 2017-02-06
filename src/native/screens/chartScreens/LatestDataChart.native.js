@@ -33,12 +33,20 @@ class LatestDataChart extends Component {
             <Swiper showsButtons={true}>
 
               <View style={styles.slide}>
-                <Text> Personality Insights I </Text>
+                <Text style={styles.title}> Personality Insights I </Text>
                 <VictoryChart theme={VictoryTheme.material}>
-                  <VictoryAxis
+                 <VictoryAxis
                     tickValues={[0,20,40,60,80,100]}
-                    label='Percentile'
-                    style={{axisLabel: { padding: 35 }}}
+                    style={{
+                      axis: {stroke: "white"},
+                      axisLabel: {
+                        padding: 35,
+                        fill: 'white'
+                      },
+                      ticks: {stroke: "white"},
+                      tickLabels: {fill: 'white'}
+                    }
+                   }
                   />
                   <VictoryBar
                     horizontal
@@ -48,7 +56,8 @@ class LatestDataChart extends Component {
                     padding={75}
                     style={{
                       labels: {
-                        fontSize: 8
+                        fontSize: 8,
+                        fill: 'white'
                       },
                       data: {
                         width: 12,
@@ -62,12 +71,20 @@ class LatestDataChart extends Component {
               </View>
 
               <View style={styles.slide}>
-                <Text> Personality Insights II </Text>
+                <Text style={styles.title}> Personality Insights II </Text>
                 <VictoryChart theme={VictoryTheme.material}>
-                  <VictoryAxis
+                 <VictoryAxis
                     tickValues={[0,20,40,60,80,100]}
-                    label='Percentile'
-                    style={{axisLabel: { padding: 35 }}}
+                    style={{
+                      axis: {stroke: "white"},
+                      axisLabel: {
+                        padding: 35,
+                        fill: 'white'
+                      },
+                      ticks: {stroke: "white"},
+                      tickLabels: {fill: 'white'}
+                    }
+                   }
                   />
                   <VictoryBar
                     horizontal
@@ -78,7 +95,7 @@ class LatestDataChart extends Component {
                     style={{
                       labels: {
                        fontSize: 8,
-                       color: 'white'
+                       fill: 'white'
                       },
                       data: {
                        width: 8,
@@ -92,12 +109,20 @@ class LatestDataChart extends Component {
               </View>
 
               <View style={styles.slide}>
-                <Text> Personality Insights III </Text>
+                <Text style={styles.title}> Personality Insights III </Text>
                 <VictoryChart theme={VictoryTheme.material}>
-                  <VictoryAxis
+                 <VictoryAxis
                     tickValues={[0,20,40,60,80,100]}
-                    label='Percentile'
-                    style={{axisLabel: { padding: 35 }}}
+                    style={{
+                      axis: {stroke: "white"},
+                      axisLabel: {
+                        padding: 35,
+                        fill: 'white'
+                      },
+                      ticks: {stroke: "white"},
+                      tickLabels: {fill: 'white'}
+                    }
+                   }
                   />
                   <VictoryBar
                     horizontal
@@ -122,12 +147,20 @@ class LatestDataChart extends Component {
               </View>
 
               <View style={styles.slide}>
-                <Text> Personality Insights IV </Text>
+                <Text style={styles.title}> Personality Insights IV </Text>
                 <VictoryChart theme={VictoryTheme.material}>
                   <VictoryAxis
                     tickValues={[0,20,40,60,80,100]}
-                    label='Percentile'
-                    style={{axisLabel: { padding: 35 }}}
+                    style={{
+                      axis: {stroke: "white"},
+                      axisLabel: {
+                        padding: 35,
+                        fill: 'white'
+                      },
+                      ticks: {stroke: "white"},
+                      tickLabels: {fill: 'white'}
+                    }
+                   }
                   />
                   <VictoryBar
                     horizontal
@@ -137,7 +170,8 @@ class LatestDataChart extends Component {
                     padding={75}
                     style={{
                       labels: {
-                        fontSize: 8
+                        fontSize: 8,
+                        fill: 'white'
                       },
                       data: {
                         width: 8,
@@ -151,22 +185,31 @@ class LatestDataChart extends Component {
               </View>
 
               <View style={styles.slide}>
-                <Text> Tone Analysis </Text>
+                <Text style={styles.title}> Tone Analysis </Text>
                 <VictoryChart theme={VictoryTheme.material}>
-                  <VictoryAxis
+                 <VictoryAxis
                     tickValues={[0,20,40,60,80,100]}
-                    label='Percentile'
-                    style={{axisLabel: { padding: 35 }}}
+                    style={{
+                      axis: {stroke: "white"},
+                      axisLabel: {
+                        padding: 35,
+                        fill: 'white'
+                      },
+                      ticks: {stroke: "white"},
+                      tickLabels: {fill: 'white'}
+                    }
+                   }
                   />
                   <VictoryBar
                     horizontal
-                    domain={{x: [0, 100], y: [0, 14]}}
+                    domain={{x: [0, 120], y: [0, 14]}}
                     labels={toneLabels}
                     height={1000}
                     padding={10}
                     style={{
                       labels: {
-                        fontSize: 8
+                        fontSize: 8,
+                        fill: 'white'
                       },
                       data: {
                         width: 8,
@@ -176,7 +219,7 @@ class LatestDataChart extends Component {
                     data={toneData}
                   />
                 </VictoryChart>
-                <Text style={styles.blurb}>Some tonal description</Text>
+                <Text style={styles.blurb}>The scores you see are divided along three major categories: emotional, social, and language. For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates high likelihood that the tone will be perceived.</Text>
               </View>
 
             </Swiper>
@@ -230,8 +273,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   blurb: {
-    color: 'black',
-    fontFamily: 'Helvetica'
+    color: 'white',
+    fontFamily: 'Helvetica',
+    width: 250
+  },
+    title: {
+    color: 'white',
+    fontSize: 18
   }
 });
 
