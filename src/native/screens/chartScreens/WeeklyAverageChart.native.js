@@ -286,7 +286,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    imageId: state.admin.imageid,
+    imageId: state.admin.imageId,
     recordings: state.recordings.weeklyAvgRecordings
   };
 };

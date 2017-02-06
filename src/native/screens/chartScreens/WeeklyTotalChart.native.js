@@ -499,7 +499,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     recordings: state.recordings.weeklyTotalRecordings,
-    imageId: state.admin.imageid
+    imageId: state.admin.imageId
   };
 };
 
