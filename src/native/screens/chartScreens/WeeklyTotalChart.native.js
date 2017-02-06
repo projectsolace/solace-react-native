@@ -44,7 +44,7 @@ class WeeklyTotalChart extends Component {
         <Swiper showsButtons={true}>
 
           <View style={styles.slide}>
-            <Text style={styles.title}> Personality Insights All Time I </Text>
+            <Text style={styles.title}> Personality Insights Weekly I </Text>
             <VictoryChart
             theme={VictoryTheme.material}
             >
@@ -80,10 +80,10 @@ class WeeklyTotalChart extends Component {
             {returnLine(1)}
             {returnLine(2)}
             </VictoryChart>
-             <Text style={styles.blurb}>The scores you see are all percentiles. They are comparing one person to a broader population. For example, a 90% on Extraversion does not mean that the person is 90% extroverted. It means that for that single trait, the person is more extroverted than 90% of the people in the population.</Text>
+             <Text style={styles.blurb}>The scores you see are all percentiles lapsed over time. They are comparing you to the broader population. For example, a 90% on Extraversion does not mean that you are 90% extroverted. It means that for that single trait, you more extroverted than 90% of the people in the population.</Text>
           </View>
            <View style={styles.slide}>
-             <Text style={styles.title}> Personality Insights All Time II </Text>
+             <Text style={styles.title}> Personality Insights Weekly II </Text>
             <VictoryChart
             theme={VictoryTheme.material}>
            <VictoryAxis
@@ -118,10 +118,10 @@ class WeeklyTotalChart extends Component {
             {returnLine(4)}
             {returnLine(5)}
             </VictoryChart>
-             <Text style={styles.blurb}>The scores you see are all percentiles. They are comparing one person to a broader population. For example, a 90% on Extraversion does not mean that the person is 90% extroverted. It means that for that single trait, the person is more extroverted than 90% of the people in the population.</Text>
+             <Text style={styles.blurb}>The scores you see are all percentiles lapsed over time. They are comparing you to the broader population. For example, a 90% on Extraversion does not mean that you are 90% extroverted. It means that for that single trait, you more extroverted than 90% of the people in the population.</Text>
           </View>
           <View style={styles.slide}>
-            <Text style={styles.title}> Personality Insights All Time III </Text>
+            <Text style={styles.title}> Personality Insights Weekly III </Text>
             <VictoryChart
             theme={VictoryTheme.material}>
            <VictoryAxis
@@ -156,10 +156,10 @@ class WeeklyTotalChart extends Component {
             {returnLine(7)}
             {returnLine(8)}
             </VictoryChart>
-             <Text style={styles.blurb}>The scores you see are all percentiles. They are comparing one person to a broader population. For example, a 90% on Extraversion does not mean that the person is 90% extroverted. It means that for that single trait, the person is more extroverted than 90% of the people in the population.</Text>
+             <Text style={styles.blurb}>The scores you see are all percentiles lapsed over time. They are comparing you to the broader population. For example, a 90% on Extraversion does not mean that you are 90% extroverted. It means that for that single trait, you more extroverted than 90% of the people in the population.</Text>
           </View>
           <View style={styles.slide}>
-            <Text style={styles.title}> Personality Insights All Time IV </Text>
+            <Text style={styles.title}> Personality Insights Weekly IV </Text>
             <VictoryChart
             theme={VictoryTheme.material}>
            <VictoryAxis
@@ -194,10 +194,10 @@ class WeeklyTotalChart extends Component {
             {returnLine(10)}
             {returnLine(11)}
             </VictoryChart>
-             <Text style={styles.blurb}>The scores you see are all percentiles. They are comparing one person to a broader population. For example, a 90% on Extraversion does not mean that the person is 90% extroverted. It means that for that single trait, the person is more extroverted than 90% of the people in the population.</Text>
+             <Text style={styles.blurb}>The scores you see are all percentiles lapsed over time. They are comparing you to the broader population. For example, a 90% on Extraversion does not mean that you are 90% extroverted. It means that for that single trait, you more extroverted than 90% of the people in the population.</Text>
           </View>
           <View style={styles.slide}>
-          <Text style={styles.title}> Personality Insights All Time V </Text>
+          <Text style={styles.title}> Personality Insights Weekly V </Text>
             <VictoryChart
             theme={VictoryTheme.material}>
            <VictoryAxis
@@ -232,10 +232,10 @@ class WeeklyTotalChart extends Component {
             {returnLine(13)}
             {returnLine(14)}
             </VictoryChart>
-             <Text style={styles.blurb}>The scores you see are all percentiles. They are comparing one person to a broader population. For example, a 90% on Extraversion does not mean that the person is 90% extroverted. It means that for that single trait, the person is more extroverted than 90% of the people in the population.</Text>
+             <Text style={styles.blurb}>The scores you see are all percentiles lapsed over time. They are comparing you to the broader population. For example, a 90% on Extraversion does not mean that you are 90% extroverted. It means that for that single trait, you more extroverted than 90% of the people in the population.</Text>
           </View>
            <View style={styles.slide}>
-            <Text style={styles.title}> Emotional Tone Insights All Time I</Text>
+            <Text style={styles.title}> Emotional Tone Insights Weekly I</Text>
             <VictoryChart
             theme={VictoryTheme.material}>
            <VictoryAxis
@@ -275,7 +275,7 @@ class WeeklyTotalChart extends Component {
                 Emotional tone measures different types of emotions and feelings that people express.</Text>
           </View>
            <View style={styles.slide}>
-            <Text style={styles.title}> Emotional Tone Insights All Time II </Text>
+            <Text style={styles.title}> Emotional Tone Insights Weekly II </Text>
             <VictoryChart
             theme={VictoryTheme.material}>
            <VictoryAxis
@@ -314,7 +314,7 @@ class WeeklyTotalChart extends Component {
                 Emotional tone measures different types of emotions and feelings that people express.</Text>
           </View>
            <View style={styles.slide}>
-                <Text style={styles.title}> Language Tone Insights All Time </Text>
+                <Text style={styles.title}> Language Tone Insights Weekly </Text>
             <VictoryChart
             theme={VictoryTheme.material}>
            <VictoryAxis
@@ -354,7 +354,7 @@ class WeeklyTotalChart extends Component {
                 Social tone measures the social tendencies in the recorded content on five categories that are adopted from the Big Five personality model.</Text>
           </View>
            <View style={styles.slide}>
-                <Text style={styles.title}> Social Tone Insights All Time I </Text>
+                <Text style={styles.title}> Social Tone Insights Weekly I </Text>
             <VictoryChart
             theme={VictoryTheme.material}>
            <VictoryAxis
@@ -394,7 +394,7 @@ class WeeklyTotalChart extends Component {
                 Language tone describes perceived language style based on the recorded content.</Text>
           </View>
             <View style={styles.slide}>
-                <Text style={styles.title}> Social Tone Insights All Time II </Text>
+                <Text style={styles.title}> Social Tone Insights Weekly II </Text>
             <VictoryChart
             theme={VictoryTheme.material}>
            <VictoryAxis

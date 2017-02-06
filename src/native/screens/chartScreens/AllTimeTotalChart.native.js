@@ -81,7 +81,7 @@ class AllTimeTotalChart extends Component {
             {returnLine(1)}
             {returnLine(2)}
             </VictoryChart>
-             <Text style={styles.blurb}>The scores you see are all percentiles. They are comparing one person to a broader population. For example, a 90% on Extraversion does not mean that the person is 90% extroverted. It means that for that single trait, the person is more extroverted than 90% of the people in the population.</Text>
+             <Text style={styles.blurb}>The scores you see are all percentiles lapsed over time. They are comparing you to the broader population. For example, a 90% on Extraversion does not mean that you are 90% extroverted. It means that for that single trait, you more extroverted than 90% of the people in the population.</Text>
           </View>
            <View style={styles.slide}>
              <Text style={styles.title}> Personality Insights All Time II </Text>
@@ -119,7 +119,7 @@ class AllTimeTotalChart extends Component {
             {returnLine(4)}
             {returnLine(5)}
             </VictoryChart>
-             <Text style={styles.blurb}>The scores you see are all percentiles. They are comparing one person to a broader population. For example, a 90% on Extraversion does not mean that the person is 90% extroverted. It means that for that single trait, the person is more extroverted than 90% of the people in the population.</Text>
+             <Text style={styles.blurb}>The scores you see are all percentiles lapsed over time. They are comparing you to the broader population. For example, a 90% on Extraversion does not mean that you are 90% extroverted. It means that for that single trait, you more extroverted than 90% of the people in the population.</Text>
           </View>
           <View style={styles.slide}>
             <Text style={styles.title}> Personality Insights All Time III </Text>
@@ -157,7 +157,7 @@ class AllTimeTotalChart extends Component {
             {returnLine(7)}
             {returnLine(8)}
             </VictoryChart>
-             <Text style={styles.blurb}>The scores you see are all percentiles. They are comparing one person to a broader population. For example, a 90% on Extraversion does not mean that the person is 90% extroverted. It means that for that single trait, the person is more extroverted than 90% of the people in the population.</Text>
+             <Text style={styles.blurb}>The scores you see are all percentiles lapsed over time. They are comparing you to the broader population. For example, a 90% on Extraversion does not mean that you are 90% extroverted. It means that for that single trait, you more extroverted than 90% of the people in the population.</Text>
           </View>
           <View style={styles.slide}>
             <Text style={styles.title}> Personality Insights All Time IV </Text>
@@ -195,7 +195,7 @@ class AllTimeTotalChart extends Component {
             {returnLine(10)}
             {returnLine(11)}
             </VictoryChart>
-             <Text style={styles.blurb}>The scores you see are all percentiles. They are comparing one person to a broader population. For example, a 90% on Extraversion does not mean that the person is 90% extroverted. It means that for that single trait, the person is more extroverted than 90% of the people in the population.</Text>
+             <Text style={styles.blurb}>The scores you see are all percentiles lapsed over time. They are comparing you to the broader population. For example, a 90% on Extraversion does not mean that you are 90% extroverted. It means that for that single trait, you more extroverted than 90% of the people in the population.</Text>
           </View>
           <View style={styles.slide}>
           <Text style={styles.title}> Personality Insights All Time V </Text>
@@ -233,7 +233,7 @@ class AllTimeTotalChart extends Component {
             {returnLine(13)}
             {returnLine(14)}
             </VictoryChart>
-             <Text style={styles.blurb}>The scores you see are all percentiles. They are comparing one person to a broader population. For example, a 90% on Extraversion does not mean that the person is 90% extroverted. It means that for that single trait, the person is more extroverted than 90% of the people in the population.</Text>
+             <Text style={styles.blurb}>The scores you see are all percentiles lapsed over time. They are comparing you to the broader population. For example, a 90% on Extraversion does not mean that you are 90% extroverted. It means that for that single trait, you more extroverted than 90% of the people in the population.</Text>
           </View>
            <View style={styles.slide}>
             <Text style={styles.title}> Emotional Tone Insights All Time I</Text>

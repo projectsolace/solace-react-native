@@ -67,7 +67,7 @@ class MonthlyAverageChart extends Component {
                     data={personalityData.slice(35, 47)}
                   />
                 </VictoryChart>
-                <Text style={styles.blurb}>The scores you see are all percentiles. They are comparing one person to a broader population. For example, a 90% on Extraversion does not mean that the person is 90% extroverted. It means that for that single trait, the person is more extroverted than 90% of the people in the population.</Text>
+                <Text style={styles.blurb}>The scores you see are all percentiles. They are comparing you to the broader population. For example, a 90% on Extraversion does not mean that you are 90% extroverted. It means that for that single trait, you more extroverted than 90% of the people in the population.</Text>
               </View>
 
               <View style={styles.slide}>
@@ -105,7 +105,7 @@ class MonthlyAverageChart extends Component {
                     data={personalityData.slice(24, 35)}
                   />
                 </VictoryChart>
-                <Text style={styles.blurb}>The scores you see are all percentiles. They are comparing one person to a broader population. For example, a 90% on Extraversion does not mean that the person is 90% extroverted. It means that for that single trait, the person is more extroverted than 90% of the people in the population.</Text>
+                <Text style={styles.blurb}>The scores you see are all percentiles. They are comparing you to the broader population. For example, a 90% on Extraversion does not mean that you are 90% extroverted. It means that for that single trait, you more extroverted than 90% of the people in the population.</Text>
               </View>
 
               <View style={styles.slide}>
@@ -143,7 +143,7 @@ class MonthlyAverageChart extends Component {
                     data={personalityData.slice(12, 24)}
                   />
                 </VictoryChart>
-                <Text style={styles.blurb}>The scores you see are all percentiles. They are comparing one person to a broader population. For example, a 90% on Extraversion does not mean that the person is 90% extroverted. It means that for that single trait, the person is more extroverted than 90% of the people in the population.</Text>
+                <Text style={styles.blurb}>The scores you see are all percentiles. They are comparing you to the broader population. For example, a 90% on Extraversion does not mean that you are 90% extroverted. It means that for that single trait, you more extroverted than 90% of the people in the population.</Text>
               </View>
 
               <View style={styles.slide}>
@@ -181,7 +181,7 @@ class MonthlyAverageChart extends Component {
                     data={personalityData.slice(0, 12)}
                   />
                 </VictoryChart>
-                <Text style={styles.blurb}>The scores you see are all percentiles. They are comparing one person to a broader population. For example, a 90% on Extraversion does not mean that the person is 90% extroverted. It means that for that single trait, the person is more extroverted than 90% of the people in the population.</Text>
+                <Text style={styles.blurb}>The scores you see are all percentiles. They are comparing you to the broader population. For example, a 90% on Extraversion does not mean that you are 90% extroverted. It means that for that single trait, you more extroverted than 90% of the people in the population.</Text>
               </View>
 
               <View style={styles.slide}>
@@ -219,7 +219,7 @@ class MonthlyAverageChart extends Component {
                     data={toneData}
                   />
                 </VictoryChart>
-                <Text style={styles.blurb}>The scores you see are divided along three major categories: emotional, social, and language. For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates high likelihood that the tone will be perceived.</Text>
+                <Text style={styles.blurb}>For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates high likelihood that the tone will be perceived.</Text>
               </View>
 
             </Swiper>
