@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { currentUser } from '../reducer/user.native'
 import store from '../store.native';
 import { checkEmail } from '../utils';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 var STORAGE_KEY = 'id_token';
 
@@ -72,58 +73,62 @@ var STORAGE_KEY = 'id_token';
   render() {
     return (
       <Image source={{uri: `https://s3.amazonaws.com/watsonapi/images/3.jpg`}} style={ styles.container } >
-        <Grid>
-          <Row size={33} style={styles.content} >
+        <KeyboardAwareScrollView style={{marginTop: 36}}>
+          <Grid>
+          <Row size={30}>
+          <View style={styles.content}>
             <Image source={require('../../images/solace.png')}></Image>
+          </View>
           </Row>
-          <Row size={67} style={styles.field}>
-            <Content>
-              <InputGroup borderType="rounded" style={styles.inputCreds}>
-                <Icon name="ios-person-outline" style={{color: 'white'}}/>
-                <Input
-                autoCapitalize="none"
-                placeholder="email"
-                placeholderTextColor="#F0FFFF"
-                autofocus={true}
-                value={this.state.email}
-                onChangeText={email => this.setState({ email })}
-                style={styles.inputField}
-                />
-                {this.state.email === '' ? null : checkEmail(this.state.email) ? <Icon name='ios-checkmark-circle' style={{color:'#00C497'}}/> :  <Icon name='ios-close-circle' style={{color:'red'}}/>}
-              </InputGroup>
-              <InputGroup borderType="rounded" style={styles.inputCreds}>
-                <Icon name="ios-lock-outline" style={{color: 'white'}}/>
-                <Input
-                secureTextEntry={true}
-                placeholder="password"
-                secureTextEntry
-                autofocus={true}
-                autoCapitalize="none"
-                placeholderTextColor="#F0FFFF"
-                value={this.state.password}
-                onChangeText={password => this.setState({ password })}
-                style={styles.inputField}
-                />
-              </InputGroup>
-              <Row>
-                <Content>
-                  <Button rounded block info style={styles.login} onPress={this._userLogin}>
-                    <Text style={{fontWeight: 'bold', color: 'white', fontSize: 20}}>
-                      Log In
-                    </Text>
-                  </Button>
-                </Content>
-              </Row>
-              <Row style={{ alignItems: 'flex-end', justifyContent: 'flex-end' }}>
-                <Button transparent style={{ paddingRight: 20, marginTop: 15 }}>
-                  <Text style={{fontWeight: 'bold', color: 'white', fontSize: 14, textAlign: 'center'}} onPress={ Actions.signup} >
-                    Create Account
+          <Row size={70}>
+          <Content>
+            <InputGroup borderType="rounded" style={styles.inputCreds}>
+              <Icon name="ios-person-outline" style={{color: 'white'}}/>
+              <Input
+              autoCapitalize="none"
+              placeholder="email"
+              placeholderTextColor="#F0FFFF"
+              autofocus={true}
+              value={this.state.email}
+              onChangeText={email => this.setState({ email })}
+              style={styles.inputField}
+              />
+              {this.state.email === '' ? null : checkEmail(this.state.email) ? <Icon name='ios-checkmark-circle' style={{color:'#00C497'}}/> :  <Icon name='ios-close-circle' style={{color:'red'}}/>}
+            </InputGroup>
+            <InputGroup borderType="rounded" style={styles.inputCreds}>
+              <Icon name="ios-lock-outline" style={{color: 'white'}}/>
+              <Input
+              secureTextEntry={true}
+              placeholder="password"
+              secureTextEntry
+              autofocus={true}
+              autoCapitalize="none"
+              placeholderTextColor="#F0FFFF"
+              value={this.state.password}
+              onChangeText={password => this.setState({ password })}
+              style={styles.inputField}
+              />
+            </InputGroup>
+            <Row>
+              <Content>
+                <Button rounded block info style={styles.login} onPress={this._userLogin}>
+                  <Text style={{fontWeight: 'bold', color: 'white', fontSize: 20}}>
+                    Log In
                   </Text>
                 </Button>
-              </Row>
+              </Content>
+            </Row>
+            <Row style={{ alignItems: 'flex-end', justifyContent: 'flex-end' }}>
+              <Button transparent style={{ paddingRight: 20, marginTop: 15 }}>
+                <Text style={{fontWeight: 'bold', color: 'white', fontSize: 14, textAlign: 'center'}} onPress={ Actions.signup} >
+                  Create Account
+                </Text>
+              </Button>
+            </Row>
             </Content>
           </Row>
-        </Grid>
+          </Grid>
+        </KeyboardAwareScrollView>
       </Image>
     );
   }
