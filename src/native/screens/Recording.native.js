@@ -111,7 +111,7 @@ class Recording extends Component {
       .then(response => {
           if (response.status !== 201) throw new Error("Failed to upload audio to S3");
           console.log(response.body.postResponse.location);
-          return axios.post('https://solace-admin.herokuapp.com/api/watson/', {userID:this.props.user.id}).then(function(resp){
+          return axios.post('http://solace-admin.herokuapp.com/api/watson/', {userID:this.props.user.id}).then(function(resp){
             console.log(resp.data)
           })
       })
