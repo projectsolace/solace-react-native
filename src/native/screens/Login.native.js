@@ -55,9 +55,6 @@ var STORAGE_KEY = 'id_token';
               console.log('this is the response', responseData),
               this.onValueChange(STORAGE_KEY, responseData.id_token),
               store.dispatch(currentUser(responseData.user)),
-              AlertIOS.alert(
-                "Authentication Success!"
-              ),
               Actions.homepage()
             }
           })
