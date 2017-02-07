@@ -53,13 +53,10 @@ const STORAGE_KEY = 'id_token';
         if(!responseData.id_token) {
           AlertIOS.alert("Invalid Username")
         } else {
-          console.log('this is the response', responseData),
-          this.onValueChange(STORAGE_KEY, responseData.id_token),
-          store.dispatch(currentUser(responseData.user)),
-          AlertIOS.alert(
-            "Authentication Success!"
-          ),
-          Actions.homepage()
+        console.log('this is the response', responseData),
+        this.onValueChange(STORAGE_KEY, responseData.id_token),
+        store.dispatch(currentUser(responseData.user)),
+        Actions.homepage()
         }
       })
       .catch(err => {

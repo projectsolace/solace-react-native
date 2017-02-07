@@ -15,15 +15,6 @@ import { fetchAQuote } from '../reducer/quote.native';
 import { getImageId } from '../reducer/admin.native';
 import store from '../store.native';
 
-let audioPath = AudioUtils.DocumentDirectoryPath + '/watson2.wav';
-
-AudioRecorder.prepareRecordingAtPath(audioPath, {
-  SampleRate: 22050,
-  Channels: 1,
-  AudioQuality: 'Low',
-  AudioEncoding: 'lpcm'
-});
-
 class Homepage extends Component {
 
     constructor(props, context) {

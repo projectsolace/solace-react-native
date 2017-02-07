@@ -28,7 +28,7 @@ export default class App extends React.Component {
       <Provider store={ store }>
         <Router>
           <Scene key="root">
-            <Scene key="entryPoint" component={Login} initial hideNavBar />
+            <Scene key="entryPoint" component={Login} hideNavBar />
             <Scene key="signup" component={Signup} getPanHandlers={customDimensions} title="Signup"/>
             <Scene key="completeProfile" component={CompleteProfile} title="CompleteProfile" hideNavBar />
             <Scene key="homepage" component={Homepage} title="Homepage" panHandlers={null} hideNavBar/>
