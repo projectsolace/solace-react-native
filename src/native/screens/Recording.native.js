@@ -9,8 +9,8 @@ import axios from 'axios'
 import secrets from './secrets.json';
 import {connect} from 'react-redux'
 
-// Deleted this library for now because it breaks everything
-// import { Stopwatch, Timer } from 'react-native-stopwatch-timer'
+const formattedSeconds = (sec) => Math.floor(sec / 60) + ':' + ('0' + sec % 60).slice(-2);
+
 
 let audioPath = AudioUtils.DocumentDirectoryPath + '/watson2.wav';
 
@@ -20,14 +20,9 @@ AudioRecorder.prepareRecordingAtPath(audioPath, {
   AudioQuality: "Low",
   AudioEncoding: "lpcm"
 });
-console.log('where are audioPath', audioPath)
 
-class Recording extends Component {
+class RecordingComponent extends Component {
 
-    // Stop Watch
-   // <View style={styles.timer}>
-   //              <Stopwatch options={optionsA} start={this.state.stopwatchStart} reset={this.state.stopwatchReset}/>
-   //          </View>
 
     constructor(props, context) {
         super(props, context);
@@ -36,61 +31,55 @@ class Recording extends Component {
           stopwatchStart: false,
           totalDuration: 90000,
           stopwatchReset: false,
+          time: 0,
+          secondsElapsed: 0,
+          lastClearedIncrementer: null
         }
-
-    this.toggleStopwatch = this.toggleStopwatch.bind(this);
-    this.resetStopwatch = this.resetStopwatch.bind(this);
-
+        this.incrementer = null;
+        this.handleStartClick = this.handleStartClick.bind(this)
+        this.handleStopClick = this.handleStopClick.bind(this)
+        this.handleResetClick = this.handleResetClick.bind(this)
+        this.onStartRecord = this.onStartRecord.bind(this)
+        this.onStopRecord = this.onStopRecord.bind(this)
     }
 
+ componentWillUnmount(){
+    this.onStopRecord()
+ }
 
-    toggleStopwatch() {
-      this.setState({stopwatchStart: !this.state.stopwatchStart, stopwatchReset: false});
-    }
+ handleStartClick() {
+    this.incrementer = setInterval( () =>
+      this.setState({
+        secondsElapsed: this.state.secondsElapsed + 1
+      })
+    , 1000);
+  }
 
-    resetStopwatch() {
-      this.setState({stopwatchStart: false, stopwatchReset: true});
-    }
+  handleStopClick() {
+    clearInterval(this.incrementer);
+    this.setState({
+      lastClearedIncrementer: this.incrementer
+    });
+  }
 
+  handleResetClick() {
+    clearInterval(this.incrementer);
+    this.setState({
+      secondsElapsed: 0
+    });
+  }
 
-  render() {
-    // hello
-
-
-    const onStartRecord = () => {
+   onStartRecord(){
       console.log('STARTED RECORDING')
       // AlertIOS.alert('Please Record For At Least One Minute')
       AudioRecorder.startRecording();
+      this.handleStartClick()
       this.setState({recording:true})
-      this.toggleStopwatch()
 
     };
 
-    const recordingMic = () =>{
-      return (
-          <View>
-          <TouchableOpacity onPress={onStartRecord} style={styles.image2}>
-           <Image source={require('../../images/mic.png')} style={styles.image2}/>
-           </TouchableOpacity>
-           <View style={styles.phantom}>
-           </View>
-           </View>
-           )
-    }
-
-     const stopMic = () =>{
-      return (
-          <View>
-          <TouchableOpacity onPress={onStopRecord} style={styles.image3}>
-           <Image source={require('../../images/stopmic.png')} style={styles.image3}/>
-           </TouchableOpacity>
-           <View style={styles.phantom2}>
-           </View>
-           </View>
-           )
-    }
-
-    const onStopRecord = () => {
+    onStopRecord(){
+      if(this.state.recording) {
       AudioRecorder.stopRecording();
       console.log('STOPPED RECORDING')
       let file = {
@@ -117,11 +106,44 @@ class Recording extends Component {
           })
       })
       .catch(err => console.log(err));
-      this.resetStopwatch()
-      this.toggleStopwatch()
+
+      this.handleStopClick()
+      this.handleResetClick()
       this.setState({recording:false})
 
-    };
+    }
+  };
+
+  render() {
+
+
+    const recordingMic = () =>{
+      return (
+          <View>
+          <TouchableOpacity onPress={this.onStartRecord} style={styles.image2}>
+           <Image source={require('../../images/mic.png')} style={styles.image2}/>
+           </TouchableOpacity>
+           <View style={styles.phantom}>
+           </View>
+           </View>
+           )
+    }
+
+     const stopMic = () =>{
+      return (
+          <View>
+          <TouchableOpacity onPress={this.onStopRecord} style={styles.image3}>
+           <Image source={require('../../images/stopmic.png')} style={styles.image3}/>
+           </TouchableOpacity>
+              <View style={styles.timerContainer}>
+                   <Text style={styles.timer}>{formattedSeconds(this.state.secondsElapsed)}</Text>
+              </View>
+           <View style={styles.phantom2}>
+           </View>
+           </View>
+           )
+    }
+
 
     return (
       <View>
@@ -211,10 +233,12 @@ const styles = StyleSheet.create({
     height: 100
   },
   phantom2: {
-    height: 124
+    height: 83.5
   },
   timer: {
     alignSelf: 'center',
+    color: 'white',
+    fontSize: 23
   },
   helpButton: {
     fontSize: 30,
@@ -223,6 +247,9 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginBottom: 0,
     color: 'white'
+  },
+  timerContainer: {
+    marginTop:13
   }
 });
 
@@ -235,4 +262,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Recording);
+export default connect(mapStateToProps)(RecordingComponent);

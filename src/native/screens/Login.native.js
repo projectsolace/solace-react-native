@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Dimensions, Image, AlertIOS, AsyncStorage} from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image, AlertIOS, AsyncStorage } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Content, InputGroup, Input, Icon, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
@@ -7,8 +7,10 @@ import { connect } from 'react-redux';
 import { currentUser } from '../reducer/user.native'
 import store from '../store.native';
 import { checkEmail } from '../utils';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-var STORAGE_KEY = 'id_token';
+
+const STORAGE_KEY = 'id_token';
 
  class Login extends Component {
   constructor(props) {
@@ -20,6 +22,7 @@ var STORAGE_KEY = 'id_token';
 
     this.onValueChange = this.onValueChange.bind(this);
     this._userLogin = this._userLogin.bind(this);
+    this.focusNextField = this.focusNextField.bind(this);
   }
 
   async onValueChange(item, selectedValue) {
@@ -32,95 +35,96 @@ var STORAGE_KEY = 'id_token';
 
   _userLogin() {
     const { email, password } = this.state;
-
-        let value = {email, password};
-        if (value) { // if validation fails, value will be null
-          fetch("https://solace-admin.herokuapp.com/api/tokens/sessions/create", {
-            method: "POST",
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              email: value.email,
-              password: value.password,
-            })
-          })
-          .then((response) => response.json())
-          .then((responseData) => {
-            if(!responseData.id_token) {
-              AlertIOS.alert("Invalid Username")
-            } else {
-
-              console.log('this is the response', responseData),
-              this.onValueChange(STORAGE_KEY, responseData.id_token),
-              store.dispatch(currentUser(responseData.user)),
-              Actions.homepage()
-            }
-          })
-          .catch(err => {
-            AlertIOS.alert("Invalid Password")
-          })
-          .done();
+    let value = {email, password};
+    if (value) { // if validation fails, value will be null
+      fetch("https://solace-admin.herokuapp.com/api/tokens/sessions/create", {
+        method: "POST",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: value.email,
+          password: value.password,
+        })
+      })
+      .then((response) => response.json())
+      .then((responseData) => {
+        if(!responseData.id_token) {
+          AlertIOS.alert("Invalid Username")
+        } else {
+        console.log('this is the response', responseData),
+        this.onValueChange(STORAGE_KEY, responseData.id_token),
+        store.dispatch(currentUser(responseData.user)),
+        Actions.homepage()
         }
-
+      })
+      .catch(err => {
+        AlertIOS.alert("Invalid Password")
+      })
+      .done();
+    }
+  }
+  focusNextField(nextField) {
+    console.log('these are the refs', this.refs)
   }
 
   render() {
     return (
       <Image source={{uri: `https://s3.amazonaws.com/watsonapi/images/3.jpg`}} style={ styles.container } >
-        <Grid>
-          <Row size={33} style={styles.content} >
+        <KeyboardAwareScrollView>
+          <View style={styles.content}>
             <Image source={require('../../images/solace.png')}></Image>
-          </Row>
-          <Row size={67} style={styles.field}>
-            <Content>
-              <InputGroup borderType="rounded" style={styles.inputCreds}>
-                <Icon name="ios-person-outline" style={{color: 'white'}}/>
-                <Input
-                autoCapitalize="none"
-                placeholder="email"
-                placeholderTextColor="#F0FFFF"
-                autofocus={true}
-                value={this.state.email}
-                onChangeText={email => this.setState({ email })}
-                style={styles.inputField}
-                />
-                {this.state.email === '' ? null : checkEmail(this.state.email) ? <Icon name='ios-checkmark-circle' style={{color:'#00C497'}}/> :  <Icon name='ios-close-circle' style={{color:'red'}}/>}
-              </InputGroup>
-              <InputGroup borderType="rounded" style={styles.inputCreds}>
-                <Icon name="ios-lock-outline" style={{color: 'white'}}/>
-                <Input
-                secureTextEntry={true}
-                placeholder="password"
-                secureTextEntry
-                autofocus={true}
-                autoCapitalize="none"
-                placeholderTextColor="#F0FFFF"
-                value={this.state.password}
-                onChangeText={password => this.setState({ password })}
-                style={styles.inputField}
-                />
-              </InputGroup>
-              <Row>
-                <Content>
-                  <Button rounded block info style={styles.login} onPress={this._userLogin}>
-                    <Text style={{fontWeight: 'bold', color: 'white', fontSize: 20}}>
-                      Log In
-                    </Text>
-                  </Button>
-                </Content>
-              </Row>
-              <Row style={{ alignItems: 'flex-end', justifyContent: 'flex-end' }}>
-                <Button transparent style={{ paddingRight: 20, marginTop: 15 }}>
-                  <Text style={{fontWeight: 'bold', color: 'white', fontSize: 14, textAlign: 'center'}} onPress={ Actions.signup} >
-                    Create Account
+          </View>
+          <View style={styles.inputPosition}>
+            <InputGroup borderType="rounded" style={styles.inputCreds}>
+              <Icon name="ios-person-outline" style={{color: 'white'}}/>
+              <Input
+              returnKeyType="next"
+              autoCapitalize="none"
+              placeholder="email"
+              placeholderTextColor="#F0FFFF"
+              value={this.state.email}
+              onChangeText={email => this.setState({ email })}
+              style={styles.inputField}
+              onSubmitEditing={() => this.refs.password._textInput.focus()}
+              />
+              {this.state.email === '' ? null : checkEmail(this.state.email) ? <Icon name='ios-checkmark-circle' style={{color:'#00C497'}}/> :  <Icon name='ios-close-circle' style={{color:'red'}}/>}
+            </InputGroup>
+            <InputGroup borderType="rounded" style={styles.inputCreds}>
+              <Icon name="ios-lock-outline" style={{color: 'white'}}/>
+              <Input
+              ref="password"
+              secureTextEntry={true}
+              placeholder="password"
+              secureTextEntry
+              returnKeyType="go"
+              autoCapitalize="none"
+              placeholderTextColor="#F0FFFF"
+              value={this.state.password}
+              onChangeText={password => this.setState({ password })}
+              style={styles.inputField}
+              onSubmitEditing={this._userLogin}
+              />
+            </InputGroup>
+            <Row>
+              <Content>
+                <Button rounded block info style={styles.login} onPress={this._userLogin}>
+                  <Text style={{fontWeight: 'bold', color: 'white', fontSize: 20}}>
+                    Log In
                   </Text>
                 </Button>
-              </Row>
-            </Content>
-          </Row>
-        </Grid>
+              </Content>
+            </Row>
+            <Row style={styles.account}>
+              <Button transparent>
+                <Text style={{fontWeight: 'bold', color: 'white', fontSize: 14, textAlign: 'center'}} onPress={Actions.signup} >
+                  Create Account
+                </Text>
+              </Button>
+            </Row>
+          </View>
+        </KeyboardAwareScrollView>
       </Image>
     );
   }
@@ -135,12 +139,15 @@ const styles = StyleSheet.create({
   },
   content: {
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    position: 'relative',
+    top: 80
   },
-  field: {
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-    paddingBottom: 25
+  inputPosition: {
+    position: 'relative',
+    left: 0,
+    right: 0,
+    top: 324
   },
   inputField: {
     fontSize: 18,
@@ -155,6 +162,12 @@ const styles = StyleSheet.create({
     marginRight: 20,
     backgroundColor: 'rgba(0,0,0,0.3)',
     borderColor: 'rgba(0,0,0,0)'
+  },
+  account: {
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    paddingRight: 20,
+    marginTop: 15
   },
   login: {
     marginLeft: 20,

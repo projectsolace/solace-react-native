@@ -21,6 +21,7 @@
     "react-native-button-component": "^0.1.9",
     "react-native-easy-grid": "^0.1.8",
     "react-native-floating-label-text-input": "^0.1.2",
+    "react-native-keyboard-aware-scroll-view": "^0.2.7",
     "react-native-router-flux": "^3.37.0",
     "react-native-svg": "^4.1.0",
     "react-native-swiper": "^1.5.4",

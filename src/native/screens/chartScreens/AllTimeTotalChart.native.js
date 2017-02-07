@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity, Alert } from 'react-native';
+import { Icon } from 'native-base';
 import { connect } from 'react-redux';
 import { VictoryBar, VictoryChart, VictoryLine, VictoryStack, VictoryTheme, VictoryLabel, VictoryAxis } from 'victory-native';
 import Swiper from 'react-native-swiper';
@@ -44,8 +45,8 @@ class AllTimeTotalChart extends Component {
          '',
          'The scores you see are all percentiles. They are comparing you to the broader population. For example, a 90% on Extraversion does not mean that you are 90% extroverted. It means that for that single trait, you are more extroverted than 90% of the people in the population.'
        )}>
-        <View>
-         <Image source={require('../../../images/info.png')} style={styles.info}></Image>
+        <View style={styles.info}>
+         <Icon name="ios-information-circle-outline" style={{color: 'white'}} />
        </View>
       </TouchableOpacity>
     );
@@ -288,8 +289,8 @@ class AllTimeTotalChart extends Component {
                    '',
                    'Emotional tone measures different types of emotions and feelings that people express. For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates high likelihood that the tone will be perceived.'
                  )}>
-                  <View>
-                   <Image source={require('../../../images/info.png')} style={styles.info}></Image>
+                  <View style={styles.info}>
+                   <Icon name="ios-information-circle-outline" style={{color: 'white'}} />
                  </View>
                 </TouchableOpacity>
               </View>
@@ -334,8 +335,8 @@ class AllTimeTotalChart extends Component {
                    '',
                    'Emotional tone measures different types of emotions and feelings that people express. For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates high likelihood that the tone will be perceived.'
                  )}>
-                  <View>
-                   <Image source={require('../../../images/info.png')} style={styles.info}></Image>
+                  <View style={styles.info}>
+                   <Icon name="ios-information-circle-outline" style={{color: 'white'}} />
                  </View>
                 </TouchableOpacity>
               </View>
@@ -381,8 +382,8 @@ class AllTimeTotalChart extends Component {
                    '',
                    'Language tone describes perceived language style based on the recorded content. For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates high likelihood that the tone will be perceived.'
                  )}>
-                  <View>
-                   <Image source={require('../../../images/info.png')} style={styles.info}></Image>
+                  <View style={styles.info}>
+                   <Icon name="ios-information-circle-outline" style={{color: 'white'}} />
                  </View>
                 </TouchableOpacity>
               </View>
@@ -428,8 +429,8 @@ class AllTimeTotalChart extends Component {
                    '',
                    'Social tone measures the social tendencies in the recorded content on five categories that are adopted from the Big Five personality model. For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates high likelihood that the tone will be perceived.'
                  )}>
-                  <View>
-                   <Image source={require('../../../images/info.png')} style={styles.info}></Image>
+                  <View style={styles.info}>
+                   <Icon name="ios-information-circle-outline" style={{color: 'white'}} />
                  </View>
                 </TouchableOpacity>
               </View>
@@ -474,12 +475,11 @@ class AllTimeTotalChart extends Component {
                    '',
                    'Social tone measures the social tendencies in the recorded content on five categories that are adopted from the Big Five personality model. For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates high likelihood that the tone will be perceived.'
                  )}>
-                  <View>
-                   <Image source={require('../../../images/info.png')} style={styles.info}></Image>
+                  <View style={styles.info}>
+                   <Icon name="ios-information-circle-outline" style={{color: 'white'}} />
                  </View>
                 </TouchableOpacity>
               </View>
-
             </Swiper>
           </View>
         </BlurView>

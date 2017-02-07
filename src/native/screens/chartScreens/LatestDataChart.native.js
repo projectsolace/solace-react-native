@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity, Alert } from 'react-native';
 import { connect } from 'react-redux';
+import { Icon } from 'native-base';
 import { VictoryBar, VictoryChart, VictoryTheme, VictoryAxis } from 'victory-native';
 import Swiper from 'react-native-swiper';
 import { BlurView } from 'react-native-blur';
@@ -19,8 +20,8 @@ class LatestDataChart extends Component {
          '',
          'The scores you see are all percentiles. They are comparing you to the broader population. For example, a 90% on Extraversion does not mean that you are 90% extroverted. It means that for that single trait, you are more extroverted than 90% of the people in the population.'
        )}>
-        <View>
-         <Image source={require('../../../images/info.png')} style={styles.info}></Image>
+        <View style={styles.info}>
+         <Icon name="ios-information-circle-outline" style={{color: 'white'}} />
        </View>
       </TouchableOpacity>
       );
@@ -234,8 +235,8 @@ class LatestDataChart extends Component {
                    '',
                    'For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates a high likelihood that the tone will be perceived.'
                  )}>
-                  <View>
-                   <Image source={require('../../../images/info.png')} style={styles.info}></Image>
+                  <View style={styles.info}>
+                   <Icon name="ios-information-circle-outline" style={{color: 'white'}} />
                  </View>
                 </TouchableOpacity>
               </View>
