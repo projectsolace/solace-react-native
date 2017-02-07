@@ -79,15 +79,15 @@ class Homepage extends Component {
 
       axios.post(`https://solace-admin.herokuapp.com/api/users/${userId}/weekrecordings/average`)
       .then(response => console.log('weekly avg', response.data))
-      .catch(err => console.error('failed to post weekly average recordings', err));
+      .catch(err => console.log('failed to post weekly average recordings', err));
 
       axios.post(`https://solace-admin.herokuapp.com/api/users/${userId}/monthrecordings/average`)
       .then(response => console.log('monthly avg', response.data))
-      .catch(err => console.error('failed to post monthly average recordings', err));
+      .catch(err => console.log('failed to post monthly average recordings', err));
 
       axios.post(`https://solace-admin.herokuapp.com/api/users/${userId}/allrecordings/average`)
       .then(response => console.log('all avg', response.data))
-      .catch(err => console.error('failed to post all average recordings', err));
+      .catch(err => console.log('failed to post all average recordings', err));
     }
 
   render() {

@@ -9,7 +9,7 @@ import store from '../store.native';
 import { checkEmail } from '../utils';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-var STORAGE_KEY = 'id_token';
+const STORAGE_KEY = 'id_token';
 
 class Signup extends Component {
   constructor(props) {
@@ -80,10 +80,8 @@ class Signup extends Component {
 
    render() {
 
-    console.log('these are the dimensions', Dimensions.get('window').width);
-
     return (
-      <Image source={{uri:'https://s3.amazonaws.com/watsonapi/images/7.jpg'}} style={ styles.container } >
+      <Image source={{uri:'https://s3.amazonaws.com/watsonapi/images/12.jpg'}} style={ styles.container } >
         <KeyboardAwareScrollView  style={{paddingTop: 26}}>
           <View style={styles.content}>
             <Image source={require('../../images/solace.png')}></Image>
@@ -97,52 +95,59 @@ class Signup extends Component {
             <Icon name="ios-person-outline" style={{color: 'white'}}/>
             <Input
             autoCapitalize="none"
-            autofocus={true}
+            returnKeyType="next"
             value={this.state.firstName}
             onChangeText={firstName => this.setState({ firstName })}
             placeholder="first name"
             placeholderTextColor="#F0FFFF"
             style={styles.inputField}
+            onSubmitEditing={() => this.refs.lastName._textInput.focus()}
             />
             {this.state.firstName !== '' ? <Icon name='ios-checkmark-circle' style={{color:'#00C497'}}/> :  null }
           </InputGroup>
           <InputGroup borderType="rounded" style={styles.inputCreds}>
             <Icon name="ios-person-outline" style={{color: 'white'}}/>
             <Input
+            ref="lastName"
+            returnKeyType="next"
             autoCapitalize="none"
-            autofocus={true}
             value={this.state.lastName}
             onChangeText={lastName => this.setState({ lastName })}
             placeholder="last name"
             placeholderTextColor="#F0FFFF"
             style={styles.inputField}
+            onSubmitEditing={() => this.refs.email._textInput.focus()}
             />
             {this.state.lastName !== '' ? <Icon name='ios-checkmark-circle' style={{color:'#00C497'}}/> :  null }
           </InputGroup>
           <InputGroup borderType="rounded" style={styles.inputCreds}>
             <Icon name="ios-mail" style={{color: 'white'}}/>
             <Input
+            ref="email"
+            returnKeyType="next"
             autoCapitalize="none"
-            autofocus={true}
             value={this.state.email}
             onChangeText={email => this.setState({ email })}
             placeholder="email"
             placeholderTextColor="#F0FFFF"
             style={styles.inputField}
+            onSubmitEditing={() => this.refs.password._textInput.focus()}
             />
             {this.state.email === '' ? null : checkEmail(this.state.email) ? <Icon name='ios-checkmark-circle' style={{color:'#00C497'}}/> :  <Icon name='ios-close-circle' style={{color:'red'}}/>}
           </InputGroup>
           <InputGroup borderType="rounded" style={styles.inputCreds}>
             <Icon name="ios-lock-outline" style={{color: 'white'}}/>
             <Input
+            ref="password"
             autoCapitalize="none"
-            autofocus={true}
             secureTextEntry
+            returnKeyType="go"
             value={this.state.password}
             onChangeText={password => this.setState({ password })}
             placeholder="password"
             placeholderTextColor="#F0FFFF"
             style={styles.inputField}
+            onSubmitEditing={ this._userSignup }
             />
             {this.state.password !== '' ? <Icon name='ios-checkmark-circle' style={{color:'#00C497'}}/> :  null }
           </InputGroup>

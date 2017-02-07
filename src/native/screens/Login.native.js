@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Dimensions, Image, AlertIOS, AsyncStorage} from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image, AlertIOS, AsyncStorage } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Content, InputGroup, Input, Icon, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
@@ -9,7 +9,8 @@ import store from '../store.native';
 import { checkEmail } from '../utils';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-var STORAGE_KEY = 'id_token';
+
+const STORAGE_KEY = 'id_token';
 
  class Login extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ var STORAGE_KEY = 'id_token';
 
     this.onValueChange = this.onValueChange.bind(this);
     this._userLogin = this._userLogin.bind(this);
+    this.focusNextField = this.focusNextField.bind(this);
   }
 
   async onValueChange(item, selectedValue) {
@@ -33,41 +35,41 @@ var STORAGE_KEY = 'id_token';
 
   _userLogin() {
     const { email, password } = this.state;
-
-        let value = {email, password};
-        if (value) { // if validation fails, value will be null
-          fetch("https://solace-admin.herokuapp.com/api/tokens/sessions/create", {
-            method: "POST",
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              email: value.email,
-              password: value.password,
-            })
-          })
-          .then((response) => response.json())
-          .then((responseData) => {
-            if(!responseData.id_token) {
-              AlertIOS.alert("Invalid Username")
-            } else {
-
-              console.log('this is the response', responseData),
-              this.onValueChange(STORAGE_KEY, responseData.id_token),
-              store.dispatch(currentUser(responseData.user)),
-              AlertIOS.alert(
-                "Authentication Success!"
-              ),
-              Actions.homepage()
-            }
-          })
-          .catch(err => {
-            AlertIOS.alert("Invalid Password")
-          })
-          .done();
+    let value = {email, password};
+    if (value) { // if validation fails, value will be null
+      fetch("https://solace-admin.herokuapp.com/api/tokens/sessions/create", {
+        method: "POST",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: value.email,
+          password: value.password,
+        })
+      })
+      .then((response) => response.json())
+      .then((responseData) => {
+        if(!responseData.id_token) {
+          AlertIOS.alert("Invalid Username")
+        } else {
+          console.log('this is the response', responseData),
+          this.onValueChange(STORAGE_KEY, responseData.id_token),
+          store.dispatch(currentUser(responseData.user)),
+          AlertIOS.alert(
+            "Authentication Success!"
+          ),
+          Actions.homepage()
         }
-
+      })
+      .catch(err => {
+        AlertIOS.alert("Invalid Password")
+      })
+      .done();
+    }
+  }
+  focusNextField(nextField) {
+    console.log('these are the refs', this.refs)
   }
 
   render() {
@@ -81,28 +83,31 @@ var STORAGE_KEY = 'id_token';
             <InputGroup borderType="rounded" style={styles.inputCreds}>
               <Icon name="ios-person-outline" style={{color: 'white'}}/>
               <Input
+              returnKeyType="next"
               autoCapitalize="none"
               placeholder="email"
               placeholderTextColor="#F0FFFF"
-              autofocus={true}
               value={this.state.email}
               onChangeText={email => this.setState({ email })}
               style={styles.inputField}
+              onSubmitEditing={() => this.refs.password._textInput.focus()}
               />
               {this.state.email === '' ? null : checkEmail(this.state.email) ? <Icon name='ios-checkmark-circle' style={{color:'#00C497'}}/> :  <Icon name='ios-close-circle' style={{color:'red'}}/>}
             </InputGroup>
             <InputGroup borderType="rounded" style={styles.inputCreds}>
               <Icon name="ios-lock-outline" style={{color: 'white'}}/>
               <Input
+              ref="password"
               secureTextEntry={true}
               placeholder="password"
               secureTextEntry
-              autofocus={true}
+              returnKeyType="go"
               autoCapitalize="none"
               placeholderTextColor="#F0FFFF"
               value={this.state.password}
               onChangeText={password => this.setState({ password })}
               style={styles.inputField}
+              onSubmitEditing={this._userLogin}
               />
             </InputGroup>
             <Row>
@@ -145,7 +150,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     left: 0,
     right: 0,
-    top: 330
+    top: 324
   },
   inputField: {
     fontSize: 18,
