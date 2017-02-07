@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { Icon } from 'native-base';
 import { VictoryBar, VictoryChart, VictoryTheme, VictoryAxis } from 'victory-native';
@@ -46,44 +46,46 @@ class LatestDataChart extends Component {
         <BlurView blurType="light" blurAmount={50} style={styles.container}>
           <View style={styles.container}>
             <Swiper showsButtons={true}>
-
-              <View style={styles.slide}>
-                <Text style={styles.title}> Personality Insights I </Text>
-                <VictoryChart theme={VictoryTheme.material}>
-                 <VictoryAxis
-                    tickValues={[0,20,40,60,80,100]}
-                    style={{
-                      axis: {stroke: "white"},
-                      axisLabel: {
-                        padding: 35,
-                        fill: 'white'
-                      },
-                      ticks: {stroke: "white"},
-                      tickLabels: {fill: 'white'}
-                    }
-                   }
-                  />
-                  <VictoryBar
-                    horizontal
-                    domain={{x: [0, 100], y: [35, 48]}}
-                    labels={personalityLabels.slice(35, 47)}
-                    height={500}
-                    padding={75}
-                    style={{
-                      labels: {
-                        fontSize: 8,
-                        fill: 'white'
-                      },
-                      data: {
-                        width: 12,
-                         fill: (data) => {return [ '#7D26CD','#0000EE','#6495ED','#68228B','#E6E6FA','#104E8B','#B0C4DE','#0000FF','#5D478B','#1E90FF','#F0F8FF','#AB82FF','#836FFF','#9932CC','#F8F8FF','#BCD2EE','#6E7B8B','#191970','#6A5ACD','#0000CD','#9A32CD','#B23AEE','#7A67EE','#6C7B8B','#9370DB','#7B68EE','#473C8B','#000080','#D15FEE','#9F79EE','#BA55D3','#4B0082','#778899','#4682B4','#483D8B','#3A5FCD','#7A378B','#8A2BE2','#4169E1','#63B8FF','#8470FF','#800080','#A2B5CD','#27408B','#9400D3','#1874CD','#551A8B' ][data.x-1] }
+              <ScrollView maximumZoomScale={3}>
+                <View style={styles.slide}>
+                  <Text style={styles.title}> Personality Insights I </Text>
+                  <VictoryChart theme={VictoryTheme.material}>
+                   <VictoryAxis
+                      tickValues={[0,20,40,60,80,100]}
+                      style={{
+                        axis: {stroke: "white"},
+                        axisLabel: {
+                          padding: 35,
+                          fill: 'white'
+                        },
+                        ticks: {stroke: "white"},
+                        tickLabels: {fill: 'white'}
                       }
-                     }}
-                    data={personalityData.slice(35, 47)}
-                  />
-                </VictoryChart>
-                { infoButton }
-              </View>
+                     }
+                    />
+                    <VictoryBar
+                      horizontal
+                      domain={{x: [0, 100], y: [35, 48]}}
+                      labels={personalityLabels.slice(35, 47)}
+                      height={500}
+                      padding={75}
+                      style={{
+                        labels: {
+                          fontSize: 8,
+                          fill: 'white'
+                        },
+                        data: {
+                          width: 12,
+                           fill: (data) => {return [ '#7D26CD','#0000EE','#6495ED','#68228B','#E6E6FA','#104E8B','#B0C4DE','#0000FF','#5D478B','#1E90FF','#F0F8FF','#AB82FF','#836FFF','#9932CC','#F8F8FF','#BCD2EE','#6E7B8B','#191970','#6A5ACD','#0000CD','#9A32CD','#B23AEE','#7A67EE','#6C7B8B','#9370DB','#7B68EE','#473C8B','#000080','#D15FEE','#9F79EE','#BA55D3','#4B0082','#778899','#4682B4','#483D8B','#3A5FCD','#7A378B','#8A2BE2','#4169E1','#63B8FF','#8470FF','#800080','#A2B5CD','#27408B','#9400D3','#1874CD','#551A8B' ][data.x-1] }
+                        }
+                       }}
+                      data={personalityData.slice(35, 47)}
+                    />
+                  </VictoryChart>
+                  { infoButton }
+                </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
                 <Text style={styles.title}> Personality Insights II </Text>
                 <VictoryChart theme={VictoryTheme.material}>
@@ -121,6 +123,8 @@ class LatestDataChart extends Component {
                 </VictoryChart>
                { infoButton }
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
                 <Text style={styles.title}> Personality Insights III </Text>
                 <VictoryChart theme={VictoryTheme.material}>
@@ -158,6 +162,8 @@ class LatestDataChart extends Component {
                 </VictoryChart>
                { infoButton }
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
                 <Text style={styles.title}> Personality Insights IV </Text>
                 <VictoryChart theme={VictoryTheme.material}>
@@ -195,6 +201,8 @@ class LatestDataChart extends Component {
                 </VictoryChart>
                { infoButton }
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
                 <Text style={styles.title}> Tone Analysis </Text>
                 <VictoryChart theme={VictoryTheme.material}>
@@ -240,6 +248,7 @@ class LatestDataChart extends Component {
                  </View>
                 </TouchableOpacity>
               </View>
+              </ScrollView>
             </Swiper>
           </View>
         </BlurView>
@@ -283,7 +292,7 @@ const styles = StyleSheet.create({
   slide: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   text: {
     color: 'white',

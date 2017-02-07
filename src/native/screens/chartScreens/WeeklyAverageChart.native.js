@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, View, Image, Text, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { Icon } from 'native-base';
 import { VictoryBar, VictoryChart, VictoryTheme, VictoryAxis } from 'victory-native';
@@ -46,7 +46,7 @@ class WeeklyAverageChart extends Component {
         <BlurView blurType="light" blurAmount={50} style={styles.container}>
           <View style={styles.container}>
             <Swiper showsButtons={true}>
-
+              <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
                 <Text style={styles.title}> Personality Insights I </Text>
                 <VictoryChart theme={VictoryTheme.material}>
@@ -84,7 +84,8 @@ class WeeklyAverageChart extends Component {
                 </VictoryChart>
                { infoButton }
               </View>
-
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
                 <Text style={styles.title}> Personality Insights II </Text>
                 <VictoryChart theme={VictoryTheme.material}>
@@ -122,7 +123,8 @@ class WeeklyAverageChart extends Component {
                 </VictoryChart>
                { infoButton }
               </View>
-
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
                 <Text style={styles.title}> Personality Insights III </Text>
                 <VictoryChart theme={VictoryTheme.material}>
@@ -160,7 +162,8 @@ class WeeklyAverageChart extends Component {
                 </VictoryChart>
                { infoButton }
               </View>
-
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
                 <Text style={styles.title}> Personality Insights IV </Text>
                 <VictoryChart theme={VictoryTheme.material}>
@@ -198,7 +201,8 @@ class WeeklyAverageChart extends Component {
                 </VictoryChart>
                { infoButton }
               </View>
-
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
                 <Text style={styles.title}> Tone Analysis </Text>
                 <VictoryChart theme={VictoryTheme.material}>
@@ -244,6 +248,7 @@ class WeeklyAverageChart extends Component {
                  </View>
                 </TouchableOpacity>
               </View>
+              </ScrollView>
             </Swiper>
           </View>
         </BlurView>

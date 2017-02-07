@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, View, Image, Text, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import { Icon } from 'native-base';
 import { connect } from 'react-redux';
 import { VictoryBar, VictoryChart, VictoryLine, VictoryStack, VictoryTheme, VictoryLabel, VictoryAxis } from 'victory-native';
@@ -55,6 +55,7 @@ class AllTimeTotalChart extends Component {
         <BlurView blurType="light" blurAmount={50} style={styles.container}>
           <View style={styles.container}>
             <Swiper showsButtons={true}>
+              <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
                 <Text style={styles.title}> Personality Insights All Time I </Text>
                 <VictoryChart
@@ -94,6 +95,8 @@ class AllTimeTotalChart extends Component {
                 </VictoryChart>
                { infoButton }
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
                <View style={styles.slide}>
                  <Text style={styles.title}> Personality Insights All Time II </Text>
                 <VictoryChart
@@ -132,6 +135,8 @@ class AllTimeTotalChart extends Component {
                 </VictoryChart>
                { infoButton }
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
                 <Text style={styles.title}> Personality Insights All Time III </Text>
                 <VictoryChart
@@ -170,6 +175,8 @@ class AllTimeTotalChart extends Component {
                 </VictoryChart>
                { infoButton }
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
                 <Text style={styles.title}> Personality Insights All Time IV </Text>
                 <VictoryChart
@@ -208,6 +215,8 @@ class AllTimeTotalChart extends Component {
                 </VictoryChart>
                { infoButton }
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
               <Text style={styles.title}> Personality Insights All Time V </Text>
                 <VictoryChart
@@ -246,6 +255,8 @@ class AllTimeTotalChart extends Component {
                 </VictoryChart>
                { infoButton }
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
                <View style={styles.slide}>
                 <Text style={styles.title}> Emotional Tone Insights All Time I</Text>
                 <VictoryChart
@@ -293,6 +304,8 @@ class AllTimeTotalChart extends Component {
                  </View>
                 </TouchableOpacity>
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
                <View style={styles.slide}>
                 <Text style={styles.title}> Emotional Tone Insights All Time II </Text>
                 <VictoryChart
@@ -339,6 +352,8 @@ class AllTimeTotalChart extends Component {
                  </View>
                 </TouchableOpacity>
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
                <View style={styles.slide}>
                     <Text style={styles.title}> Language Tone Insights All Time </Text>
                 <VictoryChart
@@ -386,6 +401,8 @@ class AllTimeTotalChart extends Component {
                  </View>
                 </TouchableOpacity>
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
                <View style={styles.slide}>
                     <Text style={styles.title}> Social Tone Insights All Time I </Text>
                 <VictoryChart
@@ -433,6 +450,8 @@ class AllTimeTotalChart extends Component {
                  </View>
                 </TouchableOpacity>
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
                 <View style={styles.slide}>
                     <Text style={styles.title}> Social Tone Insights All Time II </Text>
                 <VictoryChart
@@ -479,6 +498,7 @@ class AllTimeTotalChart extends Component {
                  </View>
                 </TouchableOpacity>
               </View>
+              </ScrollView>
             </Swiper>
           </View>
         </BlurView>

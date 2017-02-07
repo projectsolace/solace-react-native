@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, View, Image, Text, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { Icon } from 'native-base';
 import { VictoryBar, VictoryChart, VictoryLine, VictoryStack, VictoryTheme, VictoryLabel, VictoryAxis, Line } from 'victory-native';
@@ -55,7 +55,7 @@ class MonthlyTotalChart extends Component {
         <BlurView blurType="light" blurAmount={50} style={styles.container}>
           <View style={styles.container}>
             <Swiper showsButtons={true}>
-
+              <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
                 <Text style={styles.title}> Personality Insights Monthly I </Text>
                 <VictoryChart
@@ -96,6 +96,8 @@ class MonthlyTotalChart extends Component {
                 </VictoryChart>
                 { infoButton }
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
                <View style={styles.slide}>
                  <Text style={styles.title}> Personality Insights Monthly II </Text>
                 <VictoryChart
@@ -135,6 +137,8 @@ class MonthlyTotalChart extends Component {
                 </VictoryChart>
                { infoButton }
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
                 <Text style={styles.title}> Personality Insights Monthly III </Text>
                 <VictoryChart
@@ -173,6 +177,8 @@ class MonthlyTotalChart extends Component {
                 </VictoryChart>
                { infoButton }
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
                 <Text style={styles.title}> Personality Insights Monthly IV </Text>
                 <VictoryChart
@@ -211,6 +217,8 @@ class MonthlyTotalChart extends Component {
                 </VictoryChart>
                { infoButton }
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
               <Text style={styles.title}> Personality Insights Monthly V </Text>
                 <VictoryChart
@@ -249,6 +257,8 @@ class MonthlyTotalChart extends Component {
                 </VictoryChart>
                { infoButton }
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
                <View style={styles.slide}>
                 <Text style={styles.title}> Emotional Tone Insights Monthly I</Text>
                 <VictoryChart
@@ -296,6 +306,8 @@ class MonthlyTotalChart extends Component {
                  </View>
                 </TouchableOpacity>
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
                <View style={styles.slide}>
                 <Text style={styles.title}> Emotional Tone Insights Monthly II </Text>
                 <VictoryChart
@@ -342,6 +354,8 @@ class MonthlyTotalChart extends Component {
                  </View>
                 </TouchableOpacity>
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
                <View style={styles.slide}>
                   <Text style={styles.title}> Language Tone Insights Monthly </Text>
                 <VictoryChart
@@ -389,6 +403,8 @@ class MonthlyTotalChart extends Component {
                  </View>
                 </TouchableOpacity>
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
                <View style={styles.slide}>
                     <Text style={styles.title}> Social Tone Insights Monthly I </Text>
                 <VictoryChart
@@ -436,6 +452,8 @@ class MonthlyTotalChart extends Component {
                  </View>
                 </TouchableOpacity>
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
                 <View style={styles.slide}>
                     <Text style={styles.title}> Social Tone Insights Monthly II </Text>
                 <VictoryChart
@@ -482,6 +500,7 @@ class MonthlyTotalChart extends Component {
                  </View>
                 </TouchableOpacity>
               </View>
+              </ScrollView>
             </Swiper>
           </View>
         </BlurView>
