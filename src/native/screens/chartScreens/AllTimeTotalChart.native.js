@@ -11,7 +11,6 @@ class AllTimeTotalChart extends Component {
     super(props);
   }
 
-
   render() {
     let personalityArray = this.props.recordings.personality.filter(function(obj){return obj.key =='Imagination' || obj.key =='Self-discipline' || obj.key =='Cheerfulness' || obj.key =='Outgoing' || obj.key =='Altruism' || obj.key =='Modesty' || obj.key =='Trust' || obj.key =='Self-consciousness' || obj.key =='Curiosity' || obj.key =='Harmony' || obj.key =='Love' || obj.key =='Openness to change' || obj.key =='Susceptible to stress' || obj.key =='Stability' || obj.key =='Intellect'});
     let toneArray = this.props.recordings.tone;

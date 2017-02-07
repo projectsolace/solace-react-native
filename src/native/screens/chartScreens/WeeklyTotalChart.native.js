@@ -378,7 +378,7 @@ class WeeklyTotalChart extends Component {
                   style={{ marginTop: 25}}
                   onPress={() => Alert.alert(
                    '',
-                   'Social tone measures the social tendencies in the recorded content on five categories that are adopted from the Big Five personality model. For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates high likelihood that the tone will be perceived.'
+                   'Language tone describes perceived language style based on the recorded content. For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates high likelihood that the tone will be perceived.'
                  )}>
                   <View style={styles.info}>
                    <Icon name="ios-information-circle-outline" style={{color: 'white'}} />
@@ -425,7 +425,7 @@ class WeeklyTotalChart extends Component {
                   style={{ marginTop: 25}}
                   onPress={() => Alert.alert(
                    '',
-                   'Language tone describes perceived language style based on the recorded content. For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates high likelihood that the tone will be perceived.'
+                   'Social tone measures the social tendencies in the recorded content on five categories that are adopted from the Big Five personality model. For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates high likelihood that the tone will be perceived.'
                  )}>
                   <View style={styles.info}>
                    <Icon name="ios-information-circle-outline" style={{color: 'white'}} />
@@ -471,7 +471,7 @@ class WeeklyTotalChart extends Component {
                   style={{ marginTop: 25}}
                   onPress={() => Alert.alert(
                    '',
-                   'Language tone describes perceived language style based on the recorded content. For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates high likelihood that the tone will be perceived.'
+                   'Social tone measures the social tendencies in the recorded content on five categories that are adopted from the Big Five personality model. For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates high likelihood that the tone will be perceived.'
                  )}>
                   <View style={styles.info}>
                    <Icon name="ios-information-circle-outline" style={{color: 'white'}} />
