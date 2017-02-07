@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { VictoryBar, VictoryChart, VictoryTheme, VictoryAxis } from 'victory-native';
 import Swiper from 'react-native-swiper';
@@ -11,6 +11,20 @@ class LatestDataChart extends Component {
   }
 
   render() {
+
+    const infoButton =
+      (<TouchableOpacity
+        style={{ marginTop: 25}}
+        onPress={() => Alert.alert(
+         '',
+         'The scores you see are all percentiles. They are comparing you to the broader population. For example, a 90% on Extraversion does not mean that you are 90% extroverted. It means that for that single trait, you are more extroverted than 90% of the people in the population.'
+       )}>
+        <View>
+         <Image source={require('../../../images/info.png')} style={styles.info}></Image>
+       </View>
+      </TouchableOpacity>
+      );
+
     const personalityArray = this.props.recordings.personality;
     const toneArray = this.props.recordings.tone;
 
@@ -67,9 +81,8 @@ class LatestDataChart extends Component {
                     data={personalityData.slice(35, 47)}
                   />
                 </VictoryChart>
-                <Text style={styles.blurb}>The scores you see are all percentiles. They are comparing you to the broader population. For example, a 90% on Extraversion does not mean that you are 90% extroverted. It means that for that single trait, you more extroverted than 90% of the people in the population.</Text>
+                { infoButton }
               </View>
-
               <View style={styles.slide}>
                 <Text style={styles.title}> Personality Insights II </Text>
                 <VictoryChart theme={VictoryTheme.material}>
@@ -105,9 +118,8 @@ class LatestDataChart extends Component {
                     data={personalityData.slice(24, 35)}
                   />
                 </VictoryChart>
-                <Text style={styles.blurb}>The scores you see are all percentiles. They are comparing you to the broader population. For example, a 90% on Extraversion does not mean that you are 90% extroverted. It means that for that single trait, you more extroverted than 90% of the people in the population.</Text>
+               { infoButton }
               </View>
-
               <View style={styles.slide}>
                 <Text style={styles.title}> Personality Insights III </Text>
                 <VictoryChart theme={VictoryTheme.material}>
@@ -143,9 +155,8 @@ class LatestDataChart extends Component {
                     data={personalityData.slice(12, 24)}
                   />
                 </VictoryChart>
-                <Text style={styles.blurb}>The scores you see are all percentiles. They are comparing you to the broader population. For example, a 90% on Extraversion does not mean that you are 90% extroverted. It means that for that single trait, you more extroverted than 90% of the people in the population.</Text>
+               { infoButton }
               </View>
-
               <View style={styles.slide}>
                 <Text style={styles.title}> Personality Insights IV </Text>
                 <VictoryChart theme={VictoryTheme.material}>
@@ -181,9 +192,8 @@ class LatestDataChart extends Component {
                     data={personalityData.slice(0, 12)}
                   />
                 </VictoryChart>
-                <Text style={styles.blurb}>The scores you see are all percentiles. They are comparing you to the broader population. For example, a 90% on Extraversion does not mean that you are 90% extroverted. It means that for that single trait, you more extroverted than 90% of the people in the population.</Text>
+               { infoButton }
               </View>
-
               <View style={styles.slide}>
                 <Text style={styles.title}> Tone Analysis </Text>
                 <VictoryChart theme={VictoryTheme.material}>
@@ -219,14 +229,21 @@ class LatestDataChart extends Component {
                     data={toneData}
                   />
                 </VictoryChart>
-                <Text style={styles.blurb}>For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates high likelihood that the tone will be perceived.</Text>
+                <TouchableOpacity
+                  onPress={() => Alert.alert(
+                   '',
+                   'For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates a high likelihood that the tone will be perceived.'
+                 )}>
+                  <View>
+                   <Image source={require('../../../images/info.png')} style={styles.info}></Image>
+                 </View>
+                </TouchableOpacity>
               </View>
-
             </Swiper>
           </View>
         </BlurView>
       </Image>
-    )
+    );
   }
 }
 
@@ -272,10 +289,9 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
   },
-  blurb: {
-    color: 'white',
-    fontFamily: 'Helvetica',
-    width: 250
+  info: {
+    width: 25,
+    height: 25
   },
     title: {
     color: 'white',
@@ -293,3 +309,4 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(LatestDataChart);
+
