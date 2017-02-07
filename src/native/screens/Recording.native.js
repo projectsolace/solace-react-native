@@ -22,7 +22,7 @@ AudioRecorder.prepareRecordingAtPath(audioPath, {
 });
 console.log('where are audioPath', audioPath)
 
-class Recording extends Component {
+export class RecordingComponent extends Component {
 
 
     constructor(props, context) {
@@ -40,6 +40,8 @@ class Recording extends Component {
         this.handleStartClick = this.handleStartClick.bind(this)
         this.handleStopClick = this.handleStopClick.bind(this)
         this.handleResetClick = this.handleResetClick.bind(this)
+        this.onStartRecord = this.onStartRecord.bind(this)
+        this.onStopRecord = this.onStopRecord.bind(this)
     }
 
  handleStartClick() {
@@ -64,10 +66,7 @@ class Recording extends Component {
     });
   }
 
-  render() {
-
-
-    const onStartRecord = () => {
+   onStartRecord(){
       console.log('STARTED RECORDING')
       // AlertIOS.alert('Please Record For At Least One Minute')
       AudioRecorder.startRecording();
@@ -76,34 +75,7 @@ class Recording extends Component {
 
     };
 
-    const recordingMic = () =>{
-      return (
-          <View>
-          <TouchableOpacity onPress={onStartRecord} style={styles.image2}>
-           <Image source={require('../../images/mic.png')} style={styles.image2}/>
-           </TouchableOpacity>
-           <View style={styles.phantom}>
-           </View>
-           </View>
-           )
-    }
-
-     const stopMic = () =>{
-      return (
-          <View>
-          <TouchableOpacity onPress={onStopRecord} style={styles.image3}>
-           <Image source={require('../../images/stopmic.png')} style={styles.image3}/>
-           </TouchableOpacity>
-              <View style={styles.timerContainer}>
-                   <Text style={styles.timer}>{formattedSeconds(this.state.secondsElapsed)}</Text>
-              </View>
-           <View style={styles.phantom2}>
-           </View>
-           </View>
-           )
-    }
-
-    const onStopRecord = () => {
+    onStopRecord(){
       AudioRecorder.stopRecording();
       console.log('STOPPED RECORDING')
       let file = {
@@ -130,11 +102,43 @@ class Recording extends Component {
           })
       })
       .catch(err => console.log(err));
+
       this.handleStopClick()
       this.handleResetClick()
       this.setState({recording:false})
 
     };
+
+  render() {
+
+
+    const recordingMic = () =>{
+      return (
+          <View>
+          <TouchableOpacity onPress={this.onStartRecord} style={styles.image2}>
+           <Image source={require('../../images/mic.png')} style={styles.image2}/>
+           </TouchableOpacity>
+           <View style={styles.phantom}>
+           </View>
+           </View>
+           )
+    }
+
+     const stopMic = () =>{
+      return (
+          <View>
+          <TouchableOpacity onPress={this.onStopRecord} style={styles.image3}>
+           <Image source={require('../../images/stopmic.png')} style={styles.image3}/>
+           </TouchableOpacity>
+              <View style={styles.timerContainer}>
+                   <Text style={styles.timer}>{formattedSeconds(this.state.secondsElapsed)}</Text>
+              </View>
+           <View style={styles.phantom2}>
+           </View>
+           </View>
+           )
+    }
+
 
     return (
       <View>
@@ -245,4 +249,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Recording);
+export default connect(mapStateToProps)(RecordingComponent);

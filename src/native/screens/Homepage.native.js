@@ -14,15 +14,9 @@ import Account from './Account.native.js';
 import { fetchAQuote } from '../reducer/quote.native';
 import { getImageId } from '../reducer/admin.native';
 import store from '../store.native';
+import { RecordingComponent } from './Recording.native.js';
 
-let audioPath = AudioUtils.DocumentDirectoryPath + '/watson2.wav';
-
-AudioRecorder.prepareRecordingAtPath(audioPath, {
-  SampleRate: 22050,
-  Channels: 1,
-  AudioQuality: 'Low',
-  AudioEncoding: 'lpcm'
-});
+console.log("HELLLLLLLLLO~~~~~~~~~~~~~~~~~~~~~", RecordingComponent.onStopRecord)
 
 class Homepage extends Component {
 
