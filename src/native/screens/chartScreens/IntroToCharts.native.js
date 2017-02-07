@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import { Button } from 'native-base';
+import { Button, Icon } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
@@ -17,6 +17,7 @@ export class IntroToCharts extends Component {
         <BlurView blurType="dark" blurAmount={10}>
           <Swiper showsButtons={true} prevButton transparent={true}>
             <View>
+              <Icon name='ios-close-circle-outline' style={styles.icon} onPress={Actions.pop} ></Icon>
               <Text style={styles.text}>
                 No data yet. {'\n'}
                 Go ahead and start recording! {'\n'}
@@ -25,6 +26,7 @@ export class IntroToCharts extends Component {
             </View>
 
             <View>
+              <Icon name='ios-close-circle-outline' style={styles.icon} onPress={Actions.pop} ></Icon>
               <Text style={styles.text}>
                 Click the "Average" options for more accurate data...
               </Text>
@@ -72,7 +74,13 @@ const styles = StyleSheet.create({
   button: {
     alignSelf: 'center',
     marginTop: 325
-  }
+  },
+  icon: {
+    fontSize: 30,
+    textAlign: 'right',
+    marginTop: 35,
+    marginRight: 20
+  },
 });
 
 /* -----------------    CONTAINER     ------------------ */

@@ -85,7 +85,7 @@ class Homepage extends Component {
     return (
       <View style={ styles.container }>
         <Image source={{ uri: `https://s3.amazonaws.com/watsonapi/images/${this.state.imageId}.jpg`}} style={ styles.img } >
-            {this.state.statsActive ? <Charts /> : this.state.microphoneActive ? <Recording /> : <Account /> }
+          {this.state.statsActive ? <Charts /> : this.state.microphoneActive ? <Recording /> : <Account /> }
           <Footer style={{position: 'absolute', left: 0, right: 0, bottom: 0}}>
             <FooterTab>
               <Button active = { this.state.statsActive }  onPress = {this.toggleStatsActiveButton} > Charts <Icon name='ios-stats'></Icon></Button>

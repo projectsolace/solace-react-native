@@ -1,13 +1,15 @@
-import React from "react";
+import React from 'react';
 import { Platform } from 'react-native';
-import {Scene, Router} from "react-native-router-flux";
+import {Scene, Router} from 'react-native-router-flux';
+import { Provider } from 'react-redux';
+import store from './store.native';
+
 import Login from './screens/Login.native';
 import Signup from './screens/Signup.native';
 import Homepage from './screens/Homepage.native';
 import QuestionsModal from './screens/QuestionsModal.native';
 import CompleteProfile from './screens/CompleteProfile.native';
-import { Provider } from 'react-redux';
-import store from './store.native';
+import Tutorial from './screens/Tutorial.native';
 
 // Charts data
 import Charts from './screens/chartScreens/Charts.native';
@@ -31,7 +33,8 @@ export default class App extends React.Component {
             <Scene key="entryPoint" component={Login} hideNavBar />
             <Scene key="signup" component={Signup} getPanHandlers={customDimensions} title="Signup"/>
             <Scene key="completeProfile" component={CompleteProfile} title="CompleteProfile" hideNavBar />
-            <Scene key="homepage" component={Homepage} title="Homepage" panHandlers={null} hideNavBar/>
+            <Scene key="homepage" component={Homepage} title="Homepage" panHandlers={null} hideNavBar />
+            <Scene key="tutorial" component={Tutorial} title="Tutorial" direction="vertical" hideNavBar />
             <Scene key="charts" component={Charts} title="Charts" hideNavBar  />
             <Scene key="intro" component={IntroToCharts} title="IntroToCharts" direction="vertical" hideNavBar />
             <Scene key="latestData" component={LatestDataChart} title="LatestDataChart" direction="vertical" hideNavBar />

@@ -26,7 +26,7 @@ export class QuestionsModal extends Component {
           <Swiper showsButtons={true} transparent={true} >
               { questions && questions.map(questionObj => (
                 <View key={questionObj.id}>
-                  <Icon name='ios-close-circle-outline' style = {styles.closeButton } onPress={() => Actions.pop()} ></Icon>
+                  <Icon name='ios-close-circle-outline' style={styles.closeButton} onPress={Actions.pop} ></Icon>
                   <Text style={styles.text}> {questionObj.question}</Text>
                 </View>
                 )
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     opacity: 0.85,
   },
   closeButton: {
-    fontSize: 45,
+    fontSize: 30,
     textAlign: 'right',
     marginTop: 35,
     marginRight: 20,

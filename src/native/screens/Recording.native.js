@@ -147,13 +147,14 @@ class RecordingComponent extends Component {
 
     return (
       <View>
-        <Image source={require('../../images/solace.png')} style={styles.image}/>
-          <Text style={styles.text2}> {`Hello ${this.props.user.firstName}, \n What's on your mind today?`}</Text>
-            {!this.state.recording ? recordingMic(): stopMic()}
-          <Text style={styles.text}> {`"${this.props.quote.quote}"`}</Text>
-          <Button transparent style={{alignSelf: 'center', marginTop: 25, borderWidth: 3}} onPress={()=> Actions.questionModal()} >
-           <Text style={{fontWeight: 'bold', color: 'white'}}> Helpful Questions </Text>
-          </Button>
+        <Icon name='ios-help-circle-outline' style = {styles.helpButton } onPress={Actions.tutorial} ></Icon>
+        <Image source={require('../../images/solace.png')} style={styles.image} />
+        <Text style={styles.text2}> {`Hello ${this.props.user.firstName}. \n What's on your mind today?`}</Text>
+          {!this.state.recording ? recordingMic() : stopMic()}
+        <Text style={styles.text}> {`"${this.props.quote.quote}"`}</Text>
+        <Button transparent style={{alignSelf: 'center', marginTop: 25, borderWidth: 3}} onPress={Actions.questionModal} >
+         <Text style={{fontWeight: 'bold', color: 'white'}}> Helpful Questions </Text>
+        </Button>
       </View>
     );
   }
@@ -185,9 +186,8 @@ const styles = StyleSheet.create({
   },
   image: {
     alignSelf: 'center',
-    marginTop: 50,
+    marginTop: 0,
     marginBottom: 50
-
   },
   image2: {
     height: 100,
@@ -200,21 +200,21 @@ const styles = StyleSheet.create({
     width: 67,
     alignSelf: 'center'
   },
-    text: {
+  text: {
     alignSelf: 'center',
     color: 'white',
     textAlign: 'center',
     fontWeight: 'bold',
     shadowColor: '#000000',
-   shadowOffset: {
-     width: 0,
-     height: 3,
-   },
-   shadowRadius: 7,
-   shadowOpacity: 1.0,
-   marginBottom: 10,
-   marginLeft: 15,
-   marginRight: 15
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowRadius: 7,
+    shadowOpacity: 1.0,
+    marginBottom: 10,
+    marginLeft: 15,
+    marginRight: 15
   },
   text2: {
     alignSelf: 'center',
@@ -240,7 +240,15 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 23
   },
-  timerContainer:{
+  helpButton: {
+    fontSize: 30,
+    textAlign: 'right',
+    marginTop: 35,
+    marginRight: 20,
+    marginBottom: 0,
+    color: 'white'
+  },
+  timerContainer: {
     marginTop:13
   }
 });
