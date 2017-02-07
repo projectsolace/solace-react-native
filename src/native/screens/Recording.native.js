@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Dimensions, Image, TouchableHighlight, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image, TouchableHighlight, TouchableOpacity, AlertIOS } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Content, InputGroup, Input, Icon, Button, Container, Footer, FooterTab } from 'native-base';
 import { Actions } from 'react-native-router-flux';
@@ -59,6 +59,7 @@ class Recording extends Component {
 
     const onStartRecord = () => {
       console.log('STARTED RECORDING')
+      // AlertIOS.alert('Please Record For At Least One Minute')
       AudioRecorder.startRecording();
       this.setState({recording:true})
       this.toggleStopwatch()
@@ -111,7 +112,7 @@ class Recording extends Component {
       .then(response => {
           if (response.status !== 201) throw new Error("Failed to upload audio to S3");
           console.log(response.body.postResponse.location);
-          return axios.post('http://solace-admin.herokuapp.com/api/watson/', {userID:this.props.user.id}).then(function(resp){
+          return axios.post('https://solace-admin.herokuapp.com/api/watson/', {userID:this.props.user.id}).then(function(resp){
             console.log(resp.data)
           })
       })
