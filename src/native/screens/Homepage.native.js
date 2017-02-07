@@ -79,22 +79,22 @@ class Homepage extends Component {
 
       axios.post(`https://solace-admin.herokuapp.com/api/users/${userId}/weekrecordings/average`)
       .then(response => console.log('weekly avg', response.data))
-      .catch(err => console.error('failed to post weekly average recordings', err));
+      .catch(err => console.log('failed to post weekly average recordings', err));
 
       axios.post(`https://solace-admin.herokuapp.com/api/users/${userId}/monthrecordings/average`)
       .then(response => console.log('monthly avg', response.data))
-      .catch(err => console.error('failed to post monthly average recordings', err));
+      .catch(err => console.log('failed to post monthly average recordings', err));
 
       axios.post(`https://solace-admin.herokuapp.com/api/users/${userId}/allrecordings/average`)
       .then(response => console.log('all avg', response.data))
-      .catch(err => console.error('failed to post all average recordings', err));
+      .catch(err => console.log('failed to post all average recordings', err));
     }
 
   render() {
     return (
       <View style={ styles.container }>
         <Image source={{ uri: `https://s3.amazonaws.com/watsonapi/images/${this.state.imageId}.jpg`}} style={ styles.img } >
-            {this.state.statsActive ? <Charts /> : this.state.microphoneActive ? <Recording /> : <Account /> }
+          {this.state.statsActive ? <Charts /> : this.state.microphoneActive ? <Recording /> : <Account /> }
           <Footer style={{position: 'absolute', left: 0, right: 0, bottom: 0}}>
             <FooterTab>
               <Button active = { this.state.statsActive }  onPress = {this.toggleStatsActiveButton} > Charts <Icon name='ios-stats'></Icon></Button>
