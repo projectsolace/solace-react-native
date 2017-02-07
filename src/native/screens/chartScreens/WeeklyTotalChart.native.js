@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, View, Image, Text, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { Icon } from 'native-base';
 import { VictoryBar, VictoryChart, VictoryLine, VictoryStack, VictoryTheme, VictoryLabel, VictoryAxis } from 'victory-native';
@@ -54,6 +54,7 @@ class WeeklyTotalChart extends Component {
         <BlurView blurType="light" blurAmount={50} style={styles.container}>
           <View style={styles.container}>
             <Swiper showsButtons={true}>
+              <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
                 <Text style={styles.title}> Personality Insights Weekly I </Text>
                 <VictoryChart
@@ -93,7 +94,9 @@ class WeeklyTotalChart extends Component {
                 </VictoryChart>
                { infoButton }
               </View>
-               <View style={styles.slide}>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
+              <View style={styles.slide}>
                  <Text style={styles.title}> Personality Insights Weekly II </Text>
                 <VictoryChart
                 theme={VictoryTheme.material}>
@@ -131,6 +134,8 @@ class WeeklyTotalChart extends Component {
                 </VictoryChart>
                { infoButton }
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
                 <Text style={styles.title}> Personality Insights Weekly III </Text>
                 <VictoryChart
@@ -169,6 +174,8 @@ class WeeklyTotalChart extends Component {
                 </VictoryChart>
                { infoButton }
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
                 <Text style={styles.title}> Personality Insights Weekly IV </Text>
                 <VictoryChart
@@ -207,6 +214,8 @@ class WeeklyTotalChart extends Component {
                 </VictoryChart>
                { infoButton }
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
               <Text style={styles.title}> Personality Insights Weekly V </Text>
                 <VictoryChart
@@ -245,6 +254,8 @@ class WeeklyTotalChart extends Component {
                 </VictoryChart>
                { infoButton }
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
                <View style={styles.slide}>
                 <Text style={styles.title}> Emotional Tone Insights Weekly I</Text>
                 <VictoryChart
@@ -292,6 +303,8 @@ class WeeklyTotalChart extends Component {
                  </View>
                 </TouchableOpacity>
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
                <View style={styles.slide}>
                 <Text style={styles.title}> Emotional Tone Insights Weekly II </Text>
                 <VictoryChart
@@ -338,6 +351,8 @@ class WeeklyTotalChart extends Component {
                  </View>
                 </TouchableOpacity>
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
                <View style={styles.slide}>
                     <Text style={styles.title}> Language Tone Insights Weekly </Text>
                 <VictoryChart
@@ -385,6 +400,8 @@ class WeeklyTotalChart extends Component {
                  </View>
                 </TouchableOpacity>
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
                <View style={styles.slide}>
                   <Text style={styles.title}> Social Tone Insights Weekly I </Text>
                 <VictoryChart
@@ -432,6 +449,8 @@ class WeeklyTotalChart extends Component {
                  </View>
                 </TouchableOpacity>
               </View>
+              </ScrollView>
+              <ScrollView maximumZoomScale={3}>
                 <View style={styles.slide}>
                     <Text style={styles.title}> Social Tone Insights Weekly II </Text>
                 <VictoryChart
@@ -478,6 +497,7 @@ class WeeklyTotalChart extends Component {
                  </View>
                 </TouchableOpacity>
               </View>
+              </ScrollView>
             </Swiper>
           </View>
         </BlurView>
