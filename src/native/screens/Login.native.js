@@ -73,15 +73,11 @@ var STORAGE_KEY = 'id_token';
   render() {
     return (
       <Image source={{uri: `https://s3.amazonaws.com/watsonapi/images/3.jpg`}} style={ styles.container } >
-        <KeyboardAwareScrollView style={{marginTop: 36}}>
-          <Grid>
-          <Row size={30}>
+        <KeyboardAwareScrollView>
           <View style={styles.content}>
             <Image source={require('../../images/solace.png')}></Image>
           </View>
-          </Row>
-          <Row size={70}>
-          <Content>
+          <View style={styles.inputPosition}>
             <InputGroup borderType="rounded" style={styles.inputCreds}>
               <Icon name="ios-person-outline" style={{color: 'white'}}/>
               <Input
@@ -118,16 +114,14 @@ var STORAGE_KEY = 'id_token';
                 </Button>
               </Content>
             </Row>
-            <Row style={{ alignItems: 'flex-end', justifyContent: 'flex-end' }}>
-              <Button transparent style={{ paddingRight: 20, marginTop: 15 }}>
-                <Text style={{fontWeight: 'bold', color: 'white', fontSize: 14, textAlign: 'center'}} onPress={ Actions.signup} >
+            <Row style={styles.account}>
+              <Button transparent>
+                <Text style={{fontWeight: 'bold', color: 'white', fontSize: 14, textAlign: 'center'}} onPress={Actions.signup} >
                   Create Account
                 </Text>
               </Button>
             </Row>
-            </Content>
-          </Row>
-          </Grid>
+          </View>
         </KeyboardAwareScrollView>
       </Image>
     );
@@ -143,12 +137,15 @@ const styles = StyleSheet.create({
   },
   content: {
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    position: 'relative',
+    top: 80
   },
-  field: {
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-    paddingBottom: 25
+  inputPosition: {
+    position: 'relative',
+    left: 0,
+    right: 0,
+    top: 330
   },
   inputField: {
     fontSize: 18,
@@ -163,6 +160,12 @@ const styles = StyleSheet.create({
     marginRight: 20,
     backgroundColor: 'rgba(0,0,0,0.3)',
     borderColor: 'rgba(0,0,0,0)'
+  },
+  account: {
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    paddingRight: 20,
+    marginTop: 15
   },
   login: {
     marginLeft: 20,
