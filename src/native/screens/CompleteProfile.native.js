@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, Image, View} from 'react-native';
+import { StyleSheet, Text, Image, View, AlertIOS} from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Content, List, ListItem, InputGroup, Input, Icon, Picker, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
@@ -54,10 +54,9 @@ class CompleteProfile extends Component {
         infoToUpdate[props] = props === 'zipCode' ? +this.state[props] : this.state[props];
       }
     }
-    console.log('this is the info', infoToUpdate);
-    console.log('this is the user', loggedInUser);
 
     updateCurrentUser(loggedInUser.id, infoToUpdate);
+    AlertIOS.alert('Profile Updated!')
 
   }
 
