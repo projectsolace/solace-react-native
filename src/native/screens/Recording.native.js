@@ -20,9 +20,8 @@ AudioRecorder.prepareRecordingAtPath(audioPath, {
   AudioQuality: "Low",
   AudioEncoding: "lpcm"
 });
-console.log('where are audioPath', audioPath)
 
-export class RecordingComponent extends Component {
+class RecordingComponent extends Component {
 
 
     constructor(props, context) {
@@ -43,6 +42,10 @@ export class RecordingComponent extends Component {
         this.onStartRecord = this.onStartRecord.bind(this)
         this.onStopRecord = this.onStopRecord.bind(this)
     }
+
+ componentWillUnmount(){
+    this.onStopRecord()
+ }
 
  handleStartClick() {
     this.incrementer = setInterval( () =>
@@ -76,6 +79,7 @@ export class RecordingComponent extends Component {
     };
 
     onStopRecord(){
+      if(this.state.recording) {
       AudioRecorder.stopRecording();
       console.log('STOPPED RECORDING')
       let file = {
@@ -107,7 +111,8 @@ export class RecordingComponent extends Component {
       this.handleResetClick()
       this.setState({recording:false})
 
-    };
+    }
+  };
 
   render() {
 

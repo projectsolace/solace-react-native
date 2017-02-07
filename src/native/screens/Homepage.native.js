@@ -14,9 +14,6 @@ import Account from './Account.native.js';
 import { fetchAQuote } from '../reducer/quote.native';
 import { getImageId } from '../reducer/admin.native';
 import store from '../store.native';
-import { RecordingComponent } from './Recording.native.js';
-
-console.log("HELLLLLLLLLO~~~~~~~~~~~~~~~~~~~~~", RecordingComponent.onStopRecord)
 
 class Homepage extends Component {
 
