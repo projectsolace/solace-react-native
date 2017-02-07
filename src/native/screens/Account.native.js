@@ -59,7 +59,7 @@ class Account extends Component {
     }
 
     updateCurrentUser(user.id, infoToUpdate);
-    AlertIOS.alert("Update Success!");
+    AlertIOS.alert("Update Successful!");
   }
 
   render() {

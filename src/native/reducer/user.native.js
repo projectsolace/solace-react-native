@@ -49,7 +49,6 @@ export const updateCurrentUser = (id, credentials) => dispatch => {
   .then(response => {
     const user = response.data;
     dispatch(updateUser(user));
-    Actions.homepage();
   })
   .catch(err => console.error('unable to update', err));
 };
