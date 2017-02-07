@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, Image, AlertIOS, AsyncStorage, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, Image, AlertIOS, AsyncStorage, Dimensions } from 'react-native';
 import { Row, Grid } from 'react-native-easy-grid';
 import { Content, InputGroup, Input, Icon, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
@@ -7,9 +7,9 @@ import { newUser } from '../reducer/user.native';
 import { connect } from 'react-redux';
 import store from '../store.native';
 import { checkEmail } from '../utils';
-// import { BlurView, VibrancyView } from 'react-native-blur';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-var STORAGE_KEY = 'id_token';
+const STORAGE_KEY = 'id_token';
 
 class Signup extends Component {
   constructor(props) {
@@ -80,83 +80,87 @@ class Signup extends Component {
 
    render() {
 
-    console.log('these are the dimensions', Dimensions.get('window').width);
-
     return (
-      <Image source={{uri:'https://s3.amazonaws.com/watsonapi/images/7.jpg'}} style={ styles.container } >
-        <Grid>
-          <Row size={30} style={styles.content}>
+      <Image source={{uri:'https://s3.amazonaws.com/watsonapi/images/12.jpg'}} style={ styles.container } >
+        <KeyboardAwareScrollView  style={{paddingTop: 26}}>
+          <View style={styles.content}>
+            <Image source={require('../../images/solace.png')}></Image>
+          </View>
+          <View style={styles.content}>
             <Text style={styles.text}>
               Let's get started!
             </Text>
-          </Row>
-          <Row size={70}>
-            <Content style={{paddingTop: 50}}>
-              <InputGroup borderType="rounded" style={styles.inputCreds}>
-                <Icon name="ios-person-outline" style={{color: 'white'}}/>
-                <Input
-                autoCapitalize="none"
-                autofocus={true}
-                value={this.state.firstName}
-                onChangeText={firstName => this.setState({ firstName })}
-                placeholder="first name"
-                placeholderTextColor="#F0FFFF"
-                style={styles.inputField}
-                />
-                {this.state.firstName !== '' ? <Icon name='ios-checkmark-circle' style={{color:'#00C497'}}/> :  null }
-              </InputGroup>
-              <InputGroup borderType="rounded" style={styles.inputCreds}>
-                <Icon name="ios-person-outline" style={{color: 'white'}}/>
-                <Input
-                autoCapitalize="none"
-                autofocus={true}
-                value={this.state.lastName}
-                onChangeText={lastName => this.setState({ lastName })}
-                placeholder="last name"
-                placeholderTextColor="#F0FFFF"
-                style={styles.inputField}
-                />
-                {this.state.lastName !== '' ? <Icon name='ios-checkmark-circle' style={{color:'#00C497'}}/> :  null }
-              </InputGroup>
-              <InputGroup borderType="rounded" style={styles.inputCreds}>
-                <Icon name="ios-mail" style={{color: 'white'}}/>
-                <Input
-                autoCapitalize="none"
-                autofocus={true}
-                value={this.state.email}
-                onChangeText={email => this.setState({ email })}
-                placeholder="email"
-                placeholderTextColor="#F0FFFF"
-                style={styles.inputField}
-                />
-                {this.state.email === '' ? null : checkEmail(this.state.email) ? <Icon name='ios-checkmark-circle' style={{color:'#00C497'}}/> :  <Icon name='ios-close-circle' style={{color:'red'}}/>}
-              </InputGroup>
-              <InputGroup borderType="rounded" style={styles.inputCreds}>
-                <Icon name="ios-lock-outline" style={{color: 'white'}}/>
-                <Input
-                autoCapitalize="none"
-                autofocus={true}
-                secureTextEntry
-                value={this.state.password}
-                onChangeText={password => this.setState({ password })}
-                placeholder="password"
-                placeholderTextColor="#F0FFFF"
-                style={styles.inputField}
-                />
-                {this.state.password !== '' ? <Icon name='ios-checkmark-circle' style={{color:'#00C497'}}/> :  null }
-              </InputGroup>
-              <Row>
-                <Content>
-                  <Button rounded block success style={styles.login} onPress={this._userSignup}>
-                    <Text style={{fontWeight: 'bold', color: 'white', fontSize: 20}}>
-                      Continue
-                    </Text>
-                  </Button>
-                </Content>
-              </Row>
+          </View>
+          <InputGroup borderType="rounded" style={styles.inputCreds}>
+            <Icon name="ios-person-outline" style={{color: 'white'}}/>
+            <Input
+            autoCapitalize="none"
+            returnKeyType="next"
+            value={this.state.firstName}
+            onChangeText={firstName => this.setState({ firstName })}
+            placeholder="first name"
+            placeholderTextColor="#F0FFFF"
+            style={styles.inputField}
+            onSubmitEditing={() => this.refs.lastName._textInput.focus()}
+            />
+            {this.state.firstName !== '' ? <Icon name='ios-checkmark-circle' style={{color:'#00C497'}}/> :  null }
+          </InputGroup>
+          <InputGroup borderType="rounded" style={styles.inputCreds}>
+            <Icon name="ios-person-outline" style={{color: 'white'}}/>
+            <Input
+            ref="lastName"
+            returnKeyType="next"
+            autoCapitalize="none"
+            value={this.state.lastName}
+            onChangeText={lastName => this.setState({ lastName })}
+            placeholder="last name"
+            placeholderTextColor="#F0FFFF"
+            style={styles.inputField}
+            onSubmitEditing={() => this.refs.email._textInput.focus()}
+            />
+            {this.state.lastName !== '' ? <Icon name='ios-checkmark-circle' style={{color:'#00C497'}}/> :  null }
+          </InputGroup>
+          <InputGroup borderType="rounded" style={styles.inputCreds}>
+            <Icon name="ios-mail" style={{color: 'white'}}/>
+            <Input
+            ref="email"
+            returnKeyType="next"
+            autoCapitalize="none"
+            value={this.state.email}
+            onChangeText={email => this.setState({ email })}
+            placeholder="email"
+            placeholderTextColor="#F0FFFF"
+            style={styles.inputField}
+            onSubmitEditing={() => this.refs.password._textInput.focus()}
+            />
+            {this.state.email === '' ? null : checkEmail(this.state.email) ? <Icon name='ios-checkmark-circle' style={{color:'#00C497'}}/> :  <Icon name='ios-close-circle' style={{color:'red'}}/>}
+          </InputGroup>
+          <InputGroup borderType="rounded" style={styles.inputCreds}>
+            <Icon name="ios-lock-outline" style={{color: 'white'}}/>
+            <Input
+            ref="password"
+            autoCapitalize="none"
+            secureTextEntry
+            returnKeyType="go"
+            value={this.state.password}
+            onChangeText={password => this.setState({ password })}
+            placeholder="password"
+            placeholderTextColor="#F0FFFF"
+            style={styles.inputField}
+            onSubmitEditing={ this._userSignup }
+            />
+            {this.state.password !== '' ? <Icon name='ios-checkmark-circle' style={{color:'#00C497'}}/> :  null }
+          </InputGroup>
+          <Row>
+            <Content>
+              <Button rounded block success style={styles.login} onPress={this._userSignup}>
+                <Text style={{fontWeight: 'bold', color: 'white', fontSize: 20}}>
+                  Continue
+                </Text>
+              </Button>
             </Content>
           </Row>
-        </Grid>
+        </KeyboardAwareScrollView>
       </Image>
     );
   }
@@ -172,10 +176,11 @@ const styles = StyleSheet.create({
   },
   content: {
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    margin: 30
   },
   text: {
-    fontSize: 30,
+    fontSize: 26,
     fontFamily: 'Helvetica',
     color: 'white',
     fontWeight: 'bold'

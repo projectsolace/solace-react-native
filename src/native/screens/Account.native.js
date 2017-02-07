@@ -123,6 +123,8 @@ class Account extends Component {
                     placeholder="First Name"
                     value={this.state.firstName}
                     onChangeText={(firstName) => this.setState({ firstName })}
+                    returnKeyType="next"
+                    onSubmitEditing={() => this.refs.lastName._textInput.focus()}
                     />
                   </InputGroup>
                 </ListItem>
@@ -130,6 +132,9 @@ class Account extends Component {
                   <InputGroup style={styles.content}>
                     <Icon name="ios-person-outline" style={{ color: '#0A69FE', marginRight: -5}} />
                     <Input
+                    ref="lastName"
+                    returnKeyType="next"
+                    onSubmitEditing={() => this.refs.email._textInput.focus()}
                     style={styles.textInput}
                     placeholderTextColor= "#C7C7CD"
                     placeholder="Last Name"
@@ -142,6 +147,9 @@ class Account extends Component {
                   <InputGroup style={styles.content}>
                     <Icon name="ios-mail" style={{ color: '#0A69FE', marginRight: -5}} />
                     <Input
+                    ref="email"
+                    returnKeyType="next"
+                    onSubmitEditing={() => this.refs.zipCode._textInput.focus()}
                     style={styles.textInput}
                     placeholderTextColor= "#C7C7CD"
                     placeholder="Email"
@@ -154,6 +162,7 @@ class Account extends Component {
                   <InputGroup style={styles.content}>
                     <Icon name="ios-navigate-outline" style={{ color: '#0A69FE', marginRight: -5}} />
                     <Input
+                    ref="zipCode"
                     style={styles.textInput}
                     placeholderTextColor= "#C7C7CD"
                     keyboardType = "numeric"
@@ -246,14 +255,13 @@ class Account extends Component {
               </List>
               <Row>
                 <Col>
-                  <Button success onPress={ this.onPressUpdate }style={{ alignSelf: 'center', marginTop: 30, marginBottom: 30}}>
+                  <Button success  onPress={ this.onPressUpdate }style={styles.button}>
                     Update
                   </Button>
                 </Col>
                 <Col>
-                  <Button iconRight info onPress={ logoutUser } style={{ alignSelf: 'center', marginTop: 30, marginBottom: 30}}>
-                    Signout
-                    <Icon name="ios-arrow-forward" />
+                  <Button iconRight  info onPress={ logoutUser } style={styles.button}>
+                    Log out
                   </Button>
                 </Col>
               </Row>
@@ -303,6 +311,14 @@ const styles = StyleSheet.create({
     marginTop: 40,
     marginBottom: 20,
     fontWeight: 'bold'
+  },
+  button: {
+    height: 72,
+    width: 74,
+    alignSelf: 'center',
+    marginTop: 20,
+    marginBottom: 30,
+    borderRadius: 37
   }
 });
 
@@ -311,8 +327,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     user: state.user
-  }
-}
+  };
+};
 
 const mapDispatchToProps = ({ updateCurrentUser, logoutUser });
 
