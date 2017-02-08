@@ -82,6 +82,9 @@ class Homepage extends Component {
     }
 
   render() {
+
+    console.log('these are the props', this.props);
+
     return (
       <View style={ styles.container }>
         <Image source={{ uri: `https://s3.amazonaws.com/watsonapi/images/${this.state.imageId}.jpg`}} style={ styles.img } >
