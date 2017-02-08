@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import { Button, Icon } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import Swiper from 'react-native-swiper';
@@ -17,7 +17,7 @@ export class Tutorial extends Component {
           <View style={styles.imageContainer}>
             <Image source={require('../../../images/tutorial-1.png')} style={styles.image}>
               <Button transparent style={styles.button} onPress={Actions.pop}>
-                <Icon name='ios-close-circle-outline' style={{fontSize: 30}} ></Icon>
+                <Icon name="ios-close-circle-outline" style={{fontSize: 30}} ></Icon>
               </Button>
             </Image>
           </View>
@@ -25,7 +25,7 @@ export class Tutorial extends Component {
           <View style={styles.imageContainer}>
             <Image source={require('../../../images/tutorial-2.png')} style={styles.image}>
               <Button transparent style={styles.button} onPress={Actions.pop}>
-                <Icon name='ios-close-circle-outline' style={{fontSize: 30}} ></Icon>
+                <Icon name="ios-close-circle-outline" style={{fontSize: 30}} ></Icon>
               </Button>
             </Image>
           </View>
@@ -33,7 +33,7 @@ export class Tutorial extends Component {
           <View style={styles.imageContainer}>
             <Image source={require('../../../images/tutorial-3.png')} style={styles.image}>
               <Button transparent style={styles.button} onPress={Actions.pop}>
-                <Icon name='ios-close-circle-outline' style={{fontSize: 30}} ></Icon>
+                <Icon name="ios-close-circle-outline" style={{fontSize: 30}} ></Icon>
               </Button>
             </Image>
           </View>

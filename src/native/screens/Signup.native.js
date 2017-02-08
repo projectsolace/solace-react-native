@@ -61,12 +61,8 @@ class Signup extends Component {
         })
         .then((response) => response.json())
         .then((responseData) => {
-
             this.onValueChange(STORAGE_KEY, responseData.id_token),
             store.dispatch(newUser(responseData.user)),
-            AlertIOS.alert(
-              "Signup Success!"
-            ),
             Actions.completeProfile();
         })
         .catch(err => console.error('signup failed', err))

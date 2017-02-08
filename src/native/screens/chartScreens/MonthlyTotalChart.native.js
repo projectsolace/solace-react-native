@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { Icon } from 'native-base';
-import { VictoryBar, VictoryChart, VictoryLine, VictoryStack, VictoryTheme, VictoryLabel, VictoryAxis, Line } from 'victory-native';
+import { VictoryChart, VictoryLine, VictoryTheme, VictoryLabel, VictoryAxis, Line } from 'victory-native';
 import Swiper from 'react-native-swiper';
 import { BlurView } from 'react-native-blur';
+import { Actions } from 'react-native-router-flux';
 
 class MonthlyTotalChart extends Component {
   constructor(props) {
@@ -50,6 +51,13 @@ class MonthlyTotalChart extends Component {
       </TouchableOpacity>
     );
 
+    const closeButton =
+      (<TouchableOpacity onPress={Actions.pop}>
+         <View style={styles.closeButton}>
+           <Icon name="ios-close-circle-outline" style={{fontSize: 30, color: 'white', textAlign: 'right'}} />
+         </View>
+       </TouchableOpacity>);
+
     return (
       <Image source={{uri: `https://s3.amazonaws.com/watsonapi/images/${imageId}.jpg`}} style={styles.img} >
         <BlurView blurType="light" blurAmount={50} style={styles.container}>
@@ -57,6 +65,7 @@ class MonthlyTotalChart extends Component {
             <Swiper showsButtons={true}>
               <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
+                { closeButton }
                 <Text style={styles.title}> Personality Insights Monthly I </Text>
                 <VictoryChart
                 theme={VictoryTheme.material}
@@ -99,7 +108,8 @@ class MonthlyTotalChart extends Component {
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
                <View style={styles.slide}>
-                 <Text style={styles.title}> Personality Insights Monthly II </Text>
+                { closeButton }
+                <Text style={styles.title}> Personality Insights Monthly II </Text>
                 <VictoryChart
                 theme={VictoryTheme.material}>
                <VictoryAxis
@@ -140,6 +150,7 @@ class MonthlyTotalChart extends Component {
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
+                { closeButton }
                 <Text style={styles.title}> Personality Insights Monthly III </Text>
                 <VictoryChart
                 theme={VictoryTheme.material}>
@@ -180,6 +191,7 @@ class MonthlyTotalChart extends Component {
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
+                { closeButton }
                 <Text style={styles.title}> Personality Insights Monthly IV </Text>
                 <VictoryChart
                 theme={VictoryTheme.material}>
@@ -220,7 +232,8 @@ class MonthlyTotalChart extends Component {
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
-              <Text style={styles.title}> Personality Insights Monthly V </Text>
+                { closeButton }
+                <Text style={styles.title}> Personality Insights Monthly V </Text>
                 <VictoryChart
                 theme={VictoryTheme.material}>
                <VictoryAxis
@@ -260,6 +273,7 @@ class MonthlyTotalChart extends Component {
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
                <View style={styles.slide}>
+                { closeButton }
                 <Text style={styles.title}> Emotional Tone Insights Monthly I</Text>
                 <VictoryChart
                 theme={VictoryTheme.material}>
@@ -309,6 +323,7 @@ class MonthlyTotalChart extends Component {
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
                <View style={styles.slide}>
+                { closeButton }
                 <Text style={styles.title}> Emotional Tone Insights Monthly II </Text>
                 <VictoryChart
                 theme={VictoryTheme.material}>
@@ -357,7 +372,8 @@ class MonthlyTotalChart extends Component {
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
                <View style={styles.slide}>
-                  <Text style={styles.title}> Language Tone Insights Monthly </Text>
+                { closeButton }
+                <Text style={styles.title}> Language Tone Insights Monthly </Text>
                 <VictoryChart
                 theme={VictoryTheme.material}>
                <VictoryAxis
@@ -406,100 +422,102 @@ class MonthlyTotalChart extends Component {
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
                <View style={styles.slide}>
-                    <Text style={styles.title}> Social Tone Insights Monthly I </Text>
-                <VictoryChart
-                theme={VictoryTheme.material}>
-               <VictoryAxis
-                  tickFormat={[]}
-                  tickCount={1}
-                   style={{
-                     axis: {stroke: "white"},
-                     axisLabel: {
-                       padding: 35,
-                       fill: 'white'
-                     },
-                     ticks: {stroke: "white"},
-                     tickLabels: {fill: 'white'}
-                   }
-                  }
-                 />
+                  { closeButton }
+                  <Text style={styles.title}> Social Tone Insights Monthly I </Text>
+                  <VictoryChart
+                  theme={VictoryTheme.material}>
                  <VictoryAxis
-                        dependentAxis
-                        tickValues={[0,20,40,60,80,100]}
-                        style={{
-                          axis: {stroke: "white"},
-                          axisLabel: {
-                            padding: 35,
-                            fill: 'white'
-                          },
-                          ticks: {stroke: "white"},
-                          tickLabels: {fill: 'white'}
-                        }
-                       }
-                      />
-                {returnLine(8,true)}
-                {returnLine(9,true)}
-                {returnLine(10,true)}
-                </VictoryChart>
-                <TouchableOpacity
-                  style={{ marginTop: 25}}
-                  onPress={() => Alert.alert(
-                   '',
-                   'Social tone measures the social tendencies in the recorded content on five categories that are adopted from the Big Five personality model. For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates high likelihood that the tone will be perceived.'
-                 )}>
-                  <View style={styles.info}>
-                   <Icon name="ios-information-circle-outline" style={{color: 'white'}} />
-                 </View>
-                </TouchableOpacity>
-              </View>
+                    tickFormat={[]}
+                    tickCount={1}
+                     style={{
+                       axis: {stroke: "white"},
+                       axisLabel: {
+                         padding: 35,
+                         fill: 'white'
+                       },
+                       ticks: {stroke: "white"},
+                       tickLabels: {fill: 'white'}
+                     }
+                    }
+                   />
+                   <VictoryAxis
+                          dependentAxis
+                          tickValues={[0,20,40,60,80,100]}
+                          style={{
+                            axis: {stroke: "white"},
+                            axisLabel: {
+                              padding: 35,
+                              fill: 'white'
+                            },
+                            ticks: {stroke: "white"},
+                            tickLabels: {fill: 'white'}
+                          }
+                         }
+                        />
+                  {returnLine(8,true)}
+                  {returnLine(9,true)}
+                  {returnLine(10,true)}
+                  </VictoryChart>
+                  <TouchableOpacity
+                    style={{ marginTop: 25}}
+                    onPress={() => Alert.alert(
+                     '',
+                     'Social tone measures the social tendencies in the recorded content on five categories that are adopted from the Big Five personality model. For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates high likelihood that the tone will be perceived.'
+                   )}>
+                    <View style={styles.info}>
+                     <Icon name="ios-information-circle-outline" style={{color: 'white'}} />
+                   </View>
+                  </TouchableOpacity>
+                </View>
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
                 <View style={styles.slide}>
-                    <Text style={styles.title}> Social Tone Insights Monthly II </Text>
-                <VictoryChart
-                theme={VictoryTheme.material}>
-               <VictoryAxis
-                  tickFormat={[]}
-                   tickCount={1}
-                   style={{
-                     axis: {stroke: "white"},
-                     axisLabel: {
-                       padding: 35,
-                       fill: 'white'
-                     },
-                     ticks: {stroke: "white"},
-                     tickLabels: {fill: 'white'}
-                   }
-                  }
-                 />
+                  { closeButton }
+                  <Text style={styles.title}> Social Tone Insights Monthly II </Text>
+                  <VictoryChart
+                  theme={VictoryTheme.material}>
                  <VictoryAxis
-                        dependentAxis
-                        tickValues={[0,20,40,60,80,100]}
-                        style={{
-                          axis: {stroke: "white"},
-                          axisLabel: {
-                            padding: 35,
-                            fill: 'white'
-                          },
-                          ticks: {stroke: "white"},
-                          tickLabels: {fill: 'white'}
-                        }
-                       }
-                      />
-                {returnLine(11,true)}
-                {returnLine(12,true)}
-                </VictoryChart>
-                 <TouchableOpacity
-                  style={{ marginTop: 25}}
-                  onPress={() => Alert.alert(
-                   '',
-                   'Social tone measures the social tendencies in the recorded content on five categories that are adopted from the Big Five personality model. For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates high likelihood that the tone will be perceived.'
-                 )}>
-                  <View style={styles.info}>
-                   <Icon name="ios-information-circle-outline" style={{color: 'white'}} />
-                 </View>
-                </TouchableOpacity>
-              </View>
+                    tickFormat={[]}
+                     tickCount={1}
+                     style={{
+                       axis: {stroke: "white"},
+                       axisLabel: {
+                         padding: 35,
+                         fill: 'white'
+                       },
+                       ticks: {stroke: "white"},
+                       tickLabels: {fill: 'white'}
+                     }
+                    }
+                   />
+                   <VictoryAxis
+                          dependentAxis
+                          tickValues={[0,20,40,60,80,100]}
+                          style={{
+                            axis: {stroke: "white"},
+                            axisLabel: {
+                              padding: 35,
+                              fill: 'white'
+                            },
+                            ticks: {stroke: "white"},
+                            tickLabels: {fill: 'white'}
+                          }
+                         }
+                        />
+                  {returnLine(11,true)}
+                  {returnLine(12,true)}
+                  </VictoryChart>
+                   <TouchableOpacity
+                    style={{ marginTop: 25}}
+                    onPress={() => Alert.alert(
+                     '',
+                     'Social tone measures the social tendencies in the recorded content on five categories that are adopted from the Big Five personality model. For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates high likelihood that the tone will be perceived.'
+                   )}>
+                    <View style={styles.info}>
+                     <Icon name="ios-information-circle-outline" style={{color: 'white'}} />
+                   </View>
+                  </TouchableOpacity>
+                </View>
               </ScrollView>
             </Swiper>
           </View>
@@ -558,6 +576,11 @@ const styles = StyleSheet.create({
   title: {
     color: 'white',
     fontSize: 18
+  },
+  closeButton: {
+    marginTop: 35,
+    marginLeft: 310,
+    marginBottom: 50
   }
 });
 

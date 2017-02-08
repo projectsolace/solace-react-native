@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import { Icon } from 'native-base';
 import { connect } from 'react-redux';
-import { VictoryBar, VictoryChart, VictoryLine, VictoryStack, VictoryTheme, VictoryLabel, VictoryAxis } from 'victory-native';
+import { VictoryChart, VictoryLine,  VictoryTheme, VictoryLabel, VictoryAxis } from 'victory-native';
 import Swiper from 'react-native-swiper';
 import { BlurView } from 'react-native-blur';
+import { Actions } from 'react-native-router-flux';
 
 class AllTimeTotalChart extends Component {
   constructor(props) {
@@ -37,18 +38,25 @@ class AllTimeTotalChart extends Component {
     )
   }
 
-  const infoButton =
-      (<TouchableOpacity
-        style={{ marginTop: 25}}
-        onPress={() => Alert.alert(
-         '',
-         'The scores you see are all percentiles. They are comparing you to the broader population. For example, a 90% on Extraversion does not mean that you are 90% extroverted. It means that for that single trait, you are more extroverted than 90% of the people in the population.'
-       )}>
-        <View style={styles.info}>
-         <Icon name="ios-information-circle-outline" style={{color: 'white'}} />
-       </View>
-      </TouchableOpacity>
-    );
+    const infoButton =
+        (<TouchableOpacity
+          style={{ marginTop: 25}}
+          onPress={() => Alert.alert(
+           '',
+           'The scores you see are all percentiles. They are comparing you to the broader population. For example, a 90% on Extraversion does not mean that you are 90% extroverted. It means that for that single trait, you are more extroverted than 90% of the people in the population.'
+         )}>
+          <View style={styles.info}>
+           <Icon name="ios-information-circle-outline" style={{color: 'white'}} />
+         </View>
+        </TouchableOpacity>
+      );
+
+    const closeButton =
+      (<TouchableOpacity onPress={Actions.pop}>
+         <View style={styles.closeButton}>
+           <Icon name="ios-close-circle-outline" style={{fontSize: 30, color: 'white', textAlign: 'right'}} />
+         </View>
+       </TouchableOpacity>);
 
     return (
       <Image source={{uri: `https://s3.amazonaws.com/watsonapi/images/${imageId}.jpg`}} style={styles.img} >
@@ -57,6 +65,7 @@ class AllTimeTotalChart extends Component {
             <Swiper showsButtons={true}>
               <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
+                { closeButton }
                 <Text style={styles.title}> Personality Insights All Time I </Text>
                 <VictoryChart
                 theme={VictoryTheme.material}
@@ -98,7 +107,8 @@ class AllTimeTotalChart extends Component {
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
                <View style={styles.slide}>
-                 <Text style={styles.title}> Personality Insights All Time II </Text>
+                { closeButton }
+                <Text style={styles.title}> Personality Insights All Time II </Text>
                 <VictoryChart
                 theme={VictoryTheme.material}>
                <VictoryAxis
@@ -138,6 +148,7 @@ class AllTimeTotalChart extends Component {
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
+                { closeButton }
                 <Text style={styles.title}> Personality Insights All Time III </Text>
                 <VictoryChart
                 theme={VictoryTheme.material}>
@@ -178,6 +189,7 @@ class AllTimeTotalChart extends Component {
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
+                { closeButton }
                 <Text style={styles.title}> Personality Insights All Time IV </Text>
                 <VictoryChart
                 theme={VictoryTheme.material}>
@@ -218,7 +230,8 @@ class AllTimeTotalChart extends Component {
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
-              <Text style={styles.title}> Personality Insights All Time V </Text>
+                { closeButton }
+                <Text style={styles.title}> Personality Insights All Time V </Text>
                 <VictoryChart
                 theme={VictoryTheme.material}>
                <VictoryAxis
@@ -258,6 +271,7 @@ class AllTimeTotalChart extends Component {
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
                <View style={styles.slide}>
+                { closeButton }
                 <Text style={styles.title}> Emotional Tone Insights All Time I</Text>
                 <VictoryChart
                 theme={VictoryTheme.material}>
@@ -307,6 +321,7 @@ class AllTimeTotalChart extends Component {
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
                <View style={styles.slide}>
+                { closeButton }
                 <Text style={styles.title}> Emotional Tone Insights All Time II </Text>
                 <VictoryChart
                 theme={VictoryTheme.material}>
@@ -354,42 +369,43 @@ class AllTimeTotalChart extends Component {
               </View>
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
-               <View style={styles.slide}>
-                    <Text style={styles.title}> Language Tone Insights All Time </Text>
-                <VictoryChart
-                theme={VictoryTheme.material}>
-               <VictoryAxis
-                  tickFormat={[]}
-                  tickCount={1}
-                   style={{
-                     axis: {stroke: "white"},
-                     axisLabel: {
-                       padding: 35,
-                       fill: 'white'
-                     },
-                     ticks: {stroke: "white"},
-                     tickLabels: {fill: 'white'}
-                   }
-                  }
-                 />
-                 <VictoryAxis
-                        dependentAxis
-                        tickValues={[0,20,40,60,80,100]}
-                        style={{
-                          axis: {stroke: "white"},
-                          axisLabel: {
-                            padding: 35,
-                            fill: 'white'
-                          },
-                          ticks: {stroke: "white"},
-                          tickLabels: {fill: 'white'}
-                        }
-                       }
-                      />
-                {returnLine(5,true)}
-                {returnLine(6,true)}
-                {returnLine(7,true)}
-                </VictoryChart>
+                <View style={styles.slide}>
+                  { closeButton }
+                  <Text style={styles.title}> Language Tone Insights All Time </Text>
+                  <VictoryChart
+                  theme={VictoryTheme.material}>
+                  <VictoryAxis
+                    tickFormat={[]}
+                    tickCount={1}
+                     style={{
+                       axis: {stroke: "white"},
+                       axisLabel: {
+                         padding: 35,
+                         fill: 'white'
+                       },
+                       ticks: {stroke: "white"},
+                       tickLabels: {fill: 'white'}
+                     }
+                    }
+                   />
+                   <VictoryAxis
+                          dependentAxis
+                          tickValues={[0,20,40,60,80,100]}
+                          style={{
+                            axis: {stroke: "white"},
+                            axisLabel: {
+                              padding: 35,
+                              fill: 'white'
+                            },
+                            ticks: {stroke: "white"},
+                            tickLabels: {fill: 'white'}
+                          }
+                         }
+                        />
+                  {returnLine(5,true)}
+                  {returnLine(6,true)}
+                  {returnLine(7,true)}
+                  </VictoryChart>
                 <TouchableOpacity
                   style={{ marginTop: 25}}
                   onPress={() => Alert.alert(
@@ -398,13 +414,14 @@ class AllTimeTotalChart extends Component {
                  )}>
                   <View style={styles.info}>
                    <Icon name="ios-information-circle-outline" style={{color: 'white'}} />
-                 </View>
+                  </View>
                 </TouchableOpacity>
               </View>
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
                <View style={styles.slide}>
-                    <Text style={styles.title}> Social Tone Insights All Time I </Text>
+                { closeButton }
+                <Text style={styles.title}> Social Tone Insights All Time I </Text>
                 <VictoryChart
                 theme={VictoryTheme.material}>
                <VictoryAxis
@@ -453,40 +470,41 @@ class AllTimeTotalChart extends Component {
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
                 <View style={styles.slide}>
-                    <Text style={styles.title}> Social Tone Insights All Time II </Text>
-                <VictoryChart
-                theme={VictoryTheme.material}>
-               <VictoryAxis
-                  tickFormat={[]}
-                   tickCount={1}
-                   style={{
-                     axis: {stroke: "white"},
-                     axisLabel: {
-                       padding: 35,
-                       fill: 'white'
-                     },
-                     ticks: {stroke: "white"},
-                     tickLabels: {fill: 'white'}
-                   }
-                  }
-                 />
+                  { closeButton }
+                  <Text style={styles.title}> Social Tone Insights All Time II </Text>
+                  <VictoryChart
+                  theme={VictoryTheme.material}>
                  <VictoryAxis
-                        dependentAxis
-                        tickValues={[0,20,40,60,80,100]}
-                        style={{
-                          axis: {stroke: "white"},
-                          axisLabel: {
-                            padding: 35,
-                            fill: 'white'
-                          },
-                          ticks: {stroke: "white"},
-                          tickLabels: {fill: 'white'}
-                        }
-                       }
-                      />
-                {returnLine(11,true)}
-                {returnLine(12,true)}
-                </VictoryChart>
+                    tickFormat={[]}
+                     tickCount={1}
+                     style={{
+                       axis: {stroke: "white"},
+                       axisLabel: {
+                         padding: 35,
+                         fill: 'white'
+                       },
+                       ticks: {stroke: "white"},
+                       tickLabels: {fill: 'white'}
+                     }
+                    }
+                   />
+                   <VictoryAxis
+                          dependentAxis
+                          tickValues={[0,20,40,60,80,100]}
+                          style={{
+                            axis: {stroke: "white"},
+                            axisLabel: {
+                              padding: 35,
+                              fill: 'white'
+                            },
+                            ticks: {stroke: "white"},
+                            tickLabels: {fill: 'white'}
+                          }
+                         }
+                        />
+                  {returnLine(11,true)}
+                  {returnLine(12,true)}
+                  </VictoryChart>
                  <TouchableOpacity
                   style={{ marginTop: 25}}
                   onPress={() => Alert.alert(
@@ -556,6 +574,11 @@ const styles = StyleSheet.create({
   title: {
     color: 'white',
     fontSize: 18
+  },
+  closeButton: {
+    marginTop: 35,
+    marginLeft: 310,
+    marginBottom: 50
   }
 });
 

@@ -147,7 +147,7 @@ class RecordingComponent extends Component {
 
     return (
       <View>
-        <Icon name='ios-help-circle-outline' style = {styles.helpButton } onPress={Actions.tutorial} ></Icon>
+        <Icon name="ios-help-circle-outline" style={styles.helpButton} onPress={Actions.tutorial} ></Icon>
         <Image source={require('../../images/solace.png')} style={styles.image} />
         <Text style={styles.text2}> {`Hello ${this.props.user.firstName}. \n What's on your mind today?`}</Text>
           {!this.state.recording ? recordingMic() : stopMic()}
@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   timerContainer: {
-    marginTop:13
+    marginTop: 13
   }
 });
 

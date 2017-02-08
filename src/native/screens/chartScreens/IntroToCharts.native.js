@@ -17,8 +17,8 @@ export class IntroToCharts extends Component {
         <BlurView blurType="dark" blurAmount={10}>
           <Swiper showsButtons={true} prevButton transparent={true}>
             <View>
-              <Icon name='ios-close-circle-outline' style={styles.icon} onPress={Actions.pop} ></Icon>
-              <Text style={styles.text}>
+              <Icon name="ios-close-circle-outline" style={styles.closeButton} onPress={Actions.pop} />
+              <Text style={styles.firstText}>
                 No data yet. {'\n'}
                 Go ahead and start recording! {'\n'}
                 Once you have some data...
@@ -26,14 +26,14 @@ export class IntroToCharts extends Component {
             </View>
 
             <View>
-              <Icon name='ios-close-circle-outline' style={styles.icon} onPress={Actions.pop} ></Icon>
-              <Text style={styles.text}>
+              <Icon name="ios-close-circle-outline" style={styles.closeButton} onPress={Actions.pop} />
+              <Text style={styles.secondText}>
                 Click the "Average" options for more accurate data...
               </Text>
             </View>
 
             <View>
-              <Text style={styles.text}>
+              <Text style={styles.lastText}>
                 Click the "Total" options to compare your data over time
               </Text>
               <Button rounded info style={styles.button} onPress={Actions.pop}>
@@ -54,7 +54,48 @@ const styles = StyleSheet.create({
     height: null,
     opacity: 0.85,
   },
-  text: {
+  closeButton: {
+    fontSize: 30,
+    textAlign: 'right',
+    marginTop: 35,
+    marginRight: 20,
+    color: 'white',
+  },
+  firstText: {
+    alignSelf: 'center',
+    fontSize: 20,
+    color: 'white',
+    marginLeft: 20,
+    marginRight: 20,
+    top: 225,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    shadowColor: '#000000',
+    shadowOffset: {
+     width: 0,
+     height: 3
+    },
+    shadowRadius: 5,
+    shadowOpacity: 1.0
+  },
+  secondText: {
+    alignSelf: 'center',
+    fontSize: 20,
+    color: 'white',
+    marginLeft: 20,
+    marginRight: 20,
+    top: 240,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    shadowColor: '#000000',
+    shadowOffset: {
+     width: 0,
+     height: 3
+    },
+    shadowRadius: 5,
+    shadowOpacity: 1.0
+  },
+  lastText: {
     alignSelf: 'center',
     fontSize: 20,
     color: 'white',
@@ -74,13 +115,7 @@ const styles = StyleSheet.create({
   button: {
     alignSelf: 'center',
     marginTop: 325
-  },
-  icon: {
-    fontSize: 30,
-    textAlign: 'right',
-    marginTop: 35,
-    marginRight: 20
-  },
+  }
 });
 
 /* -----------------    CONTAINER     ------------------ */

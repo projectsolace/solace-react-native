@@ -5,6 +5,7 @@ import { Icon } from 'native-base';
 import { VictoryBar, VictoryChart, VictoryTheme, VictoryAxis } from 'victory-native';
 import Swiper from 'react-native-swiper';
 import { BlurView } from 'react-native-blur';
+import { Actions } from 'react-native-router-flux';
 
 class MonthlyAverageChart extends Component {
   constructor(props) {
@@ -25,6 +26,13 @@ class MonthlyAverageChart extends Component {
        </View>
       </TouchableOpacity>
     );
+
+    const closeButton =
+      (<TouchableOpacity onPress={Actions.pop}>
+         <View style={styles.closeButton}>
+           <Icon name="ios-close-circle-outline" style={{fontSize: 30, color: 'white', textAlign: 'right'}} />
+         </View>
+       </TouchableOpacity>);
 
     const personalityArray = this.props.recordings.personality;
     const toneArray = this.props.recordings.tone;
@@ -48,6 +56,7 @@ class MonthlyAverageChart extends Component {
             <Swiper showsButtons={true}>
               <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
+                { closeButton }
                 <Text style={styles.title}> Personality Insights I </Text>
                 <VictoryChart theme={VictoryTheme.material}>
                  <VictoryAxis
@@ -87,6 +96,7 @@ class MonthlyAverageChart extends Component {
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
+                { closeButton }
                 <Text style={styles.title}> Personality Insights II </Text>
                 <VictoryChart theme={VictoryTheme.material}>
                  <VictoryAxis
@@ -126,6 +136,7 @@ class MonthlyAverageChart extends Component {
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
+                { closeButton }
                 <Text style={styles.title}> Personality Insights III </Text>
                 <VictoryChart theme={VictoryTheme.material}>
                  <VictoryAxis
@@ -165,6 +176,7 @@ class MonthlyAverageChart extends Component {
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
+                { closeButton }
                 <Text style={styles.title}> Personality Insights IV </Text>
                 <VictoryChart theme={VictoryTheme.material}>
                   <VictoryAxis
@@ -204,6 +216,7 @@ class MonthlyAverageChart extends Component {
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
               <View style={styles.slide}>
+                { closeButton }
                 <Text style={styles.title}> Tone Analysis </Text>
                 <VictoryChart theme={VictoryTheme.material}>
                  <VictoryAxis
@@ -306,6 +319,11 @@ const styles = StyleSheet.create({
     title: {
     color: 'white',
     fontSize: 18
+  },
+  closeButton: {
+    marginTop: 35,
+    marginLeft: 310,
+    marginBottom: 50
   }
 });
 /* -----------------    CONTAINER     ------------------ */

@@ -26,8 +26,8 @@ export class QuestionsModal extends Component {
           <Swiper showsButtons={true} transparent={true} >
               { questions && questions.map(questionObj => (
                 <View key={questionObj.id}>
-                  <Icon name='ios-close-circle-outline' style={styles.closeButton} onPress={Actions.pop} ></Icon>
-                  <Text style={styles.text}> {questionObj.question}</Text>
+                  <Icon name='ios-close-circle-outline' style={styles.closeButton} onPress={Actions.pop} />
+                  <Text style={styles.text}> {questionObj.question} </Text>
                 </View>
                 )
               )}
