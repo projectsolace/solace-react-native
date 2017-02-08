@@ -42,11 +42,11 @@ class AllTimeAverageChart extends Component {
     const personalityData = personalityArray.sort((a, b) => b.score - a.score).map(obj => {
       return {x: count++, y: obj.score * 100}
     });
-    const personalityLabels = personalityArray.map(obj => obj.quality + ` ${(obj.score * 100).toFixed(2)}%`);
+    const personalityLabels = personalityArray.map(obj => obj.quality + ` ${(obj.score * 100).toFixed(1)}%`);
     const toneData = toneArray.sort((a, b) => b.score - a.score).map(obj => {
       return {x: toneCount++, y: obj.score * 100}
     });
-    const toneLabels = toneArray.map(obj => obj.quality + ` ${(obj.score * 100).toFixed(2)}%`);
+    const toneLabels = toneArray.map(obj => obj.quality + ` ${(obj.score * 100).toFixed(1)}%`);
     const { imageId } = this.props;
 
     return (
