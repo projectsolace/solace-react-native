@@ -2,7 +2,7 @@
 
 Solace is a mental wellness mobile app that utilizes IBM Watson's Personality/Emotional Insights API to help users observe their own mental and emotional processes over time. Each day, users are encouraged to share their thoughts and feelings with Solace by simply speaking to the app. Solace will then analyze the recordings and output a visual representation of the user's personality and emotional insights. Users will have the ability to track not only their most recent statistics but also be able to check their progress over time.
 
-The Admin Panel/Backend server is located at:
+The deployed Admin Panel/Backend server is located at:
 
 https://solace-admin.herokuapp.com/
 
@@ -14,11 +14,15 @@ PW: 123
 
 The backend github is located at:
 
-[solace-admin](https://github.com/jennyrchan/solace-admin/blob/master/README.md) 
+https://github.com/jennyrchan/solace-admin 
+
+
 
 ## Getting Started
 
 Follow these steps to get the app or the backend running on your machine
+
+
 
 ### Prerequisites
 
@@ -66,6 +70,8 @@ You can login with:
 Username: anuj@anuj.anuj
 PW: 123
 
+
+
 ### Installing Client-Side
 
 ```
@@ -100,6 +106,8 @@ PW: 123
 
 Or you can create your own account and start recording!
 
+
+
 ## Running the tests
 
 Our test suite features testing for the routing, database, API and frontend. 
@@ -113,6 +121,8 @@ All tests are run via
 ```
 npm test
 ```
+
+
 
 ## Authors
 
