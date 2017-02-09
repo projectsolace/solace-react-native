@@ -16,6 +16,10 @@ The backend github is located at:
   
 https://github.com/jennyrchan/solace-admin 
 
+The chrome extension is located at:
+
+https://github.com/mobiuschang/solace-chrome
+
   
   
 ## Getting Started
@@ -107,7 +111,26 @@ Username: anuj@anuj.anuj
 PW: 123  
      
 Or you can create your own account and start recording!
+
+
+### Installing Chrome Extension
   
+```
+git clone https://github.com/mobiuschang/solace-chrome
+```
+  
+  
+In the Chrome go to:
+  
+```
+chrome://extensions/
+```
+  
+Check developer mode and click load unpacked extensions.
+
+Then select the project directory. 
+
+The extension will automatically load!
   
   
 ## Running the tests
