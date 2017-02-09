@@ -1,4 +1,4 @@
-# pizzaCatcherJS
+# Solace
 
 Solace is a mental wellness mobile app that utilizes IBM Watson's Personality/Emotional Insights API to help users observe their own mental and emotional processes over time. Each day, users are encouraged to share their thoughts and feelings with Solace by simply speaking to the app. Solace will then analyze the recordings and output a visual representation of the user's personality and emotional insights. Users will have the ability to track not only their most recent statistics but also be able to check their progress over time.
 
