@@ -8,8 +8,9 @@ https://solace-admin.herokuapp.com/
 
 To login and see our test data render for different demographics you can login with:
 
-Username: anuj@anuj.anuj . 
-PW: 123 . 
+Username: anuj@anuj.anuj  
+PW: 123  
+
 
 The backend github is located at:
 
@@ -66,8 +67,8 @@ npm start
 and connect to localhost:1337
 
 You can login with:
-Username: anuj@anuj.anuj
-PW: 123
+Username: anuj@anuj.anuj  
+PW: 123  
 
 
 
