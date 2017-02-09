@@ -16,7 +16,7 @@ The backend github is located at:
   
 https://github.com/jennyrchan/solace-admin 
 
-The chrome extension is located at:
+The chrome extension github is located at:
 
 https://github.com/mobiuschang/solace-chrome
 
