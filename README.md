@@ -66,7 +66,8 @@ npm start
 
 and connect to localhost:1337
 
-You can login with:
+You can login with:  
+
 Username: anuj@anuj.anuj  
 PW: 123  
 
@@ -101,8 +102,8 @@ react-native run-ios
 and the app should automatically load!
 
 You can login to the application with:     
-Username: anuj@anuj.anuj . 
-PW: 123 . 
+Username: anuj@anuj.anuj  
+PW: 123  
    
 Or you can create your own account and start recording!
 
