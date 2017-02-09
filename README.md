@@ -116,7 +116,7 @@ Our test suite features testing for the routing, database, API and frontend.
   
 On the backend we test Express, our database models and our Watson API behavior. 
   
-On the frontend, we test our React-Native component and Redux store for expected behavior, and also test specific actions of out libraries and modules. 
+On the frontend, we test our React-Native component and Redux store for expected behavior, and also test specific actions of our libraries and modules. 
   
 All tests are run via
   
