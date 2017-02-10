@@ -142,10 +142,15 @@ const styles = StyleSheet.create({
     marginTop: 100
   },
   text: {
-    fontSize: 30,
-    fontFamily: 'Helvetica',
     color: 'white',
-    fontWeight: 'bold'
+    fontSize: 30,
+    fontWeight: 'bold',
+    shadowColor: '#000000',
+    shadowOffset: {
+      height: 1
+    },
+  shadowRadius: 2,
+  shadowOpacity: 0.5
   },
   button: {
     alignSelf: 'stretch',
