@@ -126,7 +126,7 @@ const STORAGE_KEY = 'id_token';
           </View>
         </KeyboardAwareScrollView>)
       : (<View style={styles.spinView}>
-        <Spinner type={'WanderingCubes'} isVisible={ this.state.loading } size={40} color={'#4AB1D3'} />
+        <Spinner type={'Bounce'} isVisible={ this.state.loading } size={40} color={'#4AB1D3'} />
        </View>)}
       </Image>
     );

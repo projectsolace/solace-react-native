@@ -59,7 +59,7 @@ class Homepage extends Component {
 
 
   loadSpinner() {
-    this.setState({ loading: !this.state.loading })
+    this.setState({ loading: !this.state.loading });
   }
 
 
@@ -97,7 +97,7 @@ class Homepage extends Component {
         <Image source={{ uri: `https://s3.amazonaws.com/watsonapi/images/${this.state.imageId}.jpg`}} onLoad={this.loadSpinner} style={ styles.img } >
           {this.state.loading ?
             (<View style={styles.spinView}>
-              <Spinner type={'WanderingCubes'} isVisible={ this.state.loading } size={40} color={'#4AB1D3'} />
+              <Spinner type={'Bounce'} isVisible={ this.state.loading } size={40} color={'#4AB1D3'} />
              </View>)
           : this.state.statsActive ? <Charts /> : this.state.microphoneActive ? <Recording /> : <Account />}
           <Footer style={{position: 'absolute', left: 0, right: 0, bottom: 0}}>
