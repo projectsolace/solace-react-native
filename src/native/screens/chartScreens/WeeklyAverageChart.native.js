@@ -50,7 +50,7 @@ class WeeklyAverageChart extends Component {
     const { imageId } = this.props;
 
           return (
-      <Image source={{uri: `https://s3.amazonaws.com/watsonapi/images/${imageId}.jpg`}} style={styles.img} >
+<Image source={{uri: `https://s3.amazonaws.com/watsonapi/images/${imageId}.jpg`}} style={styles.img} >
         <BlurView blurType="light" blurAmount={50} style={styles.container}>
           <View style={styles.container}>
             <Swiper showsButtons={true}>
@@ -80,7 +80,7 @@ class WeeklyAverageChart extends Component {
                     padding={75}
                     style={{
                       labels: {
-                        fontSize: 8,
+                        fontSize: 12,
                         fill: 'white'
                       },
                       data: {
@@ -120,7 +120,7 @@ class WeeklyAverageChart extends Component {
                     padding={75}
                     style={{
                       labels: {
-                       fontSize: 8,
+                       fontSize: 12,
                        fill: 'white'
                       },
                       data: {
@@ -154,13 +154,13 @@ class WeeklyAverageChart extends Component {
                   />
                   <VictoryBar
                     horizontal
-                    domain={{x: [0, 100], y: [12, 26]}}
+                    domain={{x: [0, 140], y: [12, 26]}}
                     labels={personalityLabels.slice(12, 24)}
                     height={1000}
                     padding={75}
                     style={{
                       labels: {
-                        fontSize: 8,
+                        fontSize: 12,
                         fill: 'white'
                       },
                       data: {
@@ -194,13 +194,13 @@ class WeeklyAverageChart extends Component {
                   />
                   <VictoryBar
                     horizontal
-                    domain={{x: [0, 120], y: [0, 14]}}
+                    domain={{x: [0, 160], y: [0, 14]}}
                     labels={personalityLabels.slice(0, 12)}
                     height={1000}
                     padding={75}
                     style={{
                       labels: {
-                        fontSize: 8,
+                        fontSize: 12,
                         fill: 'white'
                       },
                       data: {
@@ -234,13 +234,13 @@ class WeeklyAverageChart extends Component {
                   />
                   <VictoryBar
                     horizontal
-                    domain={{x: [0, 120], y: [0, 14]}}
+                    domain={{x: [0, 150], y: [0, 14]}}
                     labels={toneLabels}
                     height={1000}
                     padding={10}
                     style={{
                       labels: {
-                        fontSize: 8,
+                        fontSize: 12,
                         fill: 'white'
                       },
                       data: {
