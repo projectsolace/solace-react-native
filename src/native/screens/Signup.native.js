@@ -20,7 +20,8 @@ class Signup extends Component {
       lastName: '',
       password: '',
       email: '',
-      loading: true
+      loading: true,
+      afterSignupLoad: false
     };
 
     this.onValueChange = this.onValueChange.bind(this);
@@ -49,6 +50,7 @@ class Signup extends Component {
       };
 
       if (value) { // if validation fails, value will be null
+        this.setState({ loading: true, afterSignupLoad: true });
         fetch("https://solace-admin.herokuapp.com/api/tokens/signup", {
           method: "POST",
           headers: {
@@ -85,7 +87,7 @@ class Signup extends Component {
     return (
       <Image source={{url: `https://s3.amazonaws.com/watsonapi/images/12.jpg`}} onLoad={this.loadSpinner} style={ styles.container } >
         {this.state.loading ?
-          (<View style={styles.spinView}>
+          (<View style={this.state.afterSignupLoad ? styles.loadView : styles.spinView}>
             <Spinner type={'Wave'} isVisible={ this.state.loading } size={40} color={'#4AB1D3'} />
            </View>)
         : (<KeyboardAwareScrollView  style={{paddingTop: 26}}>
@@ -215,6 +217,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
     backgroundColor: 'black'
+  },
+  loadView: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1
   }
 });
 

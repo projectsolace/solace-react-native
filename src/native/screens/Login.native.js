@@ -30,7 +30,7 @@ const STORAGE_KEY = 'id_token';
       await AsyncStorage.setItem(item, selectedValue);
     } catch (error) {
       console.log('AsyncStorage error: ' + error.message);
-      }
+    }
   }
 
   _userLogin() {
@@ -53,6 +53,7 @@ const STORAGE_KEY = 'id_token';
       .then((responseData) => {
         if(!responseData.id_token) {
           AlertIOS.alert("Invalid Username")
+          this.setState({ loading: false });
         } else {
         console.log('this is the response', responseData),
         this.onValueChange(STORAGE_KEY, responseData.id_token),
@@ -61,7 +62,7 @@ const STORAGE_KEY = 'id_token';
         }
       })
       .catch(err => {
-        Actions.pop() // -----> fix invalid credentials spinner
+        this.setState({ loading: false });
         AlertIOS.alert("Invalid Password")
       })
       .done();
