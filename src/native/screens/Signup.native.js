@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import store from '../store.native';
 import { checkEmail } from '../utils';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import Spinner from 'react-native-spinkit';
 
 const STORAGE_KEY = 'id_token';
 
@@ -18,11 +19,13 @@ class Signup extends Component {
       firstName: '',
       lastName: '',
       password: '',
-      email: ''
+      email: '',
+      loading: true
     };
 
     this.onValueChange = this.onValueChange.bind(this);
     this._userSignup = this._userSignup.bind(this);
+    this.loadSpinner = this.loadSpinner.bind(this);
   }
 
   async onValueChange(item, selectedValue) {
@@ -69,16 +72,23 @@ class Signup extends Component {
         .done();
       }
     } else {
-
        AlertIOS.alert("Invalid Input")
     }
   }
 
-   render() {
+  loadSpinner() {
+    this.setState({ loading: !this.state.loading })
+  }
+
+  render() {
 
     return (
-      <Image source={{uri:'https://s3.amazonaws.com/watsonapi/images/12.jpg'}} style={ styles.container } >
-        <KeyboardAwareScrollView  style={{paddingTop: 26}}>
+      <Image source={{url: `https://s3.amazonaws.com/watsonapi/images/12.jpg`}} onLoad={this.loadSpinner} style={ styles.container } >
+        {this.state.loading ?
+          (<View style={styles.spinView}>
+            <Spinner type={'Wave'} isVisible={ this.state.loading } size={40} color={'#4AB1D3'} />
+           </View>)
+        : (<KeyboardAwareScrollView  style={{paddingTop: 26}}>
           <View style={styles.content}>
             <Image source={require('../../images/solace.png')}></Image>
           </View>
@@ -156,7 +166,7 @@ class Signup extends Component {
               </Button>
             </Content>
           </Row>
-        </KeyboardAwareScrollView>
+        </KeyboardAwareScrollView> )}
       </Image>
     );
   }
@@ -199,6 +209,12 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
     marginTop: 40
+  },
+  spinView: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    backgroundColor: 'black'
   }
 });
 

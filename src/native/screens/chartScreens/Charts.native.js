@@ -1,20 +1,25 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Col, Row } from 'react-native-easy-grid';
 import { Content, Icon, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { fetchLatestRecordings, fetchWeeklyAvgRecordings, fetchMonthlyAvgRecordings, fetchAllAvgRecordings, fetchWeeklyTotalRecordings, fetchMonthlyTotalRecordings, fetchAllTotalRecordings} from '../../reducer/recordings.native';
 import store from '../../store.native';
+import Spinner from 'react-native-spinkit';
 
 class Charts extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      loading: false
+    };
     this.getMonthlyAvgRecordings = this.getMonthlyAvgRecordings.bind(this);
     this.getAllTimeAvgRecordings = this.getAllTimeAvgRecordings.bind(this);
     this.getWeeklyTotalRecordings = this.getWeeklyTotalRecordings.bind(this);
     this.getMonthlyTotalRecordings = this.getMonthlyTotalRecordings.bind(this);
     this.getAllTimeTotalRecordings = this.getAllTimeTotalRecordings.bind(this);
+    this.loadSpinner = this.loadSpinner.bind(this);
   }
 
   componentDidMount() {
@@ -23,7 +28,11 @@ class Charts extends Component {
   }
 
   getMonthlyAvgRecordings() {
+    this.setState({ loading: true });
     store.dispatch(fetchMonthlyAvgRecordings(this.props.user.id));
+    setTimeout(() => {
+      this.setState({ loading: false });
+    }, 2000)
   }
 
   getAllTimeAvgRecordings() {
@@ -42,9 +51,15 @@ class Charts extends Component {
     store.dispatch(fetchAllTotalRecordings(this.props.user.id));
   }
 
+  loadSpinner() {
+    this.setState({ loading: !this.state.loading })
+  }
+
   render() {
     return (
       <Content>
+      {!this.state.loading ?
+      (<Content>
         <Row size={30} style={styles.content}>
           <Text style={styles.text}>
             View Your Data
@@ -130,6 +145,10 @@ class Charts extends Component {
             }
           </Content>
         </Row>
+      </Content>)
+    : (<View style={styles.spinView}>
+        <Spinner type={'ThreeBounce'} isVisible={ this.state.loading } size={40} color={'#4AB1D3'} />
+       </View>)}
       </Content>
     );
   }
@@ -150,6 +169,11 @@ const styles = StyleSheet.create({
   button: {
     alignSelf: 'stretch',
     margin: 10
+  },
+  spinView: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: 100
   }
 });
 

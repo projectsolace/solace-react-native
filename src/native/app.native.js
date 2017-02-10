@@ -25,10 +25,7 @@ import customDimensions from './customDimensions';
 
 export default class App extends React.Component {
 
-  render () {
-
-    const prefetchTask = Image.prefetch(`https://s3.amazonaws.com/watsonapi/images/7.jpg`);
-    //image testing
+    render() {
     return (
       <Provider store={ store }>
         <Router>
@@ -36,7 +33,7 @@ export default class App extends React.Component {
             <Scene key="entryPoint" component={Login} hideNavBar />
             <Scene key="signup" component={Signup} getPanHandlers={customDimensions} title="Signup"/>
             <Scene key="completeProfile" component={CompleteProfile} title="CompleteProfile" hideNavBar />
-            <Scene key="homepage" component={Homepage} title="Homepage" panHandlers={null} data={'this is data'} hideNavBar />
+            <Scene key="homepage" component={Homepage} title="Homepage" panHandlers={null} hideNavBar />
             <Scene key="tutorial" component={Tutorial} title="Tutorial" direction="vertical" hideNavBar />
             <Scene key="charts" component={Charts} title="Charts" hideNavBar  />
             <Scene key="intro" component={IntroToCharts} title="IntroToCharts" direction="vertical" hideNavBar />
