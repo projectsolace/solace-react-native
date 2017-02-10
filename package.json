@@ -23,6 +23,7 @@
     "react-native-floating-label-text-input": "^0.1.2",
     "react-native-keyboard-aware-scroll-view": "^0.2.7",
     "react-native-router-flux": "^3.37.0",
+    "react-native-spinkit": "^0.1.5",
     "react-native-svg": "^4.1.0",
     "react-native-swiper": "^1.5.4",
     "react-native-vector-icons": "^4.0.0",

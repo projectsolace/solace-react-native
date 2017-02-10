@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { updateCurrentUser } from '../reducer/user.native';
 import { BlurView } from 'react-native-blur';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import Spinner from 'react-native-spinkit';
 import {occupation, income, ethnicity, religion, education, maritalStatus } from '../dataList';
 
 const Item = Picker.Item;
@@ -22,10 +23,12 @@ class CompleteProfile extends Component {
       education: 'Select',
       maritalStatus: 'Select',
       gender: 'Select',
-      zipCode: ''
+      zipCode: '',
+      loading: true
     };
     this.onValueChange = this.onValueChange.bind(this);
     this.onPressUpdate = this.onPressUpdate.bind(this);
+    this.loadSpinner = this.loadSpinner.bind(this);
     this.mapOptionsList = this.mapOptionsList.bind(this);
   }
 
@@ -38,14 +41,17 @@ class CompleteProfile extends Component {
     const { loggedInUser, updateCurrentUser } = this.props;
     const infoToUpdate = {};
     for (let props in this.state) {
-      if (this.state[props] !== 'Select' && this.state[props]) {
+      if (this.state[props] !== 'Select' && this.state[props] && props !== 'loading') {
         infoToUpdate[props] = props === 'zipCode' ? +this.state[props] : this.state[props];
       }
     }
 
     updateCurrentUser(loggedInUser.id, infoToUpdate);
     AlertIOS.alert('Profile Updated!')
+  }
 
+  loadSpinner() {
+    this.setState({ loading: !this.state.loading })
   }
 
   mapOptionsList(optionsList){
@@ -67,8 +73,12 @@ class CompleteProfile extends Component {
 
     return (
       <View style={styles.container} >
-        <Image source={{uri:'https://s3.amazonaws.com/watsonapi/images/12.jpg'}} style={ styles.img } >
-          <BlurView blurType="dark" style={styles.blurContainer}>
+        <Image source={{uri:'https://s3.amazonaws.com/watsonapi/images/12.jpg'}} onLoad={this.loadSpinner} style={ styles.img } >
+        {this.state.loading ?
+          (<View style={styles.spinView}>
+            <Spinner type={'Wave'} isVisible={ this.state.loading } size={40} color={'#4AB1D3'} />
+           </View>)
+          : (<BlurView blurType="dark" style={styles.blurContainer}>
             <KeyboardAwareScrollView>
               <Grid>
                 <Row size={18}>
@@ -191,7 +201,7 @@ class CompleteProfile extends Component {
                 </Row>
               </Grid>
             </KeyboardAwareScrollView>
-          </BlurView>
+          </BlurView> )}
         </Image>
       </View>
     );
@@ -266,6 +276,12 @@ const styles = StyleSheet.create({
     width: 70,
     alignSelf: 'center',
     marginTop: 20
+  },
+  spinView: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    backgroundColor: 'black'
   }
 });
 

@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View, Dimensions, Image, AlertIOS, AsyncStorage } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Content, InputGroup, Input, Icon, Button } from 'native-base';
-import { Actions } from 'react-native-router-flux';
+import { Actions, ActionConst } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { currentUser } from '../reducer/user.native'
 import store from '../store.native';
 import { checkEmail } from '../utils';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-
+import Spinner from 'react-native-spinkit';
 
 const STORAGE_KEY = 'id_token';
 
@@ -17,12 +17,12 @@ const STORAGE_KEY = 'id_token';
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      loading: false
     };
 
     this.onValueChange = this.onValueChange.bind(this);
     this._userLogin = this._userLogin.bind(this);
-    this.focusNextField = this.focusNextField.bind(this);
   }
 
   async onValueChange(item, selectedValue) {
@@ -30,12 +30,13 @@ const STORAGE_KEY = 'id_token';
       await AsyncStorage.setItem(item, selectedValue);
     } catch (error) {
       console.log('AsyncStorage error: ' + error.message);
-      }
+    }
   }
 
   _userLogin() {
     const { email, password } = this.state;
     let value = {email, password};
+    this.setState({ loading: true });
     if (value) { // if validation fails, value will be null
       fetch("https://solace-admin.herokuapp.com/api/tokens/sessions/create", {
         method: "POST",
@@ -52,6 +53,7 @@ const STORAGE_KEY = 'id_token';
       .then((responseData) => {
         if(!responseData.id_token) {
           AlertIOS.alert("Invalid Username")
+          this.setState({ loading: false });
         } else {
         console.log('this is the response', responseData),
         this.onValueChange(STORAGE_KEY, responseData.id_token),
@@ -60,19 +62,18 @@ const STORAGE_KEY = 'id_token';
         }
       })
       .catch(err => {
+        this.setState({ loading: false });
         AlertIOS.alert("Invalid Password")
       })
       .done();
     }
   }
-  focusNextField(nextField) {
-    console.log('these are the refs', this.refs)
-  }
 
   render() {
     return (
       <Image source={{uri: `https://s3.amazonaws.com/watsonapi/images/3.jpg`}} style={ styles.container } >
-        <KeyboardAwareScrollView>
+        {!this.state.loading ?
+        (<KeyboardAwareScrollView>
           <View style={styles.content}>
             <Image source={require('../../images/solace.png')}></Image>
           </View>
@@ -124,7 +125,10 @@ const STORAGE_KEY = 'id_token';
               </Button>
             </Row>
           </View>
-        </KeyboardAwareScrollView>
+        </KeyboardAwareScrollView>)
+      : (<View style={styles.spinView}>
+        <Spinner type={'Bounce'} isVisible={ this.state.loading } size={40} color={'#4AB1D3'} />
+       </View>)}
       </Image>
     );
   }
@@ -172,6 +176,11 @@ const styles = StyleSheet.create({
   login: {
     marginLeft: 20,
     marginRight: 20
+  },
+  spinView: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1
   }
 });
 

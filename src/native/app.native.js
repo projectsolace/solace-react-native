@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, Image } from 'react-native';
 import {Scene, Router} from 'react-native-router-flux';
 import { Provider } from 'react-redux';
 import store from './store.native';
@@ -25,7 +25,7 @@ import customDimensions from './customDimensions';
 
 export default class App extends React.Component {
 
-  render () {
+    render() {
     return (
       <Provider store={ store }>
         <Router>
