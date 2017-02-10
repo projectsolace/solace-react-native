@@ -26,6 +26,7 @@ class CompleteProfile extends Component {
     };
     this.onValueChange = this.onValueChange.bind(this);
     this.onPressUpdate = this.onPressUpdate.bind(this);
+    this.mapOptionsList = this.mapOptionsList.bind(this);
   }
 
   onValueChange(value, type) {
@@ -47,42 +48,22 @@ class CompleteProfile extends Component {
 
   }
 
+  mapOptionsList(optionsList){
+    return optionsList.map((option, i) => {
+      return (
+        <Item label={ option } value={ option } key={ i } />
+      );
+    });
+  };
+
   render() {
-    let occupationList = occupation.map((job, i) => {
-      return (
-        <Item label={ job } value={ job } key={ i } />
-      );
-    });
 
-    let incomeList = income.map((salary, i) => {
-      return (
-        <Item label={ salary } value={ salary } key={ i } />
-      );
-    });
-
-    let ethnicityList = ethnicity.map((background, i) => {
-      return (
-        <Item label={ background } value={ background } key={ i } />
-      );
-    });
-
-    let religionList = religion.map((belief, i) => {
-      return (
-        <Item label={ belief } value={ belief } key={ i } />
-      );
-    });
-
-    let educationList = education.map((school, i) => {
-      return (
-        <Item label={ school } value={ school } key={ i } />
-      );
-    });
-
-    let maritalStatusList = maritalStatus.map((status, i) => {
-      return (
-        <Item label={ status } value={ status } key={ i } />
-      );
-    });
+    let occupationList = this.mapOptionsList(occupation);
+    let incomeList = this.mapOptionsList(income);
+    let ethnicityList = this.mapOptionsList(ethnicity);
+    let religionList  = this.mapOptionsList(religion);
+    let educationList  = this.mapOptionsList(education);
+    let maritalStatusList = this.mapOptionsList(maritalStatus);
 
     return (
       <View style={styles.container} >
