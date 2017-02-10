@@ -316,9 +316,16 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25
   },
-    title: {
+  title: {
     color: 'white',
-    fontSize: 18
+    fontSize: 18,
+    fontWeight: 'bold',
+    shadowColor: '#000000',
+    shadowOffset: {
+      height: 1
+    },
+  shadowRadius: 2,
+  shadowOpacity: 0.5
   },
   closeButton: {
     marginTop: 35,
