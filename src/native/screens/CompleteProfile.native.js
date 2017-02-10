@@ -8,22 +8,9 @@ import { updateCurrentUser } from '../reducer/user.native';
 import { BlurView } from 'react-native-blur';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Spinner from 'react-native-spinkit';
-
+import {occupation, income, ethnicity, religion, education, maritalStatus } from '../dataList';
 
 const Item = Picker.Item;
-
-let occupation = ['Select', 'Sales', 'Hospitality', 'Healthcare', 'Custodial', 'Accounting', 'Teaching', 'Law-Enforcement', 'Law', 'Finance', 'Engineering', 'Administration', 'Student', 'Other'];
-
-let income = ['Select', 'Under-$15,000', '$15,000-to-$24,999', '$25,000-to-$34,999', '$35,000-to-$49,999', '$50,000-to-$74,999', '$75,000-to-$99,999', '$100,000-to-$149,999', '$150,000-to-$199,999', '$200,000-and-over'];
-
-let ethnicity = ['Select', 'White', 'Black', 'Hispanic', 'Asian', 'American-Indian/Alaska-Native', 'Hawaiian/Other-Pacific-Islander', 'Other'];
-
-let religion = ['Select', 'Protestant', 'Catholic', 'Mormon', 'Judaism', 'Islam', 'Buddhism', 'Hinduism', 'Other', 'Unaffiliated'];
-
-let education = ['Select', 'High-School', 'Some-College', 'Associate-Degree', 'Bachelor-Degree', 'Advanced-Degree'];
-
-let maritalStatus = ['Select', 'Single', 'Married', 'Widowed', 'Divorced'];
-
 
 class CompleteProfile extends Component {
   constructor(props) {
@@ -42,6 +29,7 @@ class CompleteProfile extends Component {
     this.onValueChange = this.onValueChange.bind(this);
     this.onPressUpdate = this.onPressUpdate.bind(this);
     this.loadSpinner = this.loadSpinner.bind(this);
+    this.mapOptionsList = this.mapOptionsList.bind(this);
   }
 
   onValueChange(value, type) {
@@ -66,42 +54,22 @@ class CompleteProfile extends Component {
     this.setState({ loading: !this.state.loading })
   }
 
+  mapOptionsList(optionsList){
+    return optionsList.map((option, i) => {
+      return (
+        <Item label={ option } value={ option } key={ i } />
+      );
+    });
+  };
+
   render() {
-    let occupationList = occupation.map((job, i) => {
-      return (
-        <Item label={ job } value={ job } key={ i } />
-      );
-    });
 
-    let incomeList = income.map((salary, i) => {
-      return (
-        <Item label={ salary } value={ salary } key={ i } />
-      );
-    });
-
-    let ethnicityList = ethnicity.map((background, i) => {
-      return (
-        <Item label={ background } value={ background } key={ i } />
-      );
-    });
-
-    let religionList = religion.map((belief, i) => {
-      return (
-        <Item label={ belief } value={ belief } key={ i } />
-      );
-    });
-
-    let educationList = education.map((school, i) => {
-      return (
-        <Item label={ school } value={ school } key={ i } />
-      );
-    });
-
-    let maritalStatusList = maritalStatus.map((status, i) => {
-      return (
-        <Item label={ status } value={ status } key={ i } />
-      );
-    });
+    let occupationList = this.mapOptionsList(occupation);
+    let incomeList = this.mapOptionsList(income);
+    let ethnicityList = this.mapOptionsList(ethnicity);
+    let religionList  = this.mapOptionsList(religion);
+    let educationList  = this.mapOptionsList(education);
+    let maritalStatusList = this.mapOptionsList(maritalStatus);
 
     return (
       <View style={styles.container} >
