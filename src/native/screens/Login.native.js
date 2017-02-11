@@ -6,7 +6,7 @@ import { Actions, ActionConst } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { currentUser } from '../reducer/user.native'
 import store from '../store.native';
-import { checkEmail } from '../utils';
+import { checkEmail } from '../utils/validation';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Spinner from 'react-native-spinkit';
 

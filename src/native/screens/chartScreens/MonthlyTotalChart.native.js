@@ -6,6 +6,9 @@ import { VictoryChart, VictoryLine, VictoryTheme, VictoryLabel, VictoryAxis, Lin
 import Swiper from 'react-native-swiper';
 import { BlurView } from 'react-native-blur';
 import { Actions } from 'react-native-router-flux';
+import { filterTraits } from '../../utils/chart';
+
+const colorArray = [ '#7D26CD','#0000EE','#6495ED','#68228B','#c06dff','#104E8B','#B0C4DE','#0000FF','#5D478B','#1E90FF','#F0F8FF','#AB82FF','#836FFF','#9932CC','#BCD2EE','#6E7B8B','#191970','#6A5ACD','#0000CD','#9A32CD','#B23AEE','#7A67EE','#6C7B8B','#9370DB','#7B68EE','#473C8B','#000080','#D15FEE','#9F79EE','#BA55D3','#4B0082','#778899','#4682B4','#483D8B','#3A5FCD','#7A378B','#8A2BE2','#4169E1','#63B8FF','#8470FF','#800080','#A2B5CD','#27408B','#9400D3','#1874CD','#551A8B' ];
 
 class MonthlyTotalChart extends Component {
   constructor(props) {
@@ -13,43 +16,59 @@ class MonthlyTotalChart extends Component {
   }
 
   render() {
-    let personalityArray = this.props.recordings.personality.filter(function(obj){return obj.key =='Imagination' || obj.key =='Self-discipline' || obj.key =='Cheerfulness' || obj.key =='Outgoing' || obj.key =='Altruism' || obj.key =='Modesty' || obj.key =='Trust' || obj.key =='Self-consciousness' || obj.key =='Curiosity' || obj.key =='Harmony' || obj.key =='Love' || obj.key =='Openness to change' || obj.key =='Susceptible to stress' || obj.key =='Stability' || obj.key =='Intellect'});
-    let toneArray = this.props.recordings.tone;
-    const { imageId } = this.props;
-    console.log(personalityArray)
-    console.log(toneArray)
+  let { imageId, personalityArray, toneArray } = this.props;
 
-  function returnLine(index, tone){
+  function returnLine(index, tone, color = colorArray) {
     personalityArray = tone ? toneArray : personalityArray
-    let colorArray = [ '#7D26CD','#0000EE','#6495ED','#68228B','#c06dff','#104E8B','#B0C4DE','#0000FF','#5D478B','#1E90FF','#F0F8FF','#AB82FF','#836FFF','#9932CC','#BCD2EE','#6E7B8B','#191970','#6A5ACD','#0000CD','#9A32CD','#B23AEE','#7A67EE','#6C7B8B','#9370DB','#7B68EE','#473C8B','#000080','#D15FEE','#9F79EE','#BA55D3','#4B0082','#778899','#4682B4','#483D8B','#3A5FCD','#7A378B','#8A2BE2','#4169E1','#63B8FF','#8470FF','#800080','#A2B5CD','#27408B','#9400D3','#1874CD','#551A8B' ]
     return (
       <VictoryLine
       data={personalityArray[index].value}
-       domain={{y: [0, 110], x: [0, personalityArray[index].value.length+5]}}
-        x="date"
-        y={(datum) => datum.score*100}
-        label={personalityArray[index].key}
-        style={{
-          data: {stroke: colorArray[index]},
-          labels: {fontSize: 12, fill: 'white'}
-        }}
-        labelComponent={<VictoryLabel/>}
+      domain={{y: [0, 110], x: [0, personalityArray[index].value.length+5]}}
+      x="date"
+      y={(datum) => datum.score*100}
+      style={{
+        data: {stroke: color[index]},
+        labels: {fontSize: 12, fill: 'white'}
+      }}
+      labelComponent={<VictoryLabel/>}
       />
-      )
+      );
     }
 
-    const infoButton =
-      (<TouchableOpacity
-        style={{ marginTop: 25}}
-        onPress={() => Alert.alert(
-         '',
-         'The scores you see are all percentiles. They are comparing you to the broader population. For example, a 90% on Extraversion does not mean that you are 90% extroverted. It means that for that single trait, you are more extroverted than 90% of the people in the population.'
-       )}>
-        <View style={styles.info}>
-         <Icon name="ios-information-circle-outline" style={{color: 'white'}} />
-       </View>
-      </TouchableOpacity>
-    );
+    const createLegend = (indexStart, indexEnd, tone) => {
+      personalityArray = tone ? toneArray : personalityArray;
+      function setupRows() {
+        var output = [];
+        for (var i = indexStart; i <= indexEnd; i++) {
+          output.push(
+            <View key={i} style={{flexDirection: 'row'}}>
+              <View style={{height: 15, width: 15, alignSelf: 'center', backgroundColor: colorArray[i]}} />
+              <Text style={{margin: 5, fontFamily: 'helvetica', color: 'white'}}>{personalityArray[i].key}</Text>
+            </View>
+          )
+        } return output;
+      }
+      return (
+        <View style={{flexDirection: 'column'}}>
+          {setupRows()}
+        </View>
+      );
+    };
+
+    const infoButton = (margin = 10) => {
+      return (
+        <TouchableOpacity
+          style={{ alignSelf: 'center', marginTop: margin}}
+          onPress={() => Alert.alert(
+           '',
+           'The scores you see are all percentiles. They are comparing you to the broader population. For example, a 90% on Extraversion does not mean that you are 90% extroverted. It means that for that single trait, you are more extroverted than 90% of the people in the population.'
+         )}>
+          <View style={styles.info}>
+           <Icon name="ios-information-circle-outline" style={{color: 'white'}} />
+         </View>
+        </TouchableOpacity>
+      );
+    }
 
     const closeButton =
       (<TouchableOpacity onPress={Actions.pop}>
@@ -103,7 +122,8 @@ class MonthlyTotalChart extends Component {
                 {returnLine(1)}
                 {returnLine(2)}
                 </VictoryChart>
-                { infoButton }
+                { createLegend(0, 2) }
+                { infoButton() }
               </View>
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
@@ -116,7 +136,6 @@ class MonthlyTotalChart extends Component {
                   tickFormat={[]}
                   tickCount={1}
                    style={{
-                     ticks: {stroke: 'transparent'},
                      axis: {stroke: "white"},
                      axisLabel: {
                        padding: 35,
@@ -145,7 +164,8 @@ class MonthlyTotalChart extends Component {
                 {returnLine(4)}
                 {returnLine(5)}
                 </VictoryChart>
-               { infoButton }
+                { createLegend(3, 5) }
+               { infoButton() }
               </View>
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
@@ -186,7 +206,8 @@ class MonthlyTotalChart extends Component {
                 {returnLine(7)}
                 {returnLine(8)}
                 </VictoryChart>
-               { infoButton }
+                { createLegend(6,8) }
+               { infoButton() }
               </View>
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
@@ -227,7 +248,8 @@ class MonthlyTotalChart extends Component {
                 {returnLine(10)}
                 {returnLine(11)}
                 </VictoryChart>
-               { infoButton }
+                { createLegend(9,11) }
+               { infoButton() }
               </View>
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
@@ -268,7 +290,8 @@ class MonthlyTotalChart extends Component {
                 {returnLine(13)}
                 {returnLine(14)}
                 </VictoryChart>
-               { infoButton }
+               { createLegend(12, 14) }
+               { infoButton() }
               </View>
               </ScrollView>
               <ScrollView maximumZoomScale={3}>
@@ -309,8 +332,9 @@ class MonthlyTotalChart extends Component {
                 {returnLine(1,true)}
                 {returnLine(2,true)}
                 </VictoryChart>
+                { createLegend(0, 2, true) }
                 <TouchableOpacity
-                  style={{ marginTop: 25}}
+                  style={{marginTop: 10}}
                   onPress={() => Alert.alert(
                    '',
                    'Emotional tone measures different types of emotions and feelings that people express. For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates high likelihood that the tone will be perceived.'
@@ -358,6 +382,7 @@ class MonthlyTotalChart extends Component {
                 {returnLine(3,true)}
                 {returnLine(4,true)}
                 </VictoryChart>
+                { createLegend(3, 4, true)}
                 <TouchableOpacity
                   style={{ marginTop: 25}}
                   onPress={() => Alert.alert(
@@ -408,8 +433,9 @@ class MonthlyTotalChart extends Component {
                 {returnLine(6,true)}
                 {returnLine(7,true)}
                 </VictoryChart>
+                { createLegend(5, 7, true) }
                 <TouchableOpacity
-                  style={{ marginTop: 25}}
+                  style={{ marginTop: 10}}
                   onPress={() => Alert.alert(
                    '',
                    'Language tone describes perceived language style based on the recorded content. For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates high likelihood that the tone will be perceived.'
@@ -458,8 +484,9 @@ class MonthlyTotalChart extends Component {
                   {returnLine(9,true)}
                   {returnLine(10,true)}
                   </VictoryChart>
+                  {createLegend(8, 10, true)}
                   <TouchableOpacity
-                    style={{ marginTop: 25}}
+                    style={{ marginTop: 10}}
                     onPress={() => Alert.alert(
                      '',
                      'Social tone measures the social tendencies in the recorded content on five categories that are adopted from the Big Five personality model. For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates high likelihood that the tone will be perceived.'
@@ -507,6 +534,7 @@ class MonthlyTotalChart extends Component {
                   {returnLine(11,true)}
                   {returnLine(12,true)}
                   </VictoryChart>
+                  {createLegend(11, 12, true)}
                    <TouchableOpacity
                     style={{ marginTop: 25}}
                     onPress={() => Alert.alert(
@@ -586,10 +614,16 @@ const styles = StyleSheet.create({
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ recordings, admin }) => {
+  const monthlyPersonalityTraits = recordings.monthlyTotalRecordings.personality;
+  const personalityArray = filterTraits(monthlyPersonalityTraits);
+
+  console.log('personality', personalityArray);
+
   return {
-    recordings: state.recordings.monthlyTotalRecordings,
-    imageId: state.admin.imageId
+    personalityArray,
+    toneArray: recordings.monthlyTotalRecordings.tone,
+    imageId: admin.imageId
   };
 };
 
