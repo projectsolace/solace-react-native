@@ -263,14 +263,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold'
   },
-  inputCreds: {
-    paddingLeft: 15,
-    marginBottom: 17,
-    marginLeft: 20,
-    marginRight: 20,
-    backgroundColor: 'rgba(0,0,0,0.3)',
-    borderColor: 'rgba(0,0,0,0)'
-  },
   button: {
     height: 66,
     width: 70,

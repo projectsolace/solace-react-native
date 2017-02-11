@@ -544,28 +544,10 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0
   },
-  blurContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'stretch',
-    backgroundColor: 'transparent',
-    paddingHorizontal: 10
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-    color: '#ffffff',
-  },
   slide: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  text: {
-    color: 'white',
-    fontSize: 30,
-    fontWeight: 'bold',
   },
   info: {
     width: 25,
