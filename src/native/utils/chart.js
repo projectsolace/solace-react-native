@@ -14,6 +14,8 @@ export const social = 'Social tone measures the social tendencies in the recorde
 
 export const personalityTitles = ['Personality Insights Monthly I', 'Personality Insights Monthly II', 'Personality Insights Monthly III', 'Personality Insights Monthly IV', 'Personality Insights Monthly V'];
 
+export const toneTitles = ['Emotional Tone Insights Monthly I', 'Emotional Tone Insights Monthly II', 'Language Tone Insights Monthly', 'Social Tone Insights Monthly I', 'Social Tone Insights Monthly II'];
+
 export const filterTraits = (arr) => {
   const traits = ['Imagination', 'Self-discipline', 'Cheerfulness', 'Outgoing', 'Altruism', 'Modesty', 'Trust', 'Self-consciousness', 'Curiosity', 'Harmony', 'Love', 'Openness to change', 'Susceptible to stress', 'Stability', 'Intellect'];
   return arr.filter(obj => {
