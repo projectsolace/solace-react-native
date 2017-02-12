@@ -5,12 +5,13 @@ import { BlurView } from 'react-native-blur';
 import { filterTraits } from '../../utils/chart';
 import LineGraphSlides from '../../components/LineGraphSlides.native';
 
+
 const MonthlyTotalChart = ({ imageId, personalityArray, toneArray }) => {
   return (
     <Image source={{uri: `https://s3.amazonaws.com/watsonapi/images/${imageId}.jpg`}} style={styles.img} >
       <BlurView blurType="light" blurAmount={50} style={styles.container}>
         <View style={styles.container}>
-          <LineGraphSlides personalityArray={personalityArray} toneArray={toneArray}/>
+          <LineGraphSlides personalityArray={personalityArray} toneArray={toneArray} xAxisLength={5}/>
         </View>
       </BlurView>
     </Image>
@@ -36,15 +37,9 @@ const styles = StyleSheet.create({
     right: 0,
     top: 0,
     bottom: 0
-  },
-  blurContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'stretch',
-    backgroundColor: 'transparent',
-    paddingHorizontal: 10
   }
 });
+
 
 /* -----------------    CONTAINER     ------------------ */
 

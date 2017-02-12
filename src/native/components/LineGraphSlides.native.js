@@ -9,7 +9,7 @@ import InfoButton from './Info.native';
 import CloseButton from './Close.native';
 import { personalityTitles, toneTitles } from '../utils/chart';
 
-export default Graphs = ({personalityArray, toneArray}) => {
+export default Graphs = ({personalityArray, toneArray, xAxisLength}) => {
   //type an array of objects thats either the personality or tone; titles is an array of graph titles; start & end are 0, 14
   const personalityGraph = () => {
     const output = [];
@@ -20,7 +20,7 @@ export default Graphs = ({personalityArray, toneArray}) => {
           <View style={styles.slide}>
             <CloseButton/>
             <Text style={styles.title}>{ personalityTitles[count] }</Text>
-            <LineGraph start={i} end={i + 2} type={ personalityArray }/>
+            <LineGraph start={i} end={i + 2} type={ personalityArray } xAxisLength={ xAxisLength }/>
             <Legend start={i} end={i + 2} type={ personalityArray }/>
             <InfoButton info={ personality }/>
           </View>
@@ -43,7 +43,7 @@ export default Graphs = ({personalityArray, toneArray}) => {
           <View style={styles.slide}>
             <CloseButton/>
             <Text style={styles.title}>{ toneTitles[count] }</Text>
-            <LineGraph start={i} end={ endPoint } type={ toneArray }/>
+            <LineGraph start={i} end={ endPoint } type={ toneArray } xAxisLength={ xAxisLength }/>
             <Legend start={i} end={ endPoint } type={ toneArray }/>
             <InfoButton info={ trait } space={count === 1 || count === 4 ? 25 : 10}/>
           </View>

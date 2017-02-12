@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import { colorArray } from '../utils/chart';
 
 export default Legend = ({start, end, type}) => {
-  function setupRows() {
+  function descriptions() {
     var output = [];
     for (var i = start; i <= end; i++) {
       output.push(
@@ -16,7 +16,7 @@ export default Legend = ({start, end, type}) => {
   }
   return (
     <View style={{flexDirection: 'column'}}>
-      {setupRows()}
+      {descriptions()}
     </View>
   );
 };

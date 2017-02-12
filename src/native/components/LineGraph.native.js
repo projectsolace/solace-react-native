@@ -4,7 +4,7 @@ import { VictoryChart, VictoryLine, VictoryTheme, VictoryLabel, VictoryAxis } fr
 import { colorArray } from '../utils/chart';
 
 
-export default LineGraph = ({start, end, type}) => {
+export default LineGraph = ({start, end, type, xAxisLength}) => {
 
   const graphLines = (typeOfTraitArray, color = colorArray) => {
     const output = [];
@@ -13,7 +13,7 @@ export default LineGraph = ({start, end, type}) => {
         <VictoryLine
         key={i}
         data={typeOfTraitArray[i].value}
-        domain={{y: [0, 110], x: [0, typeOfTraitArray[i].value.length + 5]}}
+        domain={{y: [0, 110], x: [0, typeOfTraitArray[i].value.length + xAxisLength]}}
         x="date"
         y={(datum) => datum.score * 100}
         style={{
