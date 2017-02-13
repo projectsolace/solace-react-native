@@ -48,6 +48,12 @@ const styles = StyleSheet.create({
   title: {
     color: 'white',
     fontSize: 20,
-    fontFamily: 'helvetica'
+    fontWeight: 'bold',
+    shadowColor: '#000000',
+    shadowOffset: {
+      height: 1
+    },
+    shadowRadius: 2,
+    shadowOpacity: 0.5
   }
 });
