@@ -41,12 +41,13 @@ export default BarGraphSlides = ({personalityData, personalityLabels, toneData, 
 
 const styles = StyleSheet.create({
   slide: {
-  flex: 1,
-  justifyContent: 'center',
-  alignItems: 'center'
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   title: {
-  color: 'white',
-  fontSize: 18
+    color: 'white',
+    fontSize: 20,
+    fontFamily: 'helvetica'
   }
 });

@@ -119,29 +119,29 @@ class RecordingComponent extends Component {
 
     const recordingMic = () =>{
       return (
-          <View>
+        <View>
           <TouchableOpacity onPress={this.onStartRecord} style={styles.image2}>
-           <Image source={require('../../images/mic.png')} style={styles.image2}/>
-           </TouchableOpacity>
-           <View style={styles.phantom}>
-           </View>
-           </View>
-           )
+            <Image source={require('../../images/mic.png')} style={styles.image2}/>
+          </TouchableOpacity>
+          <View style={styles.phantom}>
+          </View>
+        </View>
+      )
     }
 
      const stopMic = () =>{
       return (
-          <View>
+        <View>
           <TouchableOpacity onPress={this.onStopRecord} style={styles.image3}>
            <Image source={require('../../images/stopmic.png')} style={styles.image3}/>
-           </TouchableOpacity>
-              <View style={styles.timerContainer}>
-                   <Text style={styles.timer}>{formattedSeconds(this.state.secondsElapsed)}</Text>
-              </View>
-           <View style={styles.phantom2}>
-           </View>
-           </View>
-           )
+          </TouchableOpacity>
+          <View style={styles.timerContainer}>
+            <Text style={styles.timer}>{formattedSeconds(this.state.secondsElapsed)}</Text>
+          </View>
+          <View style={styles.phantom2}>
+          </View>
+        </View>
+      )
     }
 
 
@@ -162,28 +162,7 @@ class RecordingComponent extends Component {
 
 const handleTimerComplete = () => alert("custom completion function");
 
-const optionsA = {
-  container: {
-    backgroundColor: 'rgba(0,0,0,0)',
-    padding: 20,
-    borderRadius: 5,
-    width: 175,
-  },
-  text: {
-    fontSize: 30,
-    color: '#FFF',
-    marginLeft: 7,
-  }
-};
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: null,
-    height: null,
-    backgroundColor: 'rgba(0,0,0,0)',
-    resizeMode: 'stretch'
-  },
   image: {
     alignSelf: 'center',
     marginTop: 0,

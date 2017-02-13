@@ -132,20 +132,6 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     backgroundColor: 'transparent',
   },
-  content: {
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  inputField: {
-    fontSize: 18,
-    fontFamily: 'Helvetica',
-    color: 'white',
-    fontWeight: 'bold'
-  },
-  login: {
-    marginLeft: 20,
-    marginRight: 20
-  },
   spinView: {
     alignItems: 'center',
     justifyContent: 'center',
