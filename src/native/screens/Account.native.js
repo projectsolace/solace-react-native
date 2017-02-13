@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, AlertIOS } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Content, List, ListItem, InputGroup, Input, Icon, Picker, Button } from 'native-base';
-import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { updateCurrentUser, logoutUser } from '../reducer/user.native';
 import { BlurView } from 'react-native-blur';
-import {occupation, income, ethnicity, religion, education, maritalStatus } from '../dataList';
+import { occupation, income, ethnicity, religion, education, maritalStatus } from '../utils/dataList';
 
 const Item = Picker.Item;
 
@@ -56,7 +55,7 @@ class Account extends Component {
         <Item label={ option } value={ option } key={ i } />
       );
     });
-  };
+  }
 
   render() {
 

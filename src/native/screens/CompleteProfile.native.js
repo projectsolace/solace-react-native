@@ -8,7 +8,7 @@ import { updateCurrentUser } from '../reducer/user.native';
 import { BlurView } from 'react-native-blur';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Spinner from 'react-native-spinkit';
-import {occupation, income, ethnicity, religion, education, maritalStatus } from '../dataList';
+import {occupation, income, ethnicity, religion, education, maritalStatus } from '../utils/dataList';
 
 const Item = Picker.Item;
 

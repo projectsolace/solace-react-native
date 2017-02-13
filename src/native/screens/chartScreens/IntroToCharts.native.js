@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { Button, Icon } from 'native-base';
 import { Actions } from 'react-native-router-flux';
@@ -6,46 +6,40 @@ import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
 import { BlurView } from 'react-native-blur';
 
-export class IntroToCharts extends Component {
-  constructor(props){
-    super(props)
-  }
+const IntroToCharts = ({imageId}) => {
 
-  render() {
-    return (
-      <Image source={{uri: `https://s3.amazonaws.com/watsonapi/images/${this.props.imageId}.jpg`}} style={styles.container} >
-        <BlurView blurType="dark" blurAmount={10}>
-          <Swiper showsButtons={true} prevButton transparent={true}>
-            <View>
-              <Icon name="ios-close-circle-outline" style={styles.closeButton} onPress={Actions.pop} />
-              <Text style={styles.firstText}>
-                No data yet. {'\n'}
-                Go ahead and start recording! {'\n'}
-                Once you have some data...
-              </Text>
-            </View>
-
-            <View>
-              <Icon name="ios-close-circle-outline" style={styles.closeButton} onPress={Actions.pop} />
-              <Text style={styles.secondText}>
-                Click the "Average" options for more accurate data...
-              </Text>
-            </View>
-
-            <View>
-              <Text style={styles.lastText}>
-                Click the "Total" options to compare your data over time
-              </Text>
-              <Button rounded info style={styles.button} onPress={Actions.pop}>
-                Got it!
-              </Button>
-            </View>
-          </Swiper>
-        </BlurView>
-      </Image>
-    );
-  }
+  return (
+    <Image source={{uri: `https://s3.amazonaws.com/watsonapi/images/${imageId}.jpg`}} style={styles.container} >
+      <BlurView blurType="dark" blurAmount={10}>
+        <Swiper showsButtons={true} prevButton transparent={true}>
+          <View>
+            <Icon name="ios-close-circle-outline" style={styles.closeButton} onPress={Actions.pop} />
+            <Text style={styles.firstText}>
+              No data yet. {'\n'}
+              Go ahead and start recording! {'\n'}
+              Once you have some data...
+            </Text>
+          </View>
+          <View>
+            <Icon name="ios-close-circle-outline" style={styles.closeButton} onPress={Actions.pop} />
+            <Text style={styles.secondText}>
+              Click the "Average" options for more accurate data...
+            </Text>
+          </View>
+          <View>
+            <Text style={styles.lastText}>
+              Click the "Total" options to compare your data over time
+            </Text>
+            <Button rounded info style={styles.button} onPress={Actions.pop}>
+              Got it!
+            </Button>
+          </View>
+        </Swiper>
+      </BlurView>
+    </Image>
+  );
 }
+
 
 const styles = StyleSheet.create({
   container: {
