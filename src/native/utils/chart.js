@@ -14,9 +14,9 @@ export const social = 'Social tone measures the social tendencies in the recorde
 
 export const tone = 'For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates a high likelihood that the tone will be perceived.';
 
-export const personalityTitles = ['Personality Insights Monthly I', 'Personality Insights Monthly II', 'Personality Insights Monthly III', 'Personality Insights Monthly IV', 'Personality Insights Monthly V'];
+export const personalityTitles = ['Personality Insights I', 'Personality Insights II', 'Personality Insights III', 'Personality Insights IV', 'Personality Insights V'];
 
-export const toneTitles = ['Emotional Tone Insights Monthly I', 'Emotional Tone Insights Monthly II', 'Language Tone Insights Monthly', 'Social Tone Insights Monthly I', 'Social Tone Insights Monthly II'];
+export const toneTitles = ['Emotional Tone Insights I', 'Emotional Tone Insights II', 'Language Tone Insights', 'Social Tone Insights I', 'Social Tone Insights II'];
 
 export const barDomainCoords = [
   {x: [0, 100], y: [35, 48]},
