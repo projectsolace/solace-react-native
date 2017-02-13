@@ -1,11 +1,7 @@
-import React, {Component} from 'react';
-import { StyleSheet, View, Image, Text, TouchableOpacity, Alert, ScrollView } from 'react-native';
-import { Icon } from 'native-base';
+import React from 'react';
+import { StyleSheet, View, Image } from 'react-native';
 import { connect } from 'react-redux';
-import { VictoryChart, VictoryLine,  VictoryTheme, VictoryLabel, VictoryAxis } from 'victory-native';
-import Swiper from 'react-native-swiper';
 import { BlurView } from 'react-native-blur';
-import { Actions } from 'react-native-router-flux';
 import LineGraphSlides from '../../components/LineGraphSlides.native';
 import { filterTraits } from '../../utils/chart';
 

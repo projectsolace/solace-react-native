@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
-import { BlurView } from 'react-native-blur';
 import Swiper from 'react-native-swiper';
 import { personality, emotional, language, social } from '../utils/chart';
 import Legend from './Legend.native';
@@ -10,7 +9,7 @@ import CloseButton from './Close.native';
 import { personalityTitles, toneTitles } from '../utils/chart';
 
 export default Graphs = ({personalityArray, toneArray, xAxisLength}) => {
-  //type an array of objects thats either the personality or tone; titles is an array of graph titles; start & end are 0, 14
+  //type an array of objects thats either the personality or tone; titles is an array of graph titles;
   const personalityGraph = () => {
     const output = [];
     let count = 0;

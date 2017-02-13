@@ -12,10 +12,25 @@ export const language = 'Language tone describes perceived language style based 
 
 export const social = 'Social tone measures the social tendencies in the recorded content on five categories that are adopted from the Big Five personality model. For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates high likelihood that the tone will be perceived.';
 
+export const tone = 'For each tone, a score of less than 50% indicates that the tone is unlikely to be perceived in the recorded content. Likewise, a score greater than 75% indicates a high likelihood that the tone will be perceived.';
+
 export const personalityTitles = ['Personality Insights Monthly I', 'Personality Insights Monthly II', 'Personality Insights Monthly III', 'Personality Insights Monthly IV', 'Personality Insights Monthly V'];
 
 export const toneTitles = ['Emotional Tone Insights Monthly I', 'Emotional Tone Insights Monthly II', 'Language Tone Insights Monthly', 'Social Tone Insights Monthly I', 'Social Tone Insights Monthly II'];
 
+export const barDomainCoords = [
+  {x: [0, 100], y: [35, 48]},
+  {x: [0, 100], y: [24, 36]},
+  {x: [0, 140], y: [12, 26]},
+  {x: [0, 160], y: [0, 14]},
+  {x: [0, 150], y: [0, 14]} //toneAnalysis
+];
+
+export const barGraphTitles = ['Personality Insights I', 'Personality Insights II', 'Personality Insights III', 'Personality Insights IV', 'Tone Analysis'];
+
+export const personalityDataRange = [`35-47`, `24-35`, `12-24`, `0-12`];
+
+//line graph helper
 export const filterTraits = (arr) => {
   const traits = ['Imagination', 'Self-discipline', 'Cheerfulness', 'Outgoing', 'Altruism', 'Modesty', 'Trust', 'Self-consciousness', 'Curiosity', 'Harmony', 'Love', 'Openness to change', 'Susceptible to stress', 'Stability', 'Intellect'];
   return arr.filter(obj => {
@@ -23,3 +38,17 @@ export const filterTraits = (arr) => {
   });
 };
 
+//bar graph helper
+export const mapLabels = (arr) => {
+  return arr.map(obj => obj.quality + ` ${(obj.score * 100).toFixed(1)}%`);
+};
+
+export const sortData = (arr) => {
+  let count = 1;
+  return arr.sort((a, b) => b.score - a.score).map(obj => {
+    return {
+      x: count++,
+      y: obj.score * 100
+    };
+  });
+};
