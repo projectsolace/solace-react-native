@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -633,7 +634,7 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = LZEFJ2WG4H;
+						DevelopmentTeam = KYUCFGR3SB;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
@@ -1014,7 +1015,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = LZEFJ2WG4H;
+				DEVELOPMENT_TEAM = KYUCFGR3SB;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1044,7 +1045,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = LZEFJ2WG4H;
+				DEVELOPMENT_TEAM = KYUCFGR3SB;
 				INFOPLIST_FILE = reactNativeEverywhereTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1079,7 +1080,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.2reactNativeEverywhere;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example1.reactNativeEverywhere;
 				PRODUCT_NAME = reactNativeEverywhere;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1099,7 +1100,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.2reactNativeEverywhere;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example1.reactNativeEverywhere;
 				PRODUCT_NAME = reactNativeEverywhere;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
